@@ -5,11 +5,13 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 import Favoritos from './src/pages/Favoritos';
 import Estados from './src/pages/Estados';
+import Partidos from './src/pages/Partidos';
+import Estado from './src/pages/Estado';
 import Home from './src/pages/Home';
+import Candidatos from './src/pages/Candidatos';
 
 import { APP_NAME } from './src/constants';
 import colors from './src/colors.js';
-import DrawerScreen from './src/components/DrawerScreen';
 
 const MenuImage = ({navigation}) => {
   if(!navigation.state.isDrawerOpen){
@@ -34,6 +36,13 @@ const MainTab = createDrawerNavigator({
       drawerIcon: ({ tintColor }) => <MaterialCommunityIcons name="map" size={20} color={tintColor} />
     }
   },
+  Partidos: {
+    screen: Partidos,
+    navigationOptions:{
+      drawerLabel: "Partidos",
+      drawerIcon: ({ tintColor }) => <MaterialCommunityIcons name="panorama-wide-angle" size={20} color={tintColor} />
+    }
+  },
   Favoritos: {
     screen: Favoritos,
     navigationOptions:{
@@ -48,6 +57,8 @@ const MainTab = createDrawerNavigator({
 
 const Stack = createStackNavigator(
   {
+    Estado: { screen: Estado },
+    Candidatos: { screen: Candidatos },
     Main: {
       screen: MainTab,
       navigationOptions: {
@@ -56,8 +67,9 @@ const Stack = createStackNavigator(
     },
   },
   {
+    initialRouteName: 'Main',
     navigationOptions: ({ navigation }) => ({
-      title: 'ReactNavigation',  // Title to appear in status bar
+      title: 'Eleições 2018',
       headerLeft: 
       <TouchableOpacity  onPress={() => {navigation.dispatch(DrawerActions.toggleDrawer())} }>
           <MenuImage style="styles.bar" navigation={navigation}/>

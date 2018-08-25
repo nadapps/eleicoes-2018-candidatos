@@ -2,7 +2,7 @@ import React from 'react';
 import { Text } from 'react-native';
 import Content from '../components/Content';
 
-export default class Estados extends React.Component {
+export default class Partidos extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -13,7 +13,7 @@ export default class Estados extends React.Component {
   render() {
     return (
       <Content>
-        <Text>Estados</Text>
+        <Text>Partidos</Text>
       </Content>
     );
   }

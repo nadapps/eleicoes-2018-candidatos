@@ -3,10 +3,12 @@ import PropTypes from 'prop-types';
 import { View, StatusBar } from 'react-native';
 import { SearchBar } from 'react-native-elements';
 
+import Loading from './Loading';
+
 import styles from '../styles';
 import colors from '../colors';
 
-class Conteudo extends React.Component {
+class Content extends React.Component {
 	constructor(props) {
 	    super(props);
 	}
@@ -24,6 +26,7 @@ class Conteudo extends React.Component {
 		return (
 		  	<View style={this.props.style ? styles.container : [styles.container,this.props.style]}>
 			  	<StatusBar backgroundColor={colors.dark} barStyle="light-content"/>
+				<Loading loading={this.props.loading} />
 			  	{
 			  		this.props.search && (
 			        	<SearchBar
@@ -44,10 +47,16 @@ class Conteudo extends React.Component {
     }
 };
 
-Conteudo.propTypes = {
+Content.propTypes = {
 	search: PropTypes.bool,
 	scroll: PropTypes.bool,
-	onChangeTextSearch: PropTypes.func
+	onChangeTextSearch: PropTypes.func,
+	loading: PropTypes.bool
 }
 
-export default Conteudo;
+Content.defaultProps = {
+	search: false,
+	loading: false
+}
+
+export default Content;

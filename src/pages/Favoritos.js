@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text } from 'react-native';
-import Conteudo from '../components/Conteudo';
+import Content from '../components/Content';
 
 export default class Favoritos extends React.Component {
   constructor(props) {
@@ -12,9 +12,9 @@ export default class Favoritos extends React.Component {
 
   render() {
     return (
-      <Conteudo>
+      <Content>
         <Text>Favoritos</Text>
-      </Conteudo>
+      </Content>
     );
   }
 }
