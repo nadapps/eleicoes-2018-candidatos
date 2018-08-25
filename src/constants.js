@@ -1,0 +1,32 @@
+export const APP_NAME = 'Eleições 2018';
+export const estados = [
+    {"nome": "Brasil", "sigla": "BR","bandeira":"https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg"},
+    {"nome": "Acre", "sigla": "AC","bandeira":"https://upload.wikimedia.org/wikipedia/commons/4/4c/Bandeira_do_Acre.svg"},
+    {"nome": "Alagoas", "sigla": "AL","bandeira":"https://upload.wikimedia.org/wikipedia/commons/8/88/Bandeira_de_Alagoas.svg"},
+    {"nome": "Amapá", "sigla": "AP","bandeira":"https://upload.wikimedia.org/wikipedia/commons/0/0c/Bandeira_do_Amap%C3%A1.svg"},
+    {"nome": "Amazonas", "sigla": "AM","bandeira":"https://upload.wikimedia.org/wikipedia/commons/6/6b/Bandeira_do_Amazonas.svg"},
+    {"nome": "Bahia", "sigla": "BA","bandeira":"https://upload.wikimedia.org/wikipedia/commons/2/28/Bandeira_da_Bahia.svg"},
+    {"nome": "Ceará", "sigla": "CE","bandeira":"https://upload.wikimedia.org/wikipedia/commons/2/2e/Bandeira_do_Cear%C3%A1.svg  "},
+    {"nome": "Distrito Federal", "sigla": "DF","bandeira":"https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg"},
+    {"nome": "Espírito Santo", "sigla": "ES","bandeira":"https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg"},
+    {"nome": "Goiás", "sigla": "GO","bandeira":"https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg"},
+    {"nome": "Maranhão", "sigla": "MA","bandeira":"https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg"},
+    {"nome": "Mato Grosso", "sigla": "MT","bandeira":"https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg"},
+    {"nome": "Mato Grosso do Sul", "sigla": "MS","bandeira":"https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg"},
+    {"nome": "Minas Gerais", "sigla": "MG","bandeira":"https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg"},
+    {"nome": "Pará", "sigla": "PA","bandeira":"https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg"},
+    {"nome": "Paraíba", "sigla": "PB","bandeira":"https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg"},
+    {"nome": "Paraná", "sigla": "PR","bandeira":"https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg"},
+    {"nome": "Pernambuco", "sigla": "PE","bandeira":"https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg"},
+    {"nome": "Piauí", "sigla": "PI","bandeira":"https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg"},
+    {"nome": "Rio de Janeiro", "sigla": "RJ","bandeira":"https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg"},
+    {"nome": "Rio Grande do Norte", "sigla": "RN","bandeira":"https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg"},
+    {"nome": "Rio Grande do Sul", "sigla": "RS","bandeira":"https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg"},
+    {"nome": "Rondônia", "sigla": "RO","bandeira":"https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg"},
+    {"nome": "Roraima", "sigla": "RR","bandeira":"https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg"},
+    {"nome": "Santa Catarina", "sigla": "SC","bandeira":"https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg"},
+    {"nome": "São Paulo", "sigla": "SP","bandeira":"https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg"},
+    {"nome": "Sergipe", "sigla": "SE","bandeira":"https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg"},
+    {"nome": "Tocantins", "sigla": "TO","bandeira":"https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg"}
+
+]
