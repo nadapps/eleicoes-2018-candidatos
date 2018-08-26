@@ -14,29 +14,9 @@ import colors from '../colors';
 export default class Candidatos extends React.Component {
     static navigationOptions = ({ navigation }) => ({
         title: navigation.state.params.cargo.nome,
-        header: <Toolbar
-        leftElement="menu"
-        centerElement="Searchable"
-        searchable={{
-          autoFocus: true,
-          placeholder: 'Search',
-        }}
-        rightElement={{
-            menu: {
-                icon: "more-vert",
-                labels: ["item 1", "item 2"]
-            }
-        }}
-        onRightElementPress={ (label) => { console.log(label) }}
-      />,
         headerLeft: 
             <TouchableOpacity onPress={() => {navigation.dispatch(StackActions.pop())} }>
                 <MaterialCommunityIcons style={{marginLeft:20}} name="arrow-left" size={30} color={colors.white} />
-            </TouchableOpacity>
-        ,
-        headerRight: 
-            <TouchableOpacity onPress={() => { navigation.setParams({ header: null }) }}>
-                <MaterialIcons style={{marginRight:20}} name="search" size={30} color={colors.white} />
             </TouchableOpacity>
 
     });
@@ -54,16 +34,9 @@ export default class Candidatos extends React.Component {
     }
 
     async componentDidMount(){
-        this.props.navigation.setParams({
-            search: this.changeSearch
-        });
         let result = await candidatos(this.state.estado.estadoabrev, this.state.cargo.codigo);
 
         this.setState({candidatos:result.candidatos,loading:false});
-    }
-
-    changeSearch(){
-        this.setState({search:!search})
     }
 
     openCandidato = candidato => {

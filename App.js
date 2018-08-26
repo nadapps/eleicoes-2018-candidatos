@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppRegistry, TouchableOpacity } from 'react-native';
+import { AppRegistry, TouchableOpacity, AsyncStorage } from 'react-native';
 import { createStackNavigator, createDrawerNavigator, DrawerActions, createBottomTabNavigator, StackActions } from 'react-navigation';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
@@ -20,6 +20,8 @@ import CandidatoFinancas from './src/pages/CandidatoFinancas';
 import { APP_NAME } from './src/constants';
 import colors from './src/colors.js';
 import styles from './src/styles.js';
+
+const storage = await AsyncStorage.getItem('@Tokens:access_token');
 
 const MenuImage = ({navigation}) => {
   if(!navigation.state.isDrawerOpen){
@@ -147,7 +149,7 @@ CandidatoTab.navigationOptions = ({ navigation }) => {
   };
 };
 
-const Stack = createStackNavigator(
+const Stack = async createStackNavigator(
   {
     Estado: { screen: Estado },
     Candidatos: { screen: Candidatos },
@@ -172,7 +174,7 @@ const Stack = createStackNavigator(
     },
   },
   {
-    initialRouteName: 'Main',
+    initialRouteName: ;,
     navigationOptions: {
       title: 'Eleições 2018',
       headerStyle: {
