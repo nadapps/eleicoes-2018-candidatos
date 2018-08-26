@@ -7,12 +7,12 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Content from '../components/Content';
 import TitleEstado from '../components/TitleEstado';
 
-import { cargos } from '../services';
+import { candidatos } from '../services';
 import colors from '../colors';
 
-export default class Estado extends React.Component {
+export default class Candidatos extends React.Component {
     static navigationOptions = ({ navigation }) => ({
-        title: "Cargos",
+        title: navigation.state.params.cargo.nome,
         headerLeft: 
             <TouchableOpacity onPress={() => {navigation.dispatch(StackActions.pop())} }>
                 <MaterialCommunityIcons style={{marginLeft:20}} name="arrow-left" size={30} color={colors.white} />
@@ -24,21 +24,22 @@ export default class Estado extends React.Component {
 
         this.state = {
             estado: props.navigation.state.params.estado,
-            cargos: [],
+            cargo: props.navigation.state.params.cargo,
+            candidatos: [],
             loading: true
         };
     }
 
     async componentDidMount(){
-        let result = await cargos(this.state.estado.estadoabrev);
-        this.setState({cargos:result.cargos,loading:false});
+        let result = await candidatos(this.state.estado.estadoabrev, this.state.cargo.codigo);
+        this.setState({candidatos:result.candidatos,loading:false});
     }
 
-    openCandidatos = cargo => {
+    openCandidato = candidato => {
         const resetAction = StackActions.push({
             index: 0,
-            params: {estado:this.state.estado,cargo},
-            routeName: 'Candidatos',
+            params: { candidato },
+            routeName: 'Candidato',
         });
         this.props.navigation.dispatch(resetAction);
     }
@@ -47,13 +48,16 @@ export default class Estado extends React.Component {
         return (
             <Content loading={this.state.loading}>
                 <TitleEstado estado={this.state.estado} />
-                <List containerStyle={{marginTop:0}}>
+                <List containerStyle={{marginTop: 0}}>
                     {
-                        this.state.cargos.map((l) => (
+                        this.state.candidatos.map((l) => (
                         <ListItem
-                            key={l.codigo+""}
-                            title={l.nome}
-                            onPress={() => this.openCandidatos(l)}
+                            roundAvatar
+                            avatar={{uri:(l.fotoUrl==null ? "https://npengage.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png" : l.fotoUrl)}}
+                            key={l.id+""}
+                            title={l.nomeUrna}
+                            subtitle={l.partido.sigla+" - "+l.nomeColigacao}
+                            onPress={() => this.openCandidato(l)}
                         />
                         ))
                     }

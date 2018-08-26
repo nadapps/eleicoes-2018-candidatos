@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, StatusBar } from 'react-native';
+import { View, StatusBar, ScrollView } from 'react-native';
 import { SearchBar } from 'react-native-elements';
 
 import Loading from './Loading';
@@ -40,8 +40,10 @@ class Content extends React.Component {
 							icon={{color:'white'}}
 				       		placeholder='Pesquisar...' />
 			       	)
-			  	}
-			  	{this.props.children}
+				  }
+				  <ScrollView>
+				  	{this.props.children}
+				  </ScrollView>
 		  	</View>
 		);
     }

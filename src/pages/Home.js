@@ -42,11 +42,11 @@ export default class Home extends React.Component {
         return (
         <Content>
             <FlatList
-            numColumns={2}
-            removeClippedSubviews={false}
-            keyExtractor={(item) => item.estadoabrev }
-            data={estados}
-            renderItem={this.renderItem} />
+                numColumns={2}
+                removeClippedSubviews={false}
+                keyExtractor={(item) => item.estadoabrev }
+                data={estados}
+                renderItem={this.renderItem} />
         </Content>
         );
     }

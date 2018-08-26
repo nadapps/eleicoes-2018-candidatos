@@ -5,7 +5,8 @@ export default {
 	container: {
 	    flex: 1,
 	    backgroundColor: '#FFF',
-	    flexDirection: 'column'
+        flexDirection: 'column',
+        height:"100%"
     },
     itemList: {
         borderBottomWidth: 1,
