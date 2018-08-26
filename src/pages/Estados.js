@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image } from 'react-native';
+import { Image, TouchableOpacity } from 'react-native';
 import { List, ListItem } from 'react-native-elements';
 import Content from '../components/Content';
 import { estados } from '../constants';
@@ -33,6 +33,7 @@ export default class Estados extends React.Component {
                 {
                     estados.map((l) => (
                         <ListItem
+                            component={TouchableOpacity}
                             key={l.estadoabrev+""}
                             avatar = {<Image resizeMode="cover" style={{width:35,height:25}} source={{ uri: l.bandeira }}/>}
                             title={l.estado}

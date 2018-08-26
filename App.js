@@ -16,12 +16,12 @@ import CandidatoDetalhe from './src/pages/CandidatoDetalhe';
 import CandidatoBens from './src/pages/CandidatoBens';
 import CandidatoEleicoes from './src/pages/CandidatoEleicoes';
 import CandidatoFinancas from './src/pages/CandidatoFinancas';
+import Login from './src/pages/Login';
+import MeusCandidatos from './src/pages/MeusCandidatos';
 
 import { APP_NAME } from './src/constants';
 import colors from './src/colors.js';
 import styles from './src/styles.js';
-
-const storage = await AsyncStorage.getItem('@Tokens:access_token');
 
 const MenuImage = ({navigation}) => {
   if(!navigation.state.isDrawerOpen){
@@ -35,7 +35,7 @@ const MainTab = createDrawerNavigator({
   Home: {
     screen: Home,
     navigationOptions:{
-      drawerLabel: "Home",
+      drawerLabel: "Início",
       drawerIcon: ({ tintColor }) => <MaterialCommunityIcons name="home" size={20} color={tintColor} />
     }
   },
@@ -43,6 +43,13 @@ const MainTab = createDrawerNavigator({
     screen: Presidente,
     navigationOptions:{
       drawerLabel: "Presidente",
+      drawerIcon: ({ tintColor }) => <MaterialIcons name="person" size={20} color={tintColor} />
+    }
+  },
+  MeusCandidatos: {
+    screen: MeusCandidatos,
+    navigationOptions:{
+      drawerLabel: "Meus Candidatos",
       drawerIcon: ({ tintColor }) => <MaterialIcons name="person" size={20} color={tintColor} />
     }
   },
@@ -75,7 +82,6 @@ const MainTab = createDrawerNavigator({
 MainTab.navigationOptions = ({ navigation }) => {
   let { routeName } = navigation.state.routes[navigation.state.index];
 
-  // You can do whatever you like here to pick the title based on the route name
   let headerTitle = routeName;
 
   return {
@@ -141,7 +147,6 @@ const CandidatoTab = createBottomTabNavigator(
 CandidatoTab.navigationOptions = ({ navigation }) => {
   let { routeName } = navigation.state.routes[navigation.state.index];
 
-  // You can do whatever you like here to pick the title based on the route name
   let headerTitle = routeName;
 
   return {
@@ -149,10 +154,11 @@ CandidatoTab.navigationOptions = ({ navigation }) => {
   };
 };
 
-const Stack = async createStackNavigator(
+const Stack = createStackNavigator(
   {
     Estado: { screen: Estado },
     Candidatos: { screen: Candidatos },
+    Login: { screen: Login },
     CandidatoTab: { 
       screen: CandidatoTab,
       navigationOptions: ({ navigation }) => ({
@@ -174,7 +180,7 @@ const Stack = async createStackNavigator(
     },
   },
   {
-    initialRouteName: ;,
+    initialRouteName: 'Main',
     navigationOptions: {
       title: 'Eleições 2018',
       headerStyle: {

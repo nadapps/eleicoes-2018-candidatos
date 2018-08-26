@@ -1,11 +1,11 @@
 import React from 'react';
 import { AsyncStorage } from 'react-native';
 import { StackActions, NavigationActions } from 'react-navigation';
-import { Card } from 'react-native-elements';
 
 import Content from '../components/Content';
+import MeuCandidato from '../components/MeuCandidato';
 
-export default class Home extends React.Component {
+export default class MeusCandidatos extends React.Component {
     static navigationOptions = ({ navigation }) => ({
         title: 'Eleições 2018'
     });
@@ -59,7 +59,26 @@ export default class Home extends React.Component {
     render() {
         return (
         <Content>
-            <Text></Text>
+            <MeuCandidato
+                candidato={this.state.meupresidente}
+                cargo="Presidente"
+            />
+            <MeuCandidato
+                candidato={this.state.meugovernador}
+                cargo="Governador"
+            />
+            <MeuCandidato
+                candidato={this.state.meusenador}
+                cargo="Senador"
+            />
+            <MeuCandidato
+                candidato={this.state.meudeputadofederal}
+                cargo="Deputado Federal"
+            />
+            <MeuCandidato
+                candidato={this.state.meudeputadoestadual}
+                cargo="Deputado Estadual"
+            />
         </Content>
         );
     }

@@ -1,5 +1,5 @@
 export const APP_NAME = 'Eleições 2018';
-export const estados = [
+const estadosArray = [
         {
             bandeira: "http://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Bandeira_do_Acre.svg/300px-Bandeira_do_Acre.svg.png",
             estadoabrev: "AC",
@@ -136,3 +136,14 @@ export const estados = [
             estado: "Tocantins"
         }
     ];
+
+
+export const getBandeira = (estado) => {
+    for(let i = 0; i < estadosArray.length; i++){
+        if(estadosArray[i].estadoabrev.toLocaleLowerCase()===estado.toLocaleLowerCase())
+            return estadosArray[i].bandeira;
+    }
+    return "";
+}
+
+export const estados = estadosArray;
