@@ -29,9 +29,9 @@ export default class Home extends React.Component {
     renderItem = ({item}) => {
         return (
         <TouchableOpacity onPress={() => this.openEstado(item)}>
-            <View style={{flex:1, width:Dimensions.get('window').width/2}}>
+            <View style={{flex:1, width:Dimensions.get('window').width/3}}>
             <Card containerStyle={{padding:0}}>
-                <Image resizeMode={'cover'} style={{width:"100%", height: 100}} source={{uri: item.bandeira}} />
+                <Image resizeMode={'cover'} style={{width:"100%", height: 60}} source={{uri: item.bandeira}} />
             </Card>
             </View>
         </TouchableOpacity>
@@ -42,11 +42,12 @@ export default class Home extends React.Component {
         return (
         <Content>
             <FlatList
-                numColumns={2}
+                numColumns={3}
                 removeClippedSubviews={false}
                 keyExtractor={(item) => item.estadoabrev }
                 data={estados}
-                renderItem={this.renderItem} />
+                renderItem={this.renderItem}
+                style={{marginBottom: 15}} />
         </Content>
         );
     }
