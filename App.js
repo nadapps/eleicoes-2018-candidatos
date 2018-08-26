@@ -16,6 +16,7 @@ import CandidatoDetalhe from './src/pages/CandidatoDetalhe';
 import CandidatoBens from './src/pages/CandidatoBens';
 import CandidatoEleicoes from './src/pages/CandidatoEleicoes';
 import CandidatoFinancas from './src/pages/CandidatoFinancas';
+import Login from './src/pages/Login';
 
 import { APP_NAME } from './src/constants';
 import colors from './src/colors.js';
@@ -151,6 +152,7 @@ const Stack = createStackNavigator(
   {
     Estado: { screen: Estado },
     Candidatos: { screen: Candidatos },
+    Login: { screen: Login },
     CandidatoTab: { 
       screen: CandidatoTab,
       navigationOptions: ({ navigation }) => ({
@@ -172,7 +174,7 @@ const Stack = createStackNavigator(
     },
   },
   {
-    initialRouteName: 'Main',
+    initialRouteName: 'Login',
     navigationOptions: {
       title: 'Eleições 2018',
       headerStyle: {

@@ -24,7 +24,7 @@ class Content extends React.Component {
 	
 	render() {
 		return (
-		  	<View style={this.props.style ? styles.container : [styles.container,this.props.style]}>
+		  	<View style={!this.props.style ? styles.container : [styles.container,this.props.style]}>
 			  	<StatusBar backgroundColor={colors.dark} barStyle="light-content"/>
 				<Loading loading={this.props.loading} />
 			  	{

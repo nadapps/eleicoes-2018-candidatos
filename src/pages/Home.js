@@ -1,9 +1,10 @@
 import React from 'react';
 import { Image, FlatList, View, TouchableOpacity, Dimensions } from 'react-native';
-import Content from '../components/Content';
 import { estados } from '../constants';
 import { Card } from 'react-native-elements';
 import { StackActions } from 'react-navigation';
+
+import Content from '../components/Content';
 
 export default class Home extends React.Component {
     static navigationOptions = ({ navigation }) => ({
