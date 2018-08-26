@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Image, View } from 'react-native';
+import { Text, Image } from 'react-native';
 import { Col, Row, Grid } from "react-native-easy-grid";
 
 import Content from '../components/Content';

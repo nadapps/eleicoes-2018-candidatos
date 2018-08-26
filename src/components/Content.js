@@ -36,6 +36,7 @@ class Content extends React.Component {
 				        	inputStyle={{backgroundColor:colors.dark, color:'white'}}
 							onChangeText={this.changeTextSearch}
 							onClear={this.clearTextSearch}
+							platform="android"
 							clearIcon={{color:'white'}}
 							icon={{color:'white'}}
 				       		placeholder='Pesquisar...' />

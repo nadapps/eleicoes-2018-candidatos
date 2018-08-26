@@ -3,6 +3,7 @@ import { AppRegistry, TouchableOpacity } from 'react-native';
 import { createStackNavigator, createDrawerNavigator, DrawerActions, createBottomTabNavigator, StackActions } from 'react-navigation';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import Favoritos from './src/pages/Favoritos';
 import Estados from './src/pages/Estados';
@@ -14,6 +15,7 @@ import Candidatos from './src/pages/Candidatos';
 import CandidatoDetalhe from './src/pages/CandidatoDetalhe';
 import CandidatoBens from './src/pages/CandidatoBens';
 import CandidatoEleicoes from './src/pages/CandidatoEleicoes';
+import CandidatoFinancas from './src/pages/CandidatoFinancas';
 
 import { APP_NAME } from './src/constants';
 import colors from './src/colors.js';
@@ -100,6 +102,13 @@ const CandidatoTab = createBottomTabNavigator(
       navigationOptions:{
         tabBarLabel: "Candidaturas",
         tabBarIcon: ({ tintColor }) => <MaterialIcons name="star" size={30} color={tintColor} />
+      }
+    },
+    Finanças: {
+      screen: CandidatoFinancas,
+      navigationOptions:{
+        tabBarLabel: "Finanças",
+        tabBarIcon: ({ tintColor }) => <FontAwesome5 name="coins" size={22} color={tintColor} />
       }
     },
   },{

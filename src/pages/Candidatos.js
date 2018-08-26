@@ -3,6 +3,7 @@ import { TouchableOpacity } from 'react-native';
 import { List, ListItem } from 'react-native-elements';
 import { StackActions } from 'react-navigation';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 import Content from '../components/Content';
 import TitleEstado from '../components/TitleEstado';
@@ -13,10 +14,31 @@ import colors from '../colors';
 export default class Candidatos extends React.Component {
     static navigationOptions = ({ navigation }) => ({
         title: navigation.state.params.cargo.nome,
+        header: <Toolbar
+        leftElement="menu"
+        centerElement="Searchable"
+        searchable={{
+          autoFocus: true,
+          placeholder: 'Search',
+        }}
+        rightElement={{
+            menu: {
+                icon: "more-vert",
+                labels: ["item 1", "item 2"]
+            }
+        }}
+        onRightElementPress={ (label) => { console.log(label) }}
+      />,
         headerLeft: 
             <TouchableOpacity onPress={() => {navigation.dispatch(StackActions.pop())} }>
                 <MaterialCommunityIcons style={{marginLeft:20}} name="arrow-left" size={30} color={colors.white} />
             </TouchableOpacity>
+        ,
+        headerRight: 
+            <TouchableOpacity onPress={() => { navigation.setParams({ header: null }) }}>
+                <MaterialIcons style={{marginRight:20}} name="search" size={30} color={colors.white} />
+            </TouchableOpacity>
+
     });
 
     constructor(props) {
@@ -26,13 +48,22 @@ export default class Candidatos extends React.Component {
             estado: props.navigation.state.params.estado,
             cargo: props.navigation.state.params.cargo,
             candidatos: [],
-            loading: true
+            loading: true,
+            search: false
         };
     }
 
     async componentDidMount(){
+        this.props.navigation.setParams({
+            search: this.changeSearch
+        });
         let result = await candidatos(this.state.estado.estadoabrev, this.state.cargo.codigo);
+
         this.setState({candidatos:result.candidatos,loading:false});
+    }
+
+    changeSearch(){
+        this.setState({search:!search})
     }
 
     openCandidato = candidato => {
@@ -46,7 +77,7 @@ export default class Candidatos extends React.Component {
 
     render() {
         return (
-            <Content loading={this.state.loading}>
+            <Content loading={this.state.loading} search={this.state.search}>
                 <TitleEstado estado={this.state.estado} />
                 <List containerStyle={{marginTop: 0}}>
                     {
