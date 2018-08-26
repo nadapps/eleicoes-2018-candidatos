@@ -18,5 +18,16 @@ export const candidatos = async (estado, cargo) => {
 	return await get(url);
 }
 
+export const candidato = async (estado, candidato) => {
+    let url = "http://divulgacandcontas.tse.jus.br/divulga/rest/v1/candidatura/buscar/2018/"+estado+"/2022802018/candidato/"+candidato;
+	return await get(url);
+}
+
+export const candidatoGasto = async (estado,cargo,partido,numero,candidato) => {
+	let url = "http://divulgacandcontas.tse.jus.br/divulga/rest/v1/prestador/consulta/2022802018/2018/"+estado+"/"+cargo+"/"+partido+"/"+numero+"/"+candidato;
+	return await get(url);
+	
+}
+
 
 export default get;

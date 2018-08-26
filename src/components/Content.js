@@ -40,10 +40,10 @@ class Content extends React.Component {
 							icon={{color:'white'}}
 				       		placeholder='Pesquisar...' />
 			       	)
-				  }
-				  <ScrollView>
-				  	{this.props.children}
-				  </ScrollView>
+				}
+				<ScrollView>
+					{this.props.children}
+				</ScrollView>
 		  	</View>
 		);
     }

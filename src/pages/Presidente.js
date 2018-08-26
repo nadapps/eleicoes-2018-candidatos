@@ -10,28 +10,18 @@ import TitleEstado from '../components/TitleEstado';
 import { candidatos } from '../services';
 import colors from '../colors';
 
-export default class Candidatos extends React.Component {
-    static navigationOptions = ({ navigation }) => ({
-        title: navigation.state.params.cargo.nome,
-        headerLeft: 
-            <TouchableOpacity onPress={() => {navigation.dispatch(StackActions.pop())} }>
-                <MaterialCommunityIcons style={{marginLeft:20}} name="arrow-left" size={30} color={colors.white} />
-            </TouchableOpacity>
-    });
-
+export default class Presidente extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            estado: props.navigation.state.params.estado,
-            cargo: props.navigation.state.params.cargo,
             candidatos: [],
             loading: true
         };
     }
 
     async componentDidMount(){
-        let result = await candidatos(this.state.estado.estadoabrev, this.state.cargo.codigo);
+        let result = await candidatos("BR", "1");
         this.setState({candidatos:result.candidatos,loading:false});
     }
 
@@ -47,7 +37,6 @@ export default class Candidatos extends React.Component {
     render() {
         return (
             <Content loading={this.state.loading}>
-                <TitleEstado estado={this.state.estado} />
                 <List containerStyle={{marginTop: 0}}>
                     {
                         this.state.candidatos.map((l) => (

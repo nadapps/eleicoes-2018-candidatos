@@ -51,6 +51,7 @@ export default class Estado extends React.Component {
                     {
                         this.state.cargos.map((l) => (
                         <ListItem
+                            component={TouchableOpacity}
                             key={l.codigo+""}
                             title={l.nome}
                             onPress={() => this.openCandidatos(l)}

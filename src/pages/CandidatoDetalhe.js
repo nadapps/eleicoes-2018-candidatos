@@ -1,0 +1,82 @@
+import React from 'react';
+import { Text, Image, View } from 'react-native';
+import { Col, Row, Grid } from "react-native-easy-grid";
+
+import Content from '../components/Content';
+import NumeroUrna from '../components/NumeroUrna';
+import RedesSociais from '../components/RedesSociais';
+import ItemCandidato from '../components/ItemCandidato';
+
+import { candidato } from '../services';
+import styles from '../styles';
+
+export default class CandidatoDetalhe extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            candidato: {
+                id: props.navigation.state.params.candidato.id,
+                sites: [],
+                partido: {},
+                numero:"",
+                dataDeNascimento:"",
+                vices: []
+            },
+            estado: props.navigation.state.params.estado,
+            loading: true
+        };
+    }
+
+    async componentDidMount(){
+        let result = await candidato((this.state.estado ? this.state.estado.estadoabrev : "BR"),this.state.candidato.id);
+        this.setState({candidato:result,loading:false});
+    }
+
+    render() {
+        return (
+            <Content loading={this.state.loading}>
+                <Grid>
+                    <Row>
+                        <Col size={35}>
+                            <Image resizeMode="cover" style={styles.imageCandidato} source={{uri:this.state.candidato.fotoUrl}} />
+                        </Col>
+                        <Col size={65}>
+                            <Text style={styles.title}>{this.state.candidato.nomeUrna}</Text>
+                            <Text style={styles.subtitle}>{this.state.candidato.partido.sigla}</Text>
+                            <NumeroUrna style={{paddingTop: 30}} numero={this.state.candidato.numero+""} />
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <Text style={styles.titleSection}>Redes Sociais</Text>
+                            <RedesSociais redes={this.state.candidato.sites} />
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <Text style={styles.titleSection}>Dados do Candidato</Text>
+                            <ItemCandidato title="Nome Completo:" value={this.state.candidato.nomeCompleto} />
+                            <ItemCandidato title="Ocupação:" value={this.state.candidato.ocupacao} />
+                            <ItemCandidato title="Sexo:" value={this.state.candidato.descricaoSexo  } />
+                            <ItemCandidato title="Nascimento:" value={this.state.candidato.dataDeNascimento.split('-').reverse().join('/')} />
+                            <ItemCandidato title="Coligação:" value={this.state.candidato.nomeColigacao} />
+                            <ItemCandidato title="Partidos:" value={this.state.candidato.composicaoColigacao} />
+                        </Col>
+                    </Row>
+                    {
+                        this.state.candidato.vices.length>0 && (
+                            <Row>
+                                <Col size={35}>
+                                    <Image resizeMode="cover" style={styles.imageViceCandidato} source={{uri:this.state.candidato.vices[0].fotoUrl}} />
+                                </Col>
+                                <Col size={65}>
+                                    <Text style={styles.title}>{this.state.candidato.vices[0].nomeUrna}</Text>
+                                </Col>
+                            </Row>
+                        )
+                    }
+                </Grid>
+            </Content>
+        );
+    }
+}
