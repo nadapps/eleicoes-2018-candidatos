@@ -14,11 +14,19 @@ export default class CandidatoBens extends React.Component {
             'willFocus',
             payload => {
                 this.props.navigation.setParams({
-                    title: this.props.navigation.state.params.candidato.nomeUrna,
-                    headerRight: <FavoritoCandidato />
+                    title: this.props.navigation.state.params.candidato.nomeUrna
                 });
             }
         );
+
+        this.state = {
+            candidato: {
+                id: props.navigation.state.params.candidato.id,
+                bens: []
+            },
+            estado: props.navigation.state.params.estado,
+            loading: true
+        };
     }
 
     async componentDidMount(){

@@ -13,6 +13,15 @@ export default class CandidatoFinancas extends React.Component {
             'willFocus',
             payload => {
                 this.props.navigation.setParams({
+                    title: this.props.navigation.state.params.candidato.nomeUrna
+                });
+            }
+        );
+
+        props.navigation.addListener(
+            'willFocus',
+            payload => {
+                this.props.navigation.setParams({
                     title: this.props.navigation.state.params.candidato.nomeUrna,
                     headerRight: <FavoritoCandidato />
                 });
