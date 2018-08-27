@@ -28,21 +28,21 @@ export default class Estados extends React.Component {
 
     render() {
         return (
-        <Content>
-            <List containerStyle={{marginTop:0}}>
-                {
-                    estados.map((l) => (
-                        <ListItem
-                            component={TouchableOpacity}
-                            key={l.estadoabrev+""}
-                            avatar = {<Image resizeMode="cover" style={{width:35,height:25}} source={{ uri: l.bandeira }}/>}
-                            title={l.estado}
-                            onPress={() => this.openEstado(l)}
-                        />
-                    ))
-                }
-              </List>
-        </Content>
+            <Content>
+                <List containerStyle={{marginTop:0}}>
+                    {
+                        estados.map((l) => (
+                            <ListItem
+                                component={TouchableOpacity}
+                                key={l.estadoabrev+""}
+                                avatar = {<Image resizeMode="cover" style={{width:35,height:25}} source={{ uri: l.bandeira }}/>}
+                                title={l.estado}
+                                onPress={() => this.openEstado(l)}
+                            />
+                        ))
+                    }
+                </List>
+            </Content>
         );
     }
 }

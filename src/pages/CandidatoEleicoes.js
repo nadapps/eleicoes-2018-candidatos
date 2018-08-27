@@ -2,12 +2,24 @@ import React from 'react';
 import { ListItem } from 'react-native-elements';
 
 import Content from '../components/Content';
+import FavoritoCandidato from '../components/FavoritoCandidato';
 
 import { candidato } from '../services';
 
 export default class CandidatoEleicoes extends React.Component {
     constructor(props) {
         super(props);
+        
+        props.navigation.addListener(
+            'willFocus',
+            payload => {
+                this.props.navigation.setParams({
+                    title: this.props.navigation.state.params.candidato.nomeUrna,
+                    headerRight: <FavoritoCandidato />
+                });
+            }
+        );
+
         this.state = {
             candidato: {
                 id: props.navigation.state.params.candidato.id,

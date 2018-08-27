@@ -5,7 +5,6 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
-import Favoritos from './src/pages/Favoritos';
 import Estados from './src/pages/Estados';
 import Presidente from './src/pages/Presidente';
 import Partidos from './src/pages/Partidos';
@@ -65,13 +64,6 @@ const MainTab = createDrawerNavigator({
     navigationOptions:{
       drawerLabel: "Partidos",
       drawerIcon: ({ tintColor }) => <MaterialCommunityIcons name="panorama-wide-angle" size={20} color={tintColor} />
-    }
-  },
-  Favoritos: {
-    screen: Favoritos,
-    navigationOptions:{
-      drawerLabel: "Favoritos",
-      drawerIcon: ({ tintColor }) => <MaterialCommunityIcons name="star" size={20} color={tintColor} />
     }
   },
 },{
@@ -145,12 +137,12 @@ const CandidatoTab = createBottomTabNavigator(
 );
 
 CandidatoTab.navigationOptions = ({ navigation }) => {
-  let { routeName } = navigation.state.routes[navigation.state.index];
-
-  let headerTitle = routeName;
+  let headerTitle = navigation.state.routes[navigation.state.index].params.title;
+  let headerRight = navigation.state.routes[navigation.state.index].params.headerRight;
 
   return {
     headerTitle,
+    headerRight
   };
 };
 
@@ -188,7 +180,7 @@ const Stack = createStackNavigator(
         elevation: 0,
         shadowOpacity: 0,
       },
-      headerTintColor: '#fff'
+      headerTintColor: '#fff',
     }
   }
 );

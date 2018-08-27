@@ -2,12 +2,24 @@ import React from 'react';
 import { ListItem } from 'react-native-elements';
 
 import Content from '../components/Content';
+import FavoritoCandidato from '../components/FavoritoCandidato';
 
 import { candidato } from '../services';
 
 export default class CandidatoBens extends React.Component {
     constructor(props) {
         super(props);
+
+        props.navigation.addListener(
+            'willFocus',
+            payload => {
+                this.props.navigation.setParams({
+                    title: this.props.navigation.state.params.candidato.nomeUrna,
+                    headerRight: <FavoritoCandidato />
+                });
+            }
+        );
+
         this.state = {
             candidato: {
                 id: props.navigation.state.params.candidato.id,
@@ -28,12 +40,12 @@ export default class CandidatoBens extends React.Component {
             <Content loading={this.state.loading}>
                 {
                     this.state.candidato.bens.map((l) => (
-                    <ListItem
-                        key={l.ordem+""}
-                        title={l.descricaoDeTipoDeBem}
-                        subtitle={"R$ "+l.valor}
-                        hideChevron={true}
-                    />
+                        <ListItem
+                            key={l.ordem+""}
+                            title={l.descricaoDeTipoDeBem}
+                            subtitle={"R$ "+l.valor}
+                            hideChevron={true}
+                        />
                     ))
                 }
             </Content>

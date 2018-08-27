@@ -1,11 +1,12 @@
 import React from 'react';
-import { Text, Image } from 'react-native';
+import { Text, Image, TouchableOpacity } from 'react-native';
 import { Col, Row, Grid } from "react-native-easy-grid";
 
 import Content from '../components/Content';
 import NumeroUrna from '../components/NumeroUrna';
 import RedesSociais from '../components/RedesSociais';
 import ItemCandidato from '../components/ItemCandidato';
+import FavoritoCandidato from '../components/FavoritoCandidato';
 
 import { candidato } from '../services';
 import styles from '../styles';
@@ -13,6 +14,17 @@ import styles from '../styles';
 export default class CandidatoDetalhe extends React.Component {
     constructor(props) {
         super(props);
+
+        props.navigation.addListener(
+            'willFocus',
+            payload => {
+                this.props.navigation.setParams({
+                    title: this.props.navigation.state.params.candidato.nomeUrna,
+                    headerRight: <FavoritoCandidato />
+                });
+            }
+        );
+
         this.state = {
             candidato: {
                 id: props.navigation.state.params.candidato.id,
@@ -29,6 +41,7 @@ export default class CandidatoDetalhe extends React.Component {
 
     async componentDidMount(){
         let result = await candidato((this.state.estado ? this.state.estado.estadoabrev : "BR"),this.state.candidato.id);
+        if(result.vices==null) result.vices = [];
         this.setState({candidato:result,loading:false});
     }
 

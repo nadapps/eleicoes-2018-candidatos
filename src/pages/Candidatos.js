@@ -3,7 +3,6 @@ import { TouchableOpacity } from 'react-native';
 import { List, ListItem } from 'react-native-elements';
 import { StackActions } from 'react-navigation';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 import Content from '../components/Content';
 import TitleEstado from '../components/TitleEstado';

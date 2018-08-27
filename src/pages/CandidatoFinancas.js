@@ -1,12 +1,24 @@
 import React from 'react';
 
 import Content from '../components/Content';
+import FavoritoCandidato from '../components/FavoritoCandidato';
 
 import { candidatoGasto } from '../services';
 
 export default class CandidatoFinancas extends React.Component {
     constructor(props) {
         super(props);
+
+        props.navigation.addListener(
+            'willFocus',
+            payload => {
+                this.props.navigation.setParams({
+                    title: this.props.navigation.state.params.candidato.nomeUrna,
+                    headerRight: <FavoritoCandidato />
+                });
+            }
+        );
+
         this.state = {
             candidato: {
                 id: props.navigation.state.params.candidato.id,

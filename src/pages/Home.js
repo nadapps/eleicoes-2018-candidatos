@@ -1,5 +1,5 @@
 import React from 'react';
-import { AsyncStorage } from 'react-native';
+import { AsyncStorage, Text } from 'react-native';
 import { StackActions, NavigationActions } from 'react-navigation';
 import { Card } from 'react-native-elements';
 
