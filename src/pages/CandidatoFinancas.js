@@ -18,17 +18,6 @@ export default class CandidatoFinancas extends React.Component {
                 });
             }
         );
-
-        this.state = {
-            candidato: {
-                id: props.navigation.state.params.candidato.id,
-                cargo: props.navigation.state.params.candidato.cargo,
-                numero: props.navigation.state.params.candidato.numero+""
-            },
-            gasto: {},
-            estado: props.navigation.state.params.estado,
-            loading: true
-        };
     }
 
     async componentDidMount(){

@@ -19,15 +19,6 @@ export default class CandidatoBens extends React.Component {
                 });
             }
         );
-
-        this.state = {
-            candidato: {
-                id: props.navigation.state.params.candidato.id,
-                bens: []
-            },
-            estado: props.navigation.state.params.estado,
-            loading: true
-        };
     }
 
     async componentDidMount(){

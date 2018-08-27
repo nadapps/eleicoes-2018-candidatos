@@ -15,9 +15,9 @@ class MeuCandidato extends Component {
     render() {
         return (
             <ListItem
-                avatar={<Image style={{width:60,height:80}} source={this.props.candidato.urlFoto!=null ? {uri:this.props.candidato.urlFoto} : require("../../assets/img/user.png")}></Image>}
+                avatar={<Image style={{width:60,height:80}} source={this.props.candidato.fotoUrl!=null ? {uri:this.props.candidato.fotoUrl} : require("../../assets/img/user.png")}></Image>}
                 title={<Text style={[styles.title,{paddingTop:0,fontSize:16}]}>{this.props.cargo}: {this.props.candidato.nomeUrna==null ? "Não Selecionado" : this.props.candidato.nomeUrna}</Text>}
-                subtitle={<NumeroUrna numero={this.props.candidato.numero==null ? "  " : this.props.candidato.numero} />}
+                subtitle={<NumeroUrna numero={this.props.candidato.numero==null ? "  " : this.props.candidato.numero+""} />}
                 hideChevron={true}
             />
         );

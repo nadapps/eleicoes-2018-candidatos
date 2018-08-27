@@ -15,15 +15,15 @@ export default class CandidatoDetalhe extends React.Component {
     constructor(props) {
         super(props);
 
-        props.navigation.addListener(
-            'willFocus',
-            payload => {
-                this.props.navigation.setParams({
-                    title: this.props.navigation.state.params.candidato.nomeUrna,
-                    headerRight: <FavoritoCandidato />
-                });
-            }
-        );
+        // props.navigation.addListener(
+        //     'willFocus',
+        //     payload => {
+        //         this.props.navigation.setParams({
+        //             title: this.props.navigation.state.params.candidato.nomeUrna,
+        //             headerRight: <FavoritoCandidato candidato={props.navigation.state.params.candidato} />
+        //         });
+        //     }
+        // );
 
         this.state = {
             candidato: {
@@ -43,6 +43,20 @@ export default class CandidatoDetalhe extends React.Component {
         let result = await candidato((this.state.estado ? this.state.estado.estadoabrev : "BR"),this.state.candidato.id);
         if(result.vices==null) result.vices = [];
         this.setState({candidato:result,loading:false});
+
+        this.willFocusSubscription = this.props.navigation.addListener(
+            'didFocus',
+            payload => {
+                this.props.navigation.setParams({
+                    title: this.state.candidato.nomeUrna,
+                    headerRight: <FavoritoCandidato candidato={this.state.candidato} />
+                });
+            }
+        );
+    }
+
+    componentWillUnmount() {
+        this.willFocusSubscription.remove();
     }
 
     render() {

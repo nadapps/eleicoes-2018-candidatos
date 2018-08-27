@@ -31,6 +31,7 @@ export default class Home extends React.Component {
             });
             this.props.navigation.dispatch(resetAction);
         }
+        
         let meupresidente = await AsyncStorage.getItem('@Eleicoes2018:meupresidente');
         if(meupresidente!=null) this.setState({meupresidente});
         

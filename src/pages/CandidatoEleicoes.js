@@ -9,16 +9,6 @@ import { candidato } from '../services';
 export default class CandidatoEleicoes extends React.Component {
     constructor(props) {
         super(props);
-        
-        props.navigation.addListener(
-            'willFocus',
-            payload => {
-                this.props.navigation.setParams({
-                    title: this.props.navigation.state.params.candidato.nomeUrna,
-                    headerRight: <FavoritoCandidato />
-                });
-            }
-        );
 
         this.state = {
             candidato: {

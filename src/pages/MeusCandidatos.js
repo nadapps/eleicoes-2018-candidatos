@@ -31,19 +31,19 @@ export default class MeusCandidatos extends React.Component {
             });
             this.props.navigation.dispatch(resetAction);
         }
-        let meupresidente = await AsyncStorage.getItem('@Eleicoes2018:meupresidente');
+        let meupresidente = JSON.parse(await AsyncStorage.getItem('@Eleicoes2018:meupresidente'));
         if(meupresidente!=null) this.setState({meupresidente});
         
-        let meugovernador = await AsyncStorage.getItem('@Eleicoes2018:meugovernador');
+        let meugovernador = JSON.parse(await AsyncStorage.getItem('@Eleicoes2018:meugovernador'));
         if(meugovernador!=null) this.setState({meugovernador});
         
-        let meusenador = await AsyncStorage.getItem('@Eleicoes2018:meusenador');
+        let meusenador = JSON.parse(await AsyncStorage.getItem('@Eleicoes2018:meusenador'));
         if(meusenador!=null) this.setState({meusenador});
         
-        let meudeputadofederal = await AsyncStorage.getItem('@Eleicoes2018:meudeputadofederal');
+        let meudeputadofederal = JSON.parse(await AsyncStorage.getItem('@Eleicoes2018:meudeputadofederal'));
         if(meudeputadofederal!=null) this.setState({meudeputadofederal});
         
-        let meudeputadoestadual = await AsyncStorage.getItem('@Eleicoes2018:meudeputadoestadual');
+        let meudeputadoestadual = JSON.parse(await AsyncStorage.getItem('@Eleicoes2018:meudeputadoestadual'));
         if(meudeputadoestadual!=null) this.setState({meudeputadoestadual});
     }
 
