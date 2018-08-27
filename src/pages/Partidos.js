@@ -10,6 +10,14 @@ import { partidos } from '../services';
 export default class Partidos extends React.Component {
   constructor(props) {
     super(props);
+
+    props.navigation.addListener(
+        'willFocus',
+        payload => {
+            this.props.navigation.setParams({ title: "Partidos" });
+        }
+    );
+
     this.state = {
       partidos: [],
       loading: true

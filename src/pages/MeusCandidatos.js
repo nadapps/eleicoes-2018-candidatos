@@ -6,12 +6,15 @@ import Content from '../components/Content';
 import MeuCandidato from '../components/MeuCandidato';
 
 export default class MeusCandidatos extends React.Component {
-    static navigationOptions = ({ navigation }) => ({
-        title: 'Eleições 2018'
-    });
-
     constructor(props) {
         super(props);
+
+        props.navigation.addListener(
+            'willFocus',
+            payload => {
+                this.props.navigation.setParams({ title: "Meus Candidatos" });
+            }
+        );
 
         this.state = {
             meupresidente: {},

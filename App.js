@@ -72,13 +72,17 @@ const MainTab = createDrawerNavigator({
 });
 
 MainTab.navigationOptions = ({ navigation }) => {
-  let { routeName } = navigation.state.routes[navigation.state.index];
-
-  let headerTitle = routeName;
-
-  return {
-    headerTitle,
-  };
+  if(navigation.state.routes[navigation.state.index].params!=null){
+    let headerTitle = navigation.state.routes[navigation.state.index].params.title;
+  
+    return {
+      headerTitle
+    };
+  } else {
+    return {
+      headerTitle: APP_NAME
+    };
+  }
 };
 
 const CandidatoTab = createBottomTabNavigator(
@@ -174,7 +178,7 @@ const Stack = createStackNavigator(
   {
     initialRouteName: 'Main',
     navigationOptions: {
-      title: 'Eleições 2018',
+      title: APP_NAME,
       headerStyle: {
         backgroundColor: colors.primary,
         elevation: 0,

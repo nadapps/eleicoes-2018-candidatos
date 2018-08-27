@@ -6,12 +6,15 @@ import { Card } from 'react-native-elements';
 import Content from '../components/Content';
 
 export default class Home extends React.Component {
-    static navigationOptions = ({ navigation }) => ({
-        title: 'Eleições 2018'
-    });
-
     constructor(props) {
         super(props);
+
+        props.navigation.addListener(
+            'willFocus',
+            payload => {
+                this.props.navigation.setParams({ title: "Eleições 2018" });
+            }
+        );
 
         this.state = {
             meupresidente: {},
@@ -31,7 +34,7 @@ export default class Home extends React.Component {
             });
             this.props.navigation.dispatch(resetAction);
         }
-        
+
         let meupresidente = await AsyncStorage.getItem('@Eleicoes2018:meupresidente');
         if(meupresidente!=null) this.setState({meupresidente});
         

@@ -6,12 +6,16 @@ import { estados } from '../constants';
 import { StackActions } from 'react-navigation';
 
 export default class Estados extends React.Component {
-    static navigationOptions = ({ navigation }) => ({
-        title: 'Estados'
-    });
-
     constructor(props) {
         super(props);
+
+        props.navigation.addListener(
+            'willFocus',
+            payload => {
+                this.props.navigation.setParams({ title: "Estados" });
+            }
+        );
+
         this.state = {
         
         };

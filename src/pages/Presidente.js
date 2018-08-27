@@ -2,17 +2,21 @@ import React from 'react';
 import { TouchableOpacity } from 'react-native';
 import { List, ListItem } from 'react-native-elements';
 import { StackActions } from 'react-navigation';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import Content from '../components/Content';
-import TitleEstado from '../components/TitleEstado';
 
 import { candidatos } from '../services';
-import colors from '../colors';
 
 export default class Presidente extends React.Component {
     constructor(props) {
         super(props);
+
+        props.navigation.addListener(
+            'willFocus',
+            payload => {
+                this.props.navigation.setParams({ title: "Presidente" });
+            }
+        );
 
         this.state = {
             candidatos: [],
