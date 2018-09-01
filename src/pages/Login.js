@@ -24,7 +24,7 @@ export default class Login extends React.Component {
     async entrar(){
         if(this.state.email!="" && this.state.nome!="" && this.state.estados!=""){
             await AsyncStorage.setItem('@Eleicoes2018:email', this.state.email);
-            await AsyncStorage.setItem('@Eleicoes2018:nome', this.state.home);
+            await AsyncStorage.setItem('@Eleicoes2018:nome', this.state.nome);
             await AsyncStorage.setItem('@Eleicoes2018:estado', this.state.estado);
 
             const resetAction = StackActions.reset({
