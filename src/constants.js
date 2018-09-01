@@ -138,10 +138,10 @@ const estadosArray = [
     ];
 
 
-export const getBandeira = (estado) => {
+export const getEstado = (estado) => {
     for(let i = 0; i < estadosArray.length; i++){
         if(estadosArray[i].estadoabrev.toLocaleLowerCase()===estado.toLocaleLowerCase())
-            return estadosArray[i].bandeira;
+            return estadosArray[i];
     }
     return "";
 }
