@@ -91,13 +91,13 @@ const MainTab = createDrawerNavigator({
       drawerIcon: ({ tintColor }) => <MaterialCommunityIcons name="map" size={20} color={tintColor} />
     }
   },
-  Partidos: {
-    screen: Partidos,
-    navigationOptions:{
-      drawerLabel: "Partidos",
-      drawerIcon: ({ tintColor }) => <MaterialCommunityIcons name="panorama-wide-angle" size={20} color={tintColor} />
-    }
-  },
+  // Partidos: {
+  //   screen: Partidos,
+  //   navigationOptions:{
+  //     drawerLabel: "Partidos",
+  //     drawerIcon: ({ tintColor }) => <MaterialCommunityIcons name="panorama-wide-angle" size={20} color={tintColor} />
+  //   }
+  // },
 },{
   initialRouteName: 'Home',
   drawerWidth: 300,
