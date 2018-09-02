@@ -44,6 +44,7 @@ export default class CandidatoDetalhe extends React.Component {
     }
 
     async componentDidMount(){
+
         let result = await candidato((this.state.estado ? this.state.estado.estadoabrev : "BR"),this.state.candidato.id);
         if(result.vices==null) result.vices = [];
         this.setState({candidato:result,loading:false});

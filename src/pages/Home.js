@@ -1,6 +1,7 @@
 import React from 'react';
 import { AsyncStorage } from 'react-native';
 import { StackActions, NavigationActions } from 'react-navigation';
+import SplashScreen from 'react-native-splash-screen'
 
 import Content from '../components/Content';
 import MeuCandidatoHome from '../components/MeuCandidatoHome';
@@ -41,6 +42,7 @@ export default class Home extends React.Component {
 
     async componentDidMount(){
         await this.getData();
+        SplashScreen.hide();
     }
 
     async getData(){
