@@ -1,15 +1,11 @@
 import React from 'react';
-import { AsyncStorage, Text, TouchableOpacity, View } from 'react-native';
+import { AsyncStorage } from 'react-native';
 import { StackActions, NavigationActions } from 'react-navigation';
-import { Row, Grid, Col  } from "react-native-easy-grid";
-import { Card } from 'react-native-elements';
 
 import Content from '../components/Content';
-import TitleEstado from '../components/TitleEstado';
-import ItemCandidato from '../components/ItemCandidato';
+import MeuCandidatoHome from '../components/MeuCandidatoHome';
 
-import { getEstado } from '../constants';
-import styles from '../styles';
+import { getEstado, getCargo } from '../constants';
 
 export default class Home extends React.Component {
     constructor(props) {
@@ -23,14 +19,14 @@ export default class Home extends React.Component {
         );
 
         this.state = {
-            meupresidente: {},
-            meugovernador: {},
-            meusenador: {},
-            meudeputadofederal: {},
-            meudeputadoestadual: {},
+            meupresidente: [],
+            meugovernador: [],
+            meusenador: [],
+            meudeputadofederal: [],
+            meudeputadoestadual: [],
             email:"",
             nome:"",
-            estado:"",
+            estado:{},
         };
     }
 
@@ -46,12 +42,12 @@ export default class Home extends React.Component {
 
         let email = await AsyncStorage.getItem('@Eleicoes2018:email');
         let nome = await AsyncStorage.getItem('@Eleicoes2018:nome');
-        let estado = await AsyncStorage.getItem('@Eleicoes2018:estado');
+        let estado = getEstado(await AsyncStorage.getItem('@Eleicoes2018:estado'));
         this.setState({email,nome,estado});
 
         let meupresidente = JSON.parse(await AsyncStorage.getItem('@Eleicoes2018:meupresidente'));
         if(meupresidente!=null) this.setState({meupresidente});
-        
+
         let meugovernador = JSON.parse(await AsyncStorage.getItem('@Eleicoes2018:meugovernador'));
         if(meugovernador!=null) this.setState({meugovernador});
         
@@ -77,65 +73,40 @@ export default class Home extends React.Component {
     render() {
         return (
         <Content>
-            <Text style={styles.titleSection}>Dados do Usuário</Text>
-            <ItemCandidato title="Nome:" value={this.state.nome} />
-            <ItemCandidato title="E-mail:" value={this.state.email} />
+            <MeuCandidatoHome 
+                titulo="Suas opções para Presidente"
+                candidatos={this.state.meupresidente}
+                cargo={{codigo:"1",nome:"Presidente"}}
+                navigation={this.props.navigation}/>
 
-            <Text style={styles.titleSection}>Estado</Text>
-            <TitleEstado estado={getEstado(this.state.estado)} />
+            <MeuCandidatoHome
+                titulo="Suas opções para Governador"
+                estado={this.state.estado}
+                candidatos={this.state.meugovernador}
+                cargo={getCargo("Governador")}
+                navigation={this.props.navigation}/>
 
-            <Text style={styles.titleSection}>Meus Candidatos</Text>
-            <View style={{padding:15}}>
-            <Grid>
-                <Row>
-                    <Col>
-                        <TouchableOpacity>
-                            <Card
-                                containerStyle={{margin:0}}
-                                wrapperStyle={{padding:0}}
-                                image={this.state.meupresidente.fotoUrl!=null ? {uri:this.state.meupresidente.fotoUrl} : require("../../assets/img/user.png")}>
-                            </Card>
-                        </TouchableOpacity>
-                    </Col>
-                    <Col>
-                        <TouchableOpacity>
-                            <Card
-                                containerStyle={{margin:0}}
-                                wrapperStyle={{padding:0}}
-                                image={this.state.meugovernador.fotoUrl!=null ? {uri:this.state.meugovernador.fotoUrl} : require("../../assets/img/user.png")}>
-                            </Card>
-                        </TouchableOpacity>
-                    </Col>
-                    <Col>
-                        <TouchableOpacity>
-                            <Card
-                                containerStyle={{margin:0}}
-                                wrapperStyle={{padding:0}}
-                                image={this.state.meusenador.fotoUrl!=null ? {uri:this.state.meusenador.fotoUrl} : require("../../assets/img/user.png")}>
-                            </Card>
-                        </TouchableOpacity>
-                    </Col>
-                    <Col>
-                        <TouchableOpacity>
-                            <Card
-                                containerStyle={{margin:0}}
-                                wrapperStyle={{padding:0}}
-                                image={this.state.meudeputadofederal.fotoUrl!=null ? {uri:this.state.meudeputadofederal.fotoUrl} : require("../../assets/img/user.png")}>
-                            </Card>
-                        </TouchableOpacity>
-                    </Col>
-                    <Col>
-                        <TouchableOpacity>
-                            <Card
-                                containerStyle={{margin:0}}
-                                wrapperStyle={{padding:0}}
-                                image={this.state.meudeputadoestadual.fotoUrl!=null ? {uri:this.state.meudeputadoestadual.fotoUrl} : require("../../assets/img/user.png")}>
-                            </Card>
-                        </TouchableOpacity>
-                    </Col>
-                </Row>
-            </Grid>
-            </View>
+            <MeuCandidatoHome
+                titulo="Suas opções para Senador"
+                estado={this.state.estado}
+                candidatos={this.state.meusenador}
+                cargo={getCargo("Senador")}
+                navigation={this.props.navigation}/>
+
+            <MeuCandidatoHome
+                titulo="Suas opções para Deputado Federal"
+                estado={this.state.estado}
+                candidatos={this.state.meudeputadofederal}
+                cargo={getCargo("Deputado Federal")}
+                navigation={this.props.navigation}/>
+
+            <MeuCandidatoHome
+                titulo="Suas opções para Deputado Estadual"
+                estado={this.state.estado} 
+                last={true}
+                candidatos={this.state.meudeputadoestadual} 
+                cargo={getCargo("Deputado Estadual")}
+                navigation={this.props.navigation}/>
         </Content>
         );
     }

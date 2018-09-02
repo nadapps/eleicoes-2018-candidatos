@@ -1,10 +1,10 @@
 import React from 'react';
-import { ListItem } from 'react-native-elements';
+import { ListItem, Card } from 'react-native-elements';
 
 import Content from '../components/Content';
-import FavoritoCandidato from '../components/FavoritoCandidato';
 
 import { candidato } from '../services';
+import styles from '../styles';
 
 export default class CandidatoEleicoes extends React.Component {
     constructor(props) {
@@ -37,22 +37,25 @@ export default class CandidatoEleicoes extends React.Component {
     render() {
         return (
             <Content loading={this.state.loading}>
-                {
-                    this.state.candidato.eleicoesAnteriores.map((l) => (
-                        <ListItem
-                            key={l.ordem+""}
-                            title={"Cargo: "+l.cargo}
-                            subtitle={"Ano: "+l.nrAno}
-                            rightIcon={
-                                {
-                                    type:"entypo",
-                                    name:l.situacaoTotalizacao!="Eleito" ? "" : "trophy"
+                <Card containerStyle={styles.card}>
+                    {
+                        this.state.candidato.eleicoesAnteriores.map((l, index) => (
+                            <ListItem
+                                key={l.ordem+""}
+                                containerStyle={index==this.state.candidato.eleicoesAnteriores.length-1 ? {borderBottomWidth: 0} : {}}
+                                title={"Cargo: "+l.cargo}
+                                subtitle={"Ano: "+l.nrAno}
+                                rightIcon={
+                                    {
+                                        type:"entypo",
+                                        name:l.situacaoTotalizacao!="Eleito" ? "" : "trophy"
+                                    }
                                 }
-                            }
-                            hideChevron={ l.situacaoTotalizacao!="Eleito" }
-                        />
-                    ))
-                }
+                                hideChevron={ l.situacaoTotalizacao!="Eleito" }
+                            />
+                        ))
+                    }
+                </Card>
             </Content>
         );
     }

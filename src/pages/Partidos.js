@@ -1,11 +1,12 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
-import { ListItem } from 'react-native-elements';
+import { ListItem, Card } from 'react-native-elements';
 
 import Content from '../components/Content';
 import NumeroUrna from '../components/NumeroUrna';
 
 import { partidos } from '../services';
+import styles from '../styles';
 
 export default class Partidos extends React.Component {
   constructor(props) {

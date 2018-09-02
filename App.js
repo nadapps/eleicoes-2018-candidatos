@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppRegistry, TouchableOpacity, AsyncStorage } from 'react-native';
+import { AppRegistry, TouchableNativeFeedback, View } from 'react-native';
 import { createStackNavigator, createDrawerNavigator, DrawerActions, createBottomTabNavigator, StackActions } from 'react-navigation';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
@@ -7,6 +7,10 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import Estados from './src/pages/Estados';
 import Presidente from './src/pages/Presidente';
+import Governador from './src/pages/Governador';
+import Senador from './src/pages/Senador';
+import DeputadoFederal from './src/pages/DeputadoFederal';
+import DeputadoEstadual from './src/pages/DeputadoEstadual';
 import Partidos from './src/pages/Partidos';
 import Estado from './src/pages/Estado';
 import Home from './src/pages/Home';
@@ -24,9 +28,9 @@ import styles from './src/styles.js';
 
 const MenuImage = ({navigation}) => {
   if(!navigation.state.isDrawerOpen){
-      return <MaterialCommunityIcons style={{marginLeft:20}} name="menu" size={30} color={colors.white} />
+      return <MaterialCommunityIcons name="menu" size={30} color={colors.black} />
   }else{
-    return <MaterialCommunityIcons style={{marginLeft:20}} name="arrow-left" size={30} color={colors.white} />
+    return <MaterialCommunityIcons name="arrow-left" size={30} color={colors.black} />
   }
 }
 
@@ -38,17 +42,45 @@ const MainTab = createDrawerNavigator({
       drawerIcon: ({ tintColor }) => <MaterialCommunityIcons name="home" size={20} color={tintColor} />
     }
   },
+  // MeusCandidatos: {
+  //   screen: MeusCandidatos,
+  //   navigationOptions:{
+  //     drawerLabel: "Meus Candidatos",
+  //     drawerIcon: ({ tintColor }) => <MaterialIcons name="person" size={20} color={tintColor} />
+  //   }
+  // },
   Presidente: {
     screen: Presidente,
     navigationOptions:{
-      drawerLabel: "Presidente",
+      drawerLabel: "Presidentes",
       drawerIcon: ({ tintColor }) => <MaterialIcons name="person" size={20} color={tintColor} />
     }
   },
-  MeusCandidatos: {
-    screen: MeusCandidatos,
+  Governador: {
+    screen: Governador,
     navigationOptions:{
-      drawerLabel: "Meus Candidatos",
+      drawerLabel: "Governadores",
+      drawerIcon: ({ tintColor }) => <MaterialIcons name="person" size={20} color={tintColor} />
+    }
+  },
+  Senador: {
+    screen: Senador,
+    navigationOptions:{
+      drawerLabel: "Senadores",
+      drawerIcon: ({ tintColor }) => <MaterialIcons name="person" size={20} color={tintColor} />
+    }
+  },
+  DeputadosFederal: {
+    screen: DeputadoFederal,
+    navigationOptions:{
+      drawerLabel: "Deputados Federais",
+      drawerIcon: ({ tintColor }) => <MaterialIcons name="person" size={20} color={tintColor} />
+    }
+  },
+  DeputadoEstadual: {
+    screen: DeputadoEstadual,
+    navigationOptions:{
+      drawerLabel: "Deputados Estaduais",
       drawerIcon: ({ tintColor }) => <MaterialIcons name="person" size={20} color={tintColor} />
     }
   },
@@ -68,7 +100,10 @@ const MainTab = createDrawerNavigator({
   },
 },{
   initialRouteName: 'Home',
-  drawerWidth: 300
+  drawerWidth: 300,
+  contentOptions: {
+    activeTintColor: colors.accent
+  }
 });
 
 MainTab.navigationOptions = ({ navigation }) => {
@@ -120,12 +155,12 @@ const CandidatoTab = createBottomTabNavigator(
     tabBarOptions: {
       showLabel: true,
       showIcon: true,
-      activeTintColor: colors.primary,
+      activeTintColor: colors.accent,
       inactiveTintColor: colors.black,
       style: [styles.tabBar, styles.shadowTop],
       indicatorStyle: {
         backgroundColor: colors.primary,
-        top: 0
+        top: 1
       },
       labelStyle: {
         fontSize: 10,
@@ -154,24 +189,23 @@ const Stack = createStackNavigator(
   {
     Estado: { screen: Estado },
     Candidatos: { screen: Candidatos },
+    Presidente: { screen: Presidente },
     Login: { screen: Login },
     CandidatoTab: { 
-      screen: CandidatoTab,
-      navigationOptions: ({ navigation }) => ({
-        headerLeft: 
-          <TouchableOpacity onPress={() => {navigation.dispatch(StackActions.pop())} }>
-              <MaterialCommunityIcons style={{marginLeft:20}} name="arrow-left" size={30} color={colors.white} />
-          </TouchableOpacity>
-      })
+      screen: CandidatoTab
     },
     Main: {
       screen: MainTab,
       navigationOptions: ({ navigation }) => ({
         title: APP_NAME,
         headerLeft: 
-          <TouchableOpacity  onPress={() => {navigation.dispatch(DrawerActions.toggleDrawer())} }>
+          <TouchableNativeFeedback
+            background={TouchableNativeFeedback.SelectableBackground()}
+            onPress={() => {navigation.dispatch(DrawerActions.toggleDrawer())} }>
+            <View style={{marginLeft:20,borderRadius:50}} >
               <MenuImage navigation={navigation}/>
-          </TouchableOpacity>,
+            </View>
+          </TouchableNativeFeedback>,
       })
     },
   },
@@ -184,7 +218,7 @@ const Stack = createStackNavigator(
         elevation: 0,
         shadowOpacity: 0,
       },
-      headerTintColor: '#fff',
+      headerTintColor: colors.black,
     }
   }
 );

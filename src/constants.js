@@ -137,6 +137,43 @@ const estadosArray = [
         }
     ];
 
+const cargosArray = [
+    {
+        "codigo": 3,
+        "sigla": null,
+        "nome": "Governador",
+        "titular": false,
+        "contagem": 7
+        },
+        {
+        "codigo": 4,
+        "sigla": null,
+        "nome": "Vice-governador",
+        "titular": false,
+        "contagem": 7
+        },
+        {
+        "codigo": 5,
+        "sigla": null,
+        "nome": "Senador",
+        "titular": false,
+        "contagem": 12
+        },
+        {
+        "codigo": 6,
+        "sigla": null,
+        "nome": "Deputado Federal",
+        "titular": false,
+        "contagem": 354
+        },
+        {
+        "codigo": 7,
+        "sigla": null,
+        "nome": "Deputado Estadual",
+        "titular": false,
+        "contagem": 677
+        }
+    ];
 
 export const getEstado = (estado) => {
     for(let i = 0; i < estadosArray.length; i++){
@@ -146,4 +183,23 @@ export const getEstado = (estado) => {
     return "";
 }
 
+export const getCargo = (cargo) => {
+    for(let i = 0; i < cargosArray.length; i++){
+        if(cargosArray[i].nome.toLocaleLowerCase()===cargo.toLocaleLowerCase())
+            return cargosArray[i];
+    }
+    return "";
+}
+
+export const numeroParaReal = (numero) => {
+    if(numero) {
+        var numero = numero.toFixed(2).split('.');
+        numero[0] = "R$ " + numero[0].split(/(?=(?:...)*$)/).join('.');
+        return numero.join(',');
+    } else {
+        return 'R$ 0,00';
+    }
+}
+
 export const estados = estadosArray;
+export const cargos = cargosArray;

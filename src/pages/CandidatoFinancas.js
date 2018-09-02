@@ -5,6 +5,7 @@ import { Row, Grid  } from "react-native-easy-grid";
 import Content from '../components/Content';
 
 import { candidatoGasto } from '../services';
+import { numeroParaReal } from '../constants';
 
 export default class CandidatoFinancas extends React.Component {
     constructor(props) {
@@ -43,8 +44,8 @@ export default class CandidatoFinancas extends React.Component {
                                     containerStyle={{width:"90%"}}
                                     color='#43a047'
                                     title='Receitas'
-                                    price={'R$ '+this.state.gasto.dadosConsolidados.totalRecebido}
-                                    info={['Pessoas Físicas: R$ '+this.state.gasto.dadosConsolidados.totalReceitaPF, 'Partido: R$ '+this.state.gasto.dadosConsolidados.totalPartidos]}
+                                    price={numeroParaReal(this.state.gasto.dadosConsolidados.totalRecebido)}
+                                    info={['Pessoas Físicas: '+numeroParaReal(this.state.gasto.dadosConsolidados.totalReceitaPF), 'Partido: '+numeroParaReal(this.state.gasto.dadosConsolidados.totalPartidos)]}
                                     button={{ title: 'Lista de Receitas' }}
                                     />
                             )
@@ -57,8 +58,8 @@ export default class CandidatoFinancas extends React.Component {
                                     containerStyle={{width:"92%"}}
                                     color='#f44336'
                                     title='Despesas'
-                                    price={'R$ '+this.state.gasto.despesas.totalDespesasContratadas}
-                                    info={['Limite: R$ '+this.state.gasto.despesas.valorLimiteDeGastos, 'Pagas: R$ '+this.state.gasto.despesas.totalDespesasPagas]}
+                                    price={numeroParaReal(this.state.gasto.despesas.totalDespesasContratadas)}
+                                    info={['Limite: '+numeroParaReal(this.state.gasto.despesas.valorLimiteDeGastos), 'Pagas: '+numeroParaReal(this.state.gasto.despesas.totalDespesasPagas)]}
                                     button={{ title: 'Lista de Despesas'}}
                                     />
                             )

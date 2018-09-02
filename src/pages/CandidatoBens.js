@@ -1,10 +1,11 @@
 import React from 'react';
-import { ListItem } from 'react-native-elements';
+import { ListItem, Card } from 'react-native-elements';
 
 import Content from '../components/Content';
-import FavoritoCandidato from '../components/FavoritoCandidato';
 
 import { candidato } from '../services';
+import { numeroParaReal } from '../constants';
+import styles from '../styles';
 
 export default class CandidatoBens extends React.Component {
     constructor(props) {
@@ -37,16 +38,19 @@ export default class CandidatoBens extends React.Component {
     render() {
         return (
             <Content loading={this.state.loading}>
-                {
-                    this.state.candidato.bens.map((l) => (
-                        <ListItem
-                            key={l.ordem+""}
-                            title={l.descricaoDeTipoDeBem}
-                            subtitle={"R$ "+l.valor}
-                            hideChevron={true}
-                        />
-                    ))
-                }
+                <Card containerStyle={styles.card}>
+                    {
+                        this.state.candidato.bens.map((l, index) => (
+                            <ListItem
+                                key={l.ordem+""}
+                                containerStyle={index==this.state.candidato.bens.length-1 ? {borderBottomWidth: 0} : {}}
+                                title={l.descricaoDeTipoDeBem}
+                                subtitle={numeroParaReal(l.valor)}
+                                hideChevron={true}
+                            />
+                        ))
+                    }
+                </Card>
             </Content>
         );
     }

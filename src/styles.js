@@ -6,7 +6,8 @@ export default {
 	    flex: 1,
 	    backgroundColor: '#FFF',
         flexDirection: 'column',
-        height:"100%"
+        height:"100%",
+        backgroundColor: colors.accent
     },
     itemList: {
         borderBottomWidth: 1,
@@ -46,6 +47,13 @@ export default {
         fontSize: 20,
         textAlign: 'center'
     },
+    titleMeuCandidato: {
+        fontWeight: 'bold',
+        color: colors.grey,
+        paddingBottom: 8,
+        fontSize: 16,
+        textAlign: 'center'
+    },
     subtitle: {
         color: colors.black,
         paddingLeft: 10,
@@ -56,19 +64,36 @@ export default {
         width:"90%",
         height:150,
         margin: 15,
-        borderRadius: 10,
+        borderRadius: 10
     },
     imageViceCandidato: {
-        width:50,
-        height:100,
+        width:"80%",
+        height:90,
+        margin: 15,
         borderRadius: 10,
+    },
+    titleVice: {
+        fontWeight: 'bold',
+        color: colors.dark,
+        padding: 5,
+        fontSize: 18,
+        textAlign: 'center',
+        marginTop:20
     },
     titleSection: {
         fontWeight: 'bold',
-        color: colors.dark,
+        color: colors.accent,
         padding: 10,
         paddingLeft: 15,
         paddingRight: 15,
         fontSize: 15,
     },
+    card: {
+        padding:0,
+        marginBottom:10
+    },
+    list: {
+        marginTop:0,
+        borderTopWidth:0
+    }
 }

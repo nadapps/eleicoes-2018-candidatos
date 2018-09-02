@@ -11,7 +11,7 @@ export default class TitleEstado extends Component {
         return (
             <View style={{flexDirection:'row', margin:15}}>
                 <Image resizeMode={'cover'} style={{width:45, height: 32}} source={{uri: this.props.estado.bandeira}} />
-                <Text style={{color:colors.dark,fontWeight:"bold", fontSize:20, marginLeft:10,marginTop:2}}>{this.props.estado.estado}</Text>
+                <Text style={{color:colors.black,fontWeight:"bold", fontSize:20, marginLeft:10,marginTop:2}}>{this.props.estado.estado}</Text>
             </View>
         );
     }

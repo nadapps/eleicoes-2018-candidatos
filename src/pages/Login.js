@@ -39,7 +39,7 @@ export default class Login extends React.Component {
 
     render() {
         return (
-            <Content style={{backgroundColor:colors.primary, padding:20}}>
+            <Content style={{padding:20}}>
                 <Text style={{color:"white", fontWeight:"bold", fontSize:30, textAlign:"center", padding:10, marginBottom:40, marginTop:40}}>Bem Vindo ao aplicativo Eleições 2018 !!!</Text>
                 <TextInput
                     placeholder="Nome"

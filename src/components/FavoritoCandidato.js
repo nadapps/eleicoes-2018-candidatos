@@ -9,7 +9,8 @@ export default class FavoritoCandidato extends Component {
 
     this.state = {
       icon:"star-border",
-      visible:false
+      visible:false,
+      data: []
     }
 
     this.star();
@@ -29,44 +30,66 @@ export default class FavoritoCandidato extends Component {
       else if(this.props.candidato.cargo.nome=="Deputado Estadual") data = await AsyncStorage.getItem('@Eleicoes2018:meudeputadoestadual');
       
       if(data!=null) data = JSON.parse(data);
+      else data = [];
       
-      if(data!=null && data.id==this.props.candidato.id){
+      let contains = false;
+      for( let i=0; i<data.length; i++ ){
+        if(data[i].id==this.props.candidato.id) contains = true;
+      }
+    
+      if(contains){
         this.setState({icon:"star"});
       }
-      this.setState({visible:true});
+      this.setState({visible:true,data});
     }
   }
 
   async onPress(){
     if(this.state.icon=="star") {
 
-      if(this.props.candidato.cargo.nome=="Presidente") await AsyncStorage.removeItem('@Eleicoes2018:meupresidente');
-      else if(this.props.candidato.cargo.nome=="Governador") await AsyncStorage.removeItem('@Eleicoes2018:meugovernador');
-      else if(this.props.candidato.cargo.nome=="Senador") await AsyncStorage.removeItem('@Eleicoes2018:meusenador');
-      else if(this.props.candidato.cargo.nome=="Deputado Federal") await AsyncStorage.removeItem('@Eleicoes2018:meudeputadofederal');
-      else if(this.props.candidato.cargo.nome=="Deputado Estadual") await AsyncStorage.removeItem('@Eleicoes2018:meudeputadoestadual');
-      ToastAndroid.show('Candidato removido dos Meus Candidatos', ToastAndroid.SHORT);
+      let data = this.state.data;
+      for( let i=0; i<data.length; i++ ){
+        if(data[i].id==this.props.candidato.id) {
+          data.splice(i,1);
+          break;
+        }
+      }
 
-      this.setState({"icon":"star-border"});
+      if(this.props.candidato.cargo.nome=="Presidente") await AsyncStorage.setItem('@Eleicoes2018:meupresidente',JSON.stringify(data));
+      else if(this.props.candidato.cargo.nome=="Governador") await AsyncStorage.setItem('@Eleicoes2018:meugovernador',JSON.stringify(data));
+      else if(this.props.candidato.cargo.nome=="Senador") await AsyncStorage.setItem('@Eleicoes2018:meusenador',JSON.stringify(data));
+      else if(this.props.candidato.cargo.nome=="Deputado Federal") await AsyncStorage.setItem('@Eleicoes2018:meudeputadofederal',JSON.stringify(data));
+      else if(this.props.candidato.cargo.nome=="Deputado Estadual") await AsyncStorage.setItem('@Eleicoes2018:meudeputadoestadual',JSON.stringify(data));
+      ToastAndroid.show('Candidato removido dos Favoritos', ToastAndroid.SHORT);
+
+      this.setState({"icon":"star-border",data});
 
     } else {
 
-      let data = JSON.stringify({
+      if(this.state.data.length==3){
+        ToastAndroid.show('Limite de 3 candidatos atingido', ToastAndroid.SHORT);
+        return;
+      }
+
+      let candidato = {
         id: this.props.candidato.id,
         nomeUrna: this.props.candidato.nomeUrna,
         numero: this.props.candidato.numero,
         fotoUrl: this.props.candidato.fotoUrl,
-      });
+      };
 
-      if(this.props.candidato.cargo.nome=="Presidente") await AsyncStorage.setItem('@Eleicoes2018:meupresidente',data);
-      else if(this.props.candidato.cargo.nome=="Governador") await AsyncStorage.setItem('@Eleicoes2018:meugovernador',data);
-      else if(this.props.candidato.cargo.nome=="Senador") await AsyncStorage.setItem('@Eleicoes2018:meusenador',data);
-      else if(this.props.candidato.cargo.nome=="Deputado Federal") await AsyncStorage.setItem('@Eleicoes2018:meudeputadofederal',data);
-      else if(this.props.candidato.cargo.nome=="Deputado Estadual") await AsyncStorage.setItem('@Eleicoes2018:meudeputadoestadual',data);
+      let data = this.state.data;
+      data.push(candidato);
+
+      if(this.props.candidato.cargo.nome=="Presidente") await AsyncStorage.setItem('@Eleicoes2018:meupresidente',JSON.stringify(data));
+      else if(this.props.candidato.cargo.nome=="Governador") await AsyncStorage.setItem('@Eleicoes2018:meugovernador',JSON.stringify(data));
+      else if(this.props.candidato.cargo.nome=="Senador") await AsyncStorage.setItem('@Eleicoes2018:meusenador',JSON.stringify(data));
+      else if(this.props.candidato.cargo.nome=="Deputado Federal") await AsyncStorage.setItem('@Eleicoes2018:meudeputadofederal',JSON.stringify(data));
+      else if(this.props.candidato.cargo.nome=="Deputado Estadual") await AsyncStorage.setItem('@Eleicoes2018:meudeputadoestadual',JSON.stringify(data));
       
-      ToastAndroid.show('Candidato salvo em Meus Candidatos', ToastAndroid.SHORT);
+      ToastAndroid.show('Candidato salvo em Favoritos', ToastAndroid.SHORT);
 
-      this.setState({"icon":"star"});
+      this.setState({"icon":"star",data});
 
     }
   }
@@ -75,7 +98,7 @@ export default class FavoritoCandidato extends Component {
     if(this.state.visible)
       return (
         <TouchableOpacity onPress={() => { this.onPress() } }>
-          <MaterialIcons style={{marginRight:20}} name={this.state.icon} size={30} color={colors.white} />
+          <MaterialIcons style={{marginRight:20}} name={this.state.icon} size={30} color={colors.black} />
         </TouchableOpacity>
       );
     else 

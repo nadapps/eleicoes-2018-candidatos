@@ -1,22 +1,17 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
-import { List, ListItem } from 'react-native-elements';
+import { ListItem, Card } from 'react-native-elements';
 import { StackActions } from 'react-navigation';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import Content from '../components/Content';
 import TitleEstado from '../components/TitleEstado';
 
-import { cargos } from '../services';
-import colors from '../colors';
+import { cargos } from '../constants';
+import styles from '../styles';
 
 export default class Estado extends React.Component {
     static navigationOptions = ({ navigation }) => ({
-        title: "Cargos",
-        headerLeft: 
-            <TouchableOpacity onPress={() => {navigation.dispatch(StackActions.pop())} }>
-                <MaterialCommunityIcons style={{marginLeft:20}} name="arrow-left" size={30} color={colors.white} />
-            </TouchableOpacity>
+        title: "Escolhar o Cargo..."
     });
 
     constructor(props) {
@@ -24,14 +19,12 @@ export default class Estado extends React.Component {
 
         this.state = {
             estado: props.navigation.state.params.estado,
-            cargos: [],
             loading: true
         };
     }
 
     async componentDidMount(){
-        let result = await cargos(this.state.estado.estadoabrev);
-        this.setState({cargos:result.cargos,loading:false});
+        this.setState({loading:false});
     }
 
     openCandidatos = cargo => {
@@ -46,19 +39,22 @@ export default class Estado extends React.Component {
     render() {
         return (
             <Content loading={this.state.loading}>
-                <TitleEstado estado={this.state.estado} />
-                <List containerStyle={{marginTop:0}}>
+                <Card containerStyle={{padding:0}}>
+                    <TitleEstado estado={this.state.estado} />
+                </Card>
+                <Card containerStyle={styles.card}>
                     {
-                        this.state.cargos.map((l) => (
+                        cargos.map((l,index) => (
                         <ListItem
                             component={TouchableOpacity}
                             key={l.codigo+""}
                             title={l.nome}
+                            containerStyle={[index==cargos.length-1 ? {borderBottomWidth: 0} : {}]}
                             onPress={() => this.openCandidatos(l)}
                         />
                         ))
                     }
-                </List>
+                </Card>
             </Content>
         );
     }

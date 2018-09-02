@@ -1,13 +1,18 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
-import { List, ListItem } from 'react-native-elements';
+import { ListItem, Card } from 'react-native-elements';
 import { StackActions } from 'react-navigation';
 
 import Content from '../components/Content';
 
 import { candidatos } from '../services';
+import styles from '../styles';
 
 export default class Presidente extends React.Component {
+    static navigationOptions = ({ navigation }) => ({
+        title: "Presidente"
+    });
+
     constructor(props) {
         super(props);
 
@@ -32,7 +37,7 @@ export default class Presidente extends React.Component {
     openCandidato = candidato => {
         const resetAction = StackActions.push({
             index: 0,
-            params: { candidato, estado:this.state.estado },
+            params: { candidato, estado:null },
             routeName: 'CandidatoTab',
         });
         this.props.navigation.dispatch(resetAction);
@@ -41,13 +46,14 @@ export default class Presidente extends React.Component {
     render() {
         return (
             <Content loading={this.state.loading}>
-                <List containerStyle={{marginTop: 0}}>
+                <Card containerStyle={styles.card}>
                     {
-                        this.state.candidatos.map((l) => (
+                        this.state.candidatos.map((l,index) => (
                         <ListItem
                             component={TouchableOpacity}
                             roundAvatar
                             avatar={{uri:(l.fotoUrl==null ? "https://npengage.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png" : l.fotoUrl)}}
+                            containerStyle={index==this.state.candidatos.length-1 ? {borderBottomWidth: 0} : {}}
                             key={l.id+""}
                             title={l.nomeUrna}
                             subtitle={l.partido.sigla+" - "+l.nomeColigacao}
@@ -55,7 +61,7 @@ export default class Presidente extends React.Component {
                         />
                         ))
                     }
-                </List>
+                </Card>
             </Content>
         );
     }
