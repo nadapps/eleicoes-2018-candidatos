@@ -15,6 +15,7 @@ export default class Home extends React.Component {
             'willFocus',
             payload => {
                 this.props.navigation.setParams({ title: "Eleições 2018" });
+                this.componentDidMount();
             }
         );
 
@@ -29,6 +30,14 @@ export default class Home extends React.Component {
             estado:{},
         };
     }
+
+    // async componentWillMount(){
+    //     alert('teste');
+    // }
+
+    // async componentWillUnmount(){
+    //     alert('teste1');
+    // }
 
     async componentDidMount(){
         let emailStorage = await AsyncStorage.getItem('@Eleicoes2018:email');
