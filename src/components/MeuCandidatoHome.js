@@ -65,6 +65,7 @@ class MeuCandidatoHome extends Component {
                     else if(this.props.cargo.nome=="Deputado Estadual") await AsyncStorage.setItem('@Eleicoes2018:meudeputadoestadual',JSON.stringify(data));
                     ToastAndroid.show('Candidato removido dos Favoritos', ToastAndroid.SHORT);
                     
+                    this.props.onRemove();
                 }},
             ],
             { cancelable: false }
@@ -142,7 +143,8 @@ MeuCandidatoHome.propTypes = {
     last: PropTypes.bool,
     estado: PropTypes.object,
     navigation: PropTypes.any,
-    cargo: PropTypes.object
+    cargo: PropTypes.object,
+    onRemove: PropTypes.func
 }
 
 MeuCandidatoHome.defaultProps = {

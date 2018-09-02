@@ -40,6 +40,10 @@ export default class Home extends React.Component {
     // }
 
     async componentDidMount(){
+        await this.getData();
+    }
+
+    async getData(){
         let emailStorage = await AsyncStorage.getItem('@Eleicoes2018:email');
         if(emailStorage==null){
             const resetAction = StackActions.reset({
@@ -79,6 +83,10 @@ export default class Home extends React.Component {
         this.props.navigation.dispatch(resetAction);
     };
 
+    removerCandidato = async () => {
+        await this.getData();
+    }
+
     render() {
         return (
         <Content>
@@ -86,28 +94,32 @@ export default class Home extends React.Component {
                 titulo="Suas opções para Presidente"
                 candidatos={this.state.meupresidente}
                 cargo={{codigo:"1",nome:"Presidente"}}
-                navigation={this.props.navigation}/>
+                navigation={this.props.navigation}
+                onRemove={this.removerCandidato}/>
 
             <MeuCandidatoHome
                 titulo="Suas opções para Governador"
                 estado={this.state.estado}
                 candidatos={this.state.meugovernador}
                 cargo={getCargo("Governador")}
-                navigation={this.props.navigation}/>
+                navigation={this.props.navigation}
+                onRemove={this.removerCandidato}/>
 
             <MeuCandidatoHome
                 titulo="Suas opções para Senador"
                 estado={this.state.estado}
                 candidatos={this.state.meusenador}
                 cargo={getCargo("Senador")}
-                navigation={this.props.navigation}/>
+                navigation={this.props.navigation}
+                onRemove={this.removerCandidato}/>
 
             <MeuCandidatoHome
                 titulo="Suas opções para Deputado Federal"
                 estado={this.state.estado}
                 candidatos={this.state.meudeputadofederal}
                 cargo={getCargo("Deputado Federal")}
-                navigation={this.props.navigation}/>
+                navigation={this.props.navigation}
+                onRemove={this.removerCandidato}/>
 
             <MeuCandidatoHome
                 titulo="Suas opções para Deputado Estadual"
@@ -115,7 +127,8 @@ export default class Home extends React.Component {
                 last={true}
                 candidatos={this.state.meudeputadoestadual} 
                 cargo={getCargo("Deputado Estadual")}
-                navigation={this.props.navigation}/>
+                navigation={this.props.navigation}
+                onRemove={this.removerCandidato}/>
         </Content>
         );
     }
