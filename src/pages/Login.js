@@ -3,6 +3,8 @@ import { TextInput, Text, AsyncStorage, ToastAndroid, Picker, View } from 'react
 import { Button } from 'react-native-elements';
 import { StackActions, NavigationActions } from 'react-navigation';
 import { estados } from '../constants';
+import DeviceInfo from 'react-native-device-info';
+import SplashScreen from 'react-native-splash-screen';
 
 import Content from '../components/Content';
 import colors from '../colors';
@@ -15,16 +17,17 @@ export default class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: "",
-            nome: "",
             estado: ""
         };
     }
 
+    componentDidMount(){
+        alert(DeviceInfo.getDeviceId());
+        SplashScreen.hide();
+    }
+
     async entrar(){
         if(this.state.email!="" && this.state.nome!="" && this.state.estados!=""){
-            await AsyncStorage.setItem('@Eleicoes2018:email', this.state.email);
-            await AsyncStorage.setItem('@Eleicoes2018:nome', this.state.nome);
             await AsyncStorage.setItem('@Eleicoes2018:estado', this.state.estado);
 
             const resetAction = StackActions.reset({
@@ -41,29 +44,12 @@ export default class Login extends React.Component {
         return (
             <Content style={{padding:20}}>
                 <Text style={{color:"white", fontWeight:"bold", fontSize:30, textAlign:"center", padding:10, marginBottom:40, marginTop:40}}>Bem Vindo ao aplicativo Eleições 2018 !!!</Text>
-                <TextInput
-                    placeholder="Nome"
-                    placeholderTextColor="white"
-                    style={{height: 50, borderColor: 'white', borderWidth: 1, borderRadius:5, color:"white", fontSize:16, padding: 10}}
-                    onChangeText={(nome) => this.setState({nome})}
-                    underlineColorAndroid='transparent'
-                    value={this.state.nome}
-                />
-                <TextInput
-                    textContentType="emailAddress"
-                    placeholder="E-mail"
-                    placeholderTextColor="white"
-                    style={{height: 50, borderColor: 'white', borderWidth: 1, borderRadius:5, marginTop:20, color:"white", fontSize:16, padding: 10}}
-                    onChangeText={(email) => this.setState({email})}
-                    underlineColorAndroid='transparent'
-                    value={this.state.email}
-                />
                 <View style={{height: 50, borderColor: 'white', borderWidth: 1, borderRadius:5, marginTop:20}}>
                     <Picker
                         selectedValue={this.state.estado}
                         style={{ color:"white"}}
                         itemStyle={{ fontSize:40 }}
-                        onValueChange={(itemValue, itemIndex) => this.setState({estado: itemValue})}>
+                        onValueChange={(itemValue) => this.setState({estado: itemValue})}>
                         <Picker.Item enabled={false} label="Escolha o Estado" value="" />
                         {
                             estados.map((estado) =>{

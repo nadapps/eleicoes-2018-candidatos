@@ -15,7 +15,6 @@ class MeuCandidatoHome extends Component {
 
     openCandidato = (candidato) => {
         candidato.cargo = this.props.cargo;
-        candidato.partido = {};
         const resetAction = StackActions.push({
             index: 0,
             params: { candidato, estado:this.props.estado },
@@ -76,7 +75,7 @@ class MeuCandidatoHome extends Component {
     render() {
         return (
             <Card 
-                containerStyle={{marginBottom: (this.props.last ? 15 : 0)}}
+                containerStyle={{marginBottom: (this.props.last ? 15 : 0), borderRadius: 15}}
                 wrapperStyle={{paddingTop:0}} >
                 <Row>
                     <Col><Text style={styles.titleMeuCandidato}>{this.props.titulo}</Text></Col>
@@ -100,11 +99,11 @@ class MeuCandidatoHome extends Component {
                                 
                                 {
                                     this.props.candidatos[index]==null && (
-                                        <TouchableOpacity onPress={() => this.openNoCandidato()}>
+                                        <TouchableOpacity style={{zIndex:0}} onPress={() => this.openNoCandidato()}>
                                             <Card
                                                 containerStyle={{margin:5}}
                                                 wrapperStyle={{padding:0}}
-                                                image={require("../../assets/img/user.png")} />
+                                                image={require("../../assets/img/img_selecione.png")} />
                                         </TouchableOpacity>
                                     )
                                 }
@@ -115,7 +114,8 @@ class MeuCandidatoHome extends Component {
                                             right:15, 
                                             bottom: 10, 
                                             width: 25, 
-                                            height:18
+                                            height:18,
+                                            zIndex:100
                                         }} >
                                         <Image
                                             source={{uri:this.props.estado.bandeira}}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { AsyncStorage } from 'react-native';
 import { StackActions, NavigationActions } from 'react-navigation';
-import SplashScreen from 'react-native-splash-screen'
+import SplashScreen from 'react-native-splash-screen';
 
 import Content from '../components/Content';
 import MeuCandidatoHome from '../components/MeuCandidatoHome';
@@ -42,7 +42,6 @@ export default class Home extends React.Component {
 
     async componentDidMount(){
         await this.getData();
-        SplashScreen.hide();
     }
 
     async getData(){
@@ -53,27 +52,29 @@ export default class Home extends React.Component {
                 actions: [NavigationActions.navigate({ routeName: 'Login' })],
             });
             this.props.navigation.dispatch(resetAction);
+        } else {
+            let email = await AsyncStorage.getItem('@Eleicoes2018:email');
+            let nome = await AsyncStorage.getItem('@Eleicoes2018:nome');
+            let estado = getEstado(await AsyncStorage.getItem('@Eleicoes2018:estado'));
+            this.setState({email,nome,estado});
+    
+            let meupresidente = JSON.parse(await AsyncStorage.getItem('@Eleicoes2018:meupresidente'));
+            if(meupresidente!=null) this.setState({meupresidente});
+    
+            let meugovernador = JSON.parse(await AsyncStorage.getItem('@Eleicoes2018:meugovernador'));
+            if(meugovernador!=null) this.setState({meugovernador});
+            
+            let meusenador = JSON.parse(await AsyncStorage.getItem('@Eleicoes2018:meusenador'));
+            if(meusenador!=null) this.setState({meusenador});
+            
+            let meudeputadofederal = JSON.parse(await AsyncStorage.getItem('@Eleicoes2018:meudeputadofederal'));
+            if(meudeputadofederal!=null) this.setState({meudeputadofederal});
+            
+            let meudeputadoestadual = JSON.parse(await AsyncStorage.getItem('@Eleicoes2018:meudeputadoestadual'));
+            if(meudeputadoestadual!=null) this.setState({meudeputadoestadual});
+    
+            SplashScreen.hide();
         }
-
-        let email = await AsyncStorage.getItem('@Eleicoes2018:email');
-        let nome = await AsyncStorage.getItem('@Eleicoes2018:nome');
-        let estado = getEstado(await AsyncStorage.getItem('@Eleicoes2018:estado'));
-        this.setState({email,nome,estado});
-
-        let meupresidente = JSON.parse(await AsyncStorage.getItem('@Eleicoes2018:meupresidente'));
-        if(meupresidente!=null) this.setState({meupresidente});
-
-        let meugovernador = JSON.parse(await AsyncStorage.getItem('@Eleicoes2018:meugovernador'));
-        if(meugovernador!=null) this.setState({meugovernador});
-        
-        let meusenador = JSON.parse(await AsyncStorage.getItem('@Eleicoes2018:meusenador'));
-        if(meusenador!=null) this.setState({meusenador});
-        
-        let meudeputadofederal = JSON.parse(await AsyncStorage.getItem('@Eleicoes2018:meudeputadofederal'));
-        if(meudeputadofederal!=null) this.setState({meudeputadofederal});
-        
-        let meudeputadoestadual = JSON.parse(await AsyncStorage.getItem('@Eleicoes2018:meudeputadoestadual'));
-        if(meudeputadoestadual!=null) this.setState({meudeputadoestadual});
     }
 
     openEstado = estado => {

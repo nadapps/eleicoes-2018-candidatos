@@ -19,7 +19,6 @@ import CandidatoBens from './src/pages/CandidatoBens';
 import CandidatoEleicoes from './src/pages/CandidatoEleicoes';
 import CandidatoFinancas from './src/pages/CandidatoFinancas';
 import Login from './src/pages/Login';
-import MeusCandidatos from './src/pages/MeusCandidatos';
 
 import { APP_NAME } from './src/constants';
 import colors from './src/colors.js';

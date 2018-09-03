@@ -76,6 +76,7 @@ export default class FavoritoCandidato extends Component {
         nomeUrna: this.props.candidato.nomeUrna,
         numero: this.props.candidato.numero,
         fotoUrl: this.props.candidato.fotoUrl,
+        partido: this.props.candidato.partido
       };
 
       let data = this.state.data;
