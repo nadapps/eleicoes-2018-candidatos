@@ -23,7 +23,8 @@ export default class CandidatoDetalhe extends React.Component {
             payload => {
                 this.props.navigation.setParams({
                     title: this.props.navigation.state.params.candidato.nomeUrna,
-                    headerColor: backgroundColor
+                    headerColor: backgroundColor,
+                    headerRight: <FavoritoCandidato candidato={this.props.navigation.state.params.candidato} />
                 });
             }
         );
@@ -45,19 +46,8 @@ export default class CandidatoDetalhe extends React.Component {
     async componentDidMount(){
         let result = await candidato((this.state.estado ? this.state.estado.estadoabrev : "BR"),this.state.candidato.id);
         if(result.vices==null) result.vices = [];
-        let backgroundColor = coresPartidos[result.partido.sigla.toLowerCase().replace(/\s+/g, "")];
-
-        this.setState({candidato:result,loading:false});
-
         
-        this.willFocusSubscription = this.props.navigation.addListener(
-            'didFocus',
-            payload => {
-                this.props.navigation.setParams({
-                    headerRight: <FavoritoCandidato candidato={this.state.candidato} />
-                });
-            }
-        );
+        this.setState({candidato:result,loading:false});
     }
 
 
@@ -91,7 +81,7 @@ export default class CandidatoDetalhe extends React.Component {
                 </Row>
                 {
                     this.state.candidato.vices.length>0 && (
-                        <Card containerStyle={styles.card}>
+                        <View>
                             <Row>
                                 <Col>
                                     <Text style={styles.titleSection}>Vice</Text>
@@ -106,7 +96,7 @@ export default class CandidatoDetalhe extends React.Component {
                                     <Text style={styles.subtitle}>{this.state.candidato.vices[0].sg_PARTIDO}</Text>
                                 </Col>
                             </Row>
-                        </Card>
+                        </View>
                     )
                 }
             </ContentCandidato>

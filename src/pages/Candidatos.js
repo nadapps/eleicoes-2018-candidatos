@@ -33,6 +33,8 @@ export default class Candidatos extends React.Component {
     }
 
     openCandidato = candidato => {
+        candidato.fotoUrl = "http://brunohpmarques.000webhostapp.com/eleicoes/getFoto.php?id_tse="+candidato.id;
+        candidato.ufCandidatura = this.state.estado.sigla;
         const resetAction = StackActions.push({
             index: 0,
             params: { candidato, estado:this.state.estado },
@@ -53,7 +55,7 @@ export default class Candidatos extends React.Component {
                         <ListItem
                             component={TouchableOpacity}
                             roundAvatar
-                            avatar={{uri:(l.fotoUrl==null ? "https://npengage.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png" : l.fotoUrl)}}
+                            avatar={{uri:(l.cargo.codigo!=7 ? "http://brunohpmarques.000webhostapp.com/eleicoes/getFoto.php?id_tse="+l.id : "https://npengage.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png")}}
                             containerStyle={index==this.state.candidatos.length-1 ? {borderBottomWidth: 0} : {}}
                             key={l.id+""}
                             title={l.nomeUrna}

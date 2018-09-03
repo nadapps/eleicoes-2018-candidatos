@@ -35,6 +35,8 @@ export default class Presidente extends React.Component {
     }
 
     openCandidato = candidato => {
+        candidato.fotoUrl = "http://brunohpmarques.000webhostapp.com/eleicoes/getFoto.php?id_tse="+candidato.id;
+        candidato.ufCandidatura = "BR";
         const resetAction = StackActions.push({
             index: 0,
             params: { candidato, estado:null },
@@ -52,7 +54,7 @@ export default class Presidente extends React.Component {
                         <ListItem
                             component={TouchableOpacity}
                             roundAvatar
-                            avatar={{uri:(l.fotoUrl==null ? "https://npengage.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png" : l.fotoUrl)}}
+                            avatar={{uri:("http://brunohpmarques.000webhostapp.com/eleicoes/getFoto.php?id_tse="+l.id)}}
                             containerStyle={index==this.state.candidatos.length-1 ? {borderBottomWidth: 0} : {}}
                             key={l.id+""}
                             title={l.nomeUrna}

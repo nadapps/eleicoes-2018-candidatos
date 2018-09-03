@@ -26,8 +26,6 @@ export default class Home extends React.Component {
             meusenador: [],
             meudeputadofederal: [],
             meudeputadoestadual: [],
-            email:"",
-            nome:"",
             estado:{},
         };
     }
@@ -45,18 +43,16 @@ export default class Home extends React.Component {
     }
 
     async getData(){
-        let emailStorage = await AsyncStorage.getItem('@Eleicoes2018:email');
-        if(emailStorage==null){
+        let estadoStorage = await AsyncStorage.getItem('@Eleicoes2018:estado');
+        if(estadoStorage==null){
             const resetAction = StackActions.reset({
                 index: 0,
                 actions: [NavigationActions.navigate({ routeName: 'Login' })],
             });
             this.props.navigation.dispatch(resetAction);
         } else {
-            let email = await AsyncStorage.getItem('@Eleicoes2018:email');
-            let nome = await AsyncStorage.getItem('@Eleicoes2018:nome');
             let estado = getEstado(await AsyncStorage.getItem('@Eleicoes2018:estado'));
-            this.setState({email,nome,estado});
+            this.setState({estado});
     
             let meupresidente = JSON.parse(await AsyncStorage.getItem('@Eleicoes2018:meupresidente'));
             if(meupresidente!=null) this.setState({meupresidente});

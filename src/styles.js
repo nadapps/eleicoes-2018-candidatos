@@ -89,7 +89,7 @@ export default {
     },
     titleVice: {
         fontWeight: 'bold',
-        color: colors.dark,
+        color: colors.grey,
         padding: 5,
         fontSize: 18,
         textAlign: 'center',
