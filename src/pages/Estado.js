@@ -39,7 +39,7 @@ export default class Estado extends React.Component {
     render() {
         return (
             <Content loading={this.state.loading}>
-                <Card containerStyle={{padding:0}}>
+                <Card containerStyle={{padding:0, borderRadius:15}}>
                     <TitleEstado estado={this.state.estado} />
                 </Card>
                 <Card containerStyle={styles.card}>

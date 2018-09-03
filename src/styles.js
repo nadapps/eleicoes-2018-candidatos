@@ -37,11 +37,11 @@ export default {
 	    shadowOpacity: 0.1
     },
 	tabBar: {
-	    backgroundColor: '#FFF'
+	    backgroundColor: '#F5F4F4'
     },
     title: {
         fontWeight: 'bold',
-        color: colors.dark,
+        color: colors.grey,
         padding: 10,
         paddingTop:15,
         fontSize: 20,
@@ -61,10 +61,25 @@ export default {
         textAlign: 'center'
     },
     imageCandidato: {
-        width:"90%",
+        width:100,
         height:150,
-        margin: 15,
-        borderRadius: 10
+        justifyContent:'flex-end',
+        marginRight:15,
+        borderColor: colors.greyNew,
+        borderWidth: 5,
+        backgroundColor: "white"
+    },
+    imagePartido: {
+        width:100,
+        height:100,
+        marginLeft:15,
+        resizeMode:'contain',
+        justifyContent: 'flex-end',
+        alignItems: 'flex-end',
+        borderColor: colors.greyNew,
+        borderWidth: 5,
+        marginTop: 30,
+        backgroundColor: "white"
     },
     imageViceCandidato: {
         width:"80%",
@@ -82,18 +97,30 @@ export default {
     },
     titleSection: {
         fontWeight: 'bold',
-        color: colors.accent,
+        color: colors.grey,
         padding: 10,
         paddingLeft: 15,
         paddingRight: 15,
         fontSize: 15,
+        textAlign: 'center'
     },
     card: {
         padding:0,
-        marginBottom:10
+        marginBottom:10,
+        borderRadius:15
     },
     list: {
         marginTop:0,
         borderTopWidth:0
+    },
+    line: {
+        borderBottomColor:colors.greyLight,
+        borderBottomWidth:1,
+        flex:1,
+        flexDirection:'row',
+        marginLeft:'10%',
+        marginRight:'10%',
+        marginTop:20,
+        marginBottom:15
     }
 }

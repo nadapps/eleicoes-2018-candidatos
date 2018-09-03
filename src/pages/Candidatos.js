@@ -44,26 +44,24 @@ export default class Candidatos extends React.Component {
     render() {
         return (
             <Content loading={this.state.loading} search={this.state.search}>
-                <Card containerStyle={{padding:0}}>
+                <Card containerStyle={{padding:0, borderRadius:15}}>
                     <TitleEstado estado={this.state.estado} />
                 </Card>
                 <Card containerStyle={styles.card}>
-                    <List containerStyle={styles.list}>
-                        {
-                            this.state.candidatos.map((l, index) => (
-                            <ListItem
-                                component={TouchableOpacity}
-                                roundAvatar
-                                avatar={{uri:(l.fotoUrl==null ? "https://npengage.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png" : l.fotoUrl)}}
-                                containerStyle={index==this.state.candidatos.length-1 ? {borderBottomWidth: 0} : {}}
-                                key={l.id+""}
-                                title={l.nomeUrna}
-                                subtitle={l.partido.sigla+" - "+l.nomeColigacao}
-                                onPress={() => this.openCandidato(l)}
-                            />
-                            ))
-                        }
-                    </List>
+                    {
+                        this.state.candidatos.map((l, index) => (
+                        <ListItem
+                            component={TouchableOpacity}
+                            roundAvatar
+                            avatar={{uri:(l.fotoUrl==null ? "https://npengage.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png" : l.fotoUrl)}}
+                            containerStyle={index==this.state.candidatos.length-1 ? {borderBottomWidth: 0} : {}}
+                            key={l.id+""}
+                            title={l.nomeUrna}
+                            subtitle={l.partido.sigla+" - "+l.nomeColigacao}
+                            onPress={() => this.openCandidato(l)}
+                        />
+                        ))
+                    }
                 </Card>
             </Content>
         );

@@ -98,7 +98,7 @@ export default class FavoritoCandidato extends Component {
     if(this.state.visible)
       return (
         <TouchableOpacity onPress={() => { this.onPress() } }>
-          <MaterialIcons style={{marginRight:20}} name={this.state.icon} size={30} color={colors.black} />
+          <MaterialIcons style={{marginRight:20}} name={this.state.icon} size={30} color={colors.white} />
         </TouchableOpacity>
       );
     else 

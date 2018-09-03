@@ -1,28 +1,32 @@
 import React from 'react';
-import { ListItem, Card } from 'react-native-elements';
+import { Text } from 'react-native';
+import { ListItem } from 'react-native-elements';
 
-import Content from '../components/Content';
+import ContentCandidato from '../components/ContentCandidato';
 
 import { candidato } from '../services';
-import { numeroParaReal } from '../constants';
+import { numeroParaReal, coresPartidos } from '../constants';
 import styles from '../styles';
 
 export default class CandidatoBens extends React.Component {
     constructor(props) {
         super(props);
-
+        
+        let backgroundColor = coresPartidos[this.props.navigation.state.params.candidato.partido.sigla.toLowerCase().replace(/\s+/g, "")];
         props.navigation.addListener(
             'willFocus',
             payload => {
                 this.props.navigation.setParams({
-                    title: this.props.navigation.state.params.candidato.nomeUrna
+                    title: this.props.navigation.state.params.candidato.nomeUrna,
+                    headerColor: backgroundColor
                 });
             }
         );
-
+        
         this.state = {
             candidato: {
                 id: props.navigation.state.params.candidato.id,
+                partido: props.navigation.state.params.candidato.partido,
                 bens: []
             },
             estado: props.navigation.state.params.estado,
@@ -37,21 +41,20 @@ export default class CandidatoBens extends React.Component {
 
     render() {
         return (
-            <Content loading={this.state.loading}>
-                <Card containerStyle={styles.card}>
-                    {
-                        this.state.candidato.bens.map((l, index) => (
-                            <ListItem
-                                key={l.ordem+""}
-                                containerStyle={index==this.state.candidato.bens.length-1 ? {borderBottomWidth: 0} : {}}
-                                title={l.descricaoDeTipoDeBem}
-                                subtitle={numeroParaReal(l.valor)}
-                                hideChevron={true}
-                            />
-                        ))
-                    }
-                </Card>
-            </Content>
+            <ContentCandidato loading={this.state.loading} candidato={this.state.candidato}>
+                <Text style={styles.titleSection}>Total de Bens: {numeroParaReal(this.state.candidato.totalDeBens)}</Text>
+                {
+                    this.state.candidato.bens.map((l, index) => (
+                        <ListItem
+                            key={l.ordem+""}
+                            containerStyle={index==this.state.candidato.bens.length-1 ? {borderBottomWidth: 0} : {}}
+                            title={l.descricaoDeTipoDeBem}
+                            subtitle={numeroParaReal(l.valor)}
+                            hideChevron={true}
+                        />
+                    ))
+                }
+            </ContentCandidato>
         );
     }
 }

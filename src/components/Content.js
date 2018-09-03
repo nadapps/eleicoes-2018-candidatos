@@ -25,7 +25,7 @@ class Content extends React.Component {
 	render() {
 		return (
 		  	<View style={!this.props.style ? styles.container : [styles.container,this.props.style]}>
-			  	<StatusBar backgroundColor={colors.dark} barStyle="light-content"/>
+			  	<StatusBar backgroundColor={this.props.statusColor==null ? colors.dark : this.props.statusColor} barStyle="light-content"/>
 				<Loading loading={this.props.loading} />
 			  	{
 			  		this.props.search && (
@@ -54,12 +54,14 @@ Content.propTypes = {
 	search: PropTypes.bool,
 	scroll: PropTypes.bool,
 	onChangeTextSearch: PropTypes.func,
-	loading: PropTypes.bool
+	loading: PropTypes.bool,
+	statusColor: PropTypes.string
 }
 
 Content.defaultProps = {
 	search: false,
-	loading: false
+	loading: false,
+	statusColor: null
 }
 
 export default Content;

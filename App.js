@@ -11,7 +11,6 @@ import Governador from './src/pages/Governador';
 import Senador from './src/pages/Senador';
 import DeputadoFederal from './src/pages/DeputadoFederal';
 import DeputadoEstadual from './src/pages/DeputadoEstadual';
-import Partidos from './src/pages/Partidos';
 import Estado from './src/pages/Estado';
 import Home from './src/pages/Home';
 import Candidatos from './src/pages/Candidatos';
@@ -155,8 +154,8 @@ const CandidatoTab = createBottomTabNavigator(
     tabBarOptions: {
       showLabel: true,
       showIcon: true,
-      activeTintColor: colors.accent,
-      inactiveTintColor: colors.black,
+      activeTintColor: colors.grey,
+      inactiveTintColor: colors.gray,
       style: [styles.tabBar, styles.shadowTop],
       indicatorStyle: {
         backgroundColor: colors.primary,
@@ -178,10 +177,19 @@ const CandidatoTab = createBottomTabNavigator(
 CandidatoTab.navigationOptions = ({ navigation }) => {
   let headerTitle = navigation.state.routes[navigation.state.index].params.title;
   let headerRight = navigation.state.routes[navigation.state.index].params.headerRight;
+  let headerColor = navigation.state.routes[navigation.state.index].params.headerColor;
+
+  if(!headerColor) headerColor = colors.primary;
 
   return {
     headerTitle,
-    headerRight
+    headerRight,
+    headerStyle: {
+      backgroundColor: headerColor,
+      elevation: 0,
+      shadowColor: 'transparent'
+    },
+    headerTintColor: colors.white,
   };
 };
 
@@ -216,8 +224,11 @@ const Stack = createStackNavigator(
       headerStyle: {
         backgroundColor: colors.primary,
         elevation: 0,
-        shadowOpacity: 0,
+        shadowColor: 'transparent'
       },
+      cardStyle: {
+        shadowColor: 'transparent',
+       },
       headerTintColor: colors.black,
     }
   }

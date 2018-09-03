@@ -20,7 +20,7 @@ class RedesSociais extends Component {
 
     render() {
         return (
-            <View style={!this.props.style ? {flexDirection:'row',padding:10,paddingTop:0} : [{flexDirection:'row',padding:10,paddingTop:0},this.props.style]}>
+            <View style={!this.props.style ? {flexDirection:'row',padding:10,paddingTop:0, alignItems:'center',justifyContent:'center'} : [{flexDirection:'row',padding:10,paddingTop:0, alignItems:'center',justifyContent:'center'},this.props.style]}>
                 {
                     this.props.redes.map((rede,index) => {
                         return (

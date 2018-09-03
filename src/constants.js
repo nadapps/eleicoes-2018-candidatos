@@ -1,4 +1,43 @@
 export const APP_NAME = 'Eleições 2018';
+
+export const coresPartidos = {
+    "avante": "#1DAAB1",
+    "dc": "#005E9A",
+    "dem": "#0A2327",
+    "mdb": "#00A550",
+    "novo": "#FF830D",
+    "patri": "#3B5998",
+    "pcb": "#E02323",
+    "pcdob": "#E02323",
+    "pco": "#E02323",
+    "pdt": "#AA2222",
+    "phs": "#FFA215",
+    "pmb": "#046E9E",
+    "pmn": "#E02323",
+    "pode": "#3684C6",
+    "pp": "#223486",
+    "ppl": "#026232",
+    "pps": "#DC2720",
+    "pr": "#301B6A",
+    "prb": "#01A8C8",
+    "pros": "#F49D46",
+    "prp": "#0061AD",
+    "prtb": "#040097",
+    "psb": "#E02323",
+    "psc": "#009241",
+    "psd": "#034872",
+    "psdb": "#FAB11D",
+    "psl": "#193769",
+    "psol": "#C91216",
+    "pstu": "#E02323",
+    "pt": "#C91216",
+    "ptb": "#302E29",
+    "ptc": "#0263A8",
+    "pv": "#0E3604",
+    "rede": "#FC6C30",
+    "solidariedade": "#1E1848"
+  };
+
 const estadosArray = [
         {
             bandeira: "http://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Bandeira_do_Acre.svg/300px-Bandeira_do_Acre.svg.png",
@@ -191,11 +230,22 @@ export const getCargo = (cargo) => {
     return "";
 }
 
-export const numeroParaReal = (numero) => {
-    if(numero) {
-        var numero = numero.toFixed(2).split('.');
-        numero[0] = "R$ " + numero[0].split(/(?=(?:...)*$)/).join('.');
-        return numero.join(',');
+export const numeroParaReal = (value) => {
+    if(value) {
+        var str = value+'';
+        var onlystr = str.split('.');
+        str = onlystr[0];
+        if(onlystr.length > 1){
+            onlystr = onlystr[1];
+            if(onlystr.charAt(0) == 9){
+                str = (parseInt(str)+1)+'';
+            }
+        }
+        if(str === '' || parseFloat(value) <= 0) return '0,00';
+        var onlystr = str.replace(/[^0-9]/,'');
+        str = parseInt(onlystr);
+        str = str/100;
+        return "R$ "+str.toFixed(2).replace(".", ",").replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
     } else {
         return 'R$ 0,00';
     }
