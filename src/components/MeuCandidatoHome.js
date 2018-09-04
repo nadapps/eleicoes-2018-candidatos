@@ -15,6 +15,9 @@ class MeuCandidatoHome extends Component {
 
     openCandidato = (candidato) => {
         candidato.cargo = this.props.cargo;
+        if(this.props.estado!=null) candidato.ufCandidatura = this.props.estado.estadoabrev;
+        else candidato.ufCandidatura = "BR";
+
         const resetAction = StackActions.push({
             index: 0,
             params: { candidato, estado:this.props.estado },

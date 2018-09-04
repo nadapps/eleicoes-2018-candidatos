@@ -30,16 +30,9 @@ export default class Home extends React.Component {
         };
     }
 
-    // async componentWillMount(){
-    //     alert('teste');
-    // }
-
-    // async componentWillUnmount(){
-    //     alert('teste1');
-    // }
-
     async componentDidMount(){
         await this.getData();
+        SplashScreen.hide();
     }
 
     async getData(){
@@ -68,8 +61,6 @@ export default class Home extends React.Component {
             
             let meudeputadoestadual = JSON.parse(await AsyncStorage.getItem('@Eleicoes2018:meudeputadoestadual'));
             if(meudeputadoestadual!=null) this.setState({meudeputadoestadual});
-    
-            SplashScreen.hide();
         }
     }
 
