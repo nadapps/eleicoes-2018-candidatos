@@ -48,7 +48,7 @@ export default class Estado extends React.Component {
                         <ListItem
                             component={TouchableOpacity}
                             key={l.codigo+""}
-                            title={l.nome}
+                            title={this.state.estado.estadoabrev=="DF" && l.codigo==7 ? "Deputado Distrital" :l.nome}
                             containerStyle={[index==cargos.length-1 ? {borderBottomWidth: 0} : {}]}
                             onPress={() => this.openCandidatos(l)}
                         />

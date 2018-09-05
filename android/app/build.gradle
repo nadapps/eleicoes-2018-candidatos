@@ -98,7 +98,7 @@ android {
     buildToolsVersion "23.0.1"
 
     defaultConfig {
-        applicationId "com.eleicoes2018"
+        applicationId "com.nada.eleicoes2018"
         minSdkVersion 16
         targetSdkVersion 26
         versionCode 1

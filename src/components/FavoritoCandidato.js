@@ -27,7 +27,7 @@ export default class FavoritoCandidato extends Component {
       else if(this.props.candidato.cargo.nome=="Governador") data = await AsyncStorage.getItem('@Eleicoes2018:meugovernador');
       else if(this.props.candidato.cargo.nome=="Senador") data = await AsyncStorage.getItem('@Eleicoes2018:meusenador');
       else if(this.props.candidato.cargo.nome=="Deputado Federal") data = await AsyncStorage.getItem('@Eleicoes2018:meudeputadofederal');
-      else if(this.props.candidato.cargo.nome=="Deputado Estadual") data = await AsyncStorage.getItem('@Eleicoes2018:meudeputadoestadual');
+      else if(this.props.candidato.cargo.nome=="Deputado Estadual" || this.props.candidato.cargo.nome=="Deputado Distrital") data = await AsyncStorage.getItem('@Eleicoes2018:meudeputadoestadual');
       
       if(data!=null) data = JSON.parse(data);
       else data = [];
@@ -59,7 +59,7 @@ export default class FavoritoCandidato extends Component {
       else if(this.props.candidato.cargo.nome=="Governador") await AsyncStorage.setItem('@Eleicoes2018:meugovernador',JSON.stringify(data));
       else if(this.props.candidato.cargo.nome=="Senador") await AsyncStorage.setItem('@Eleicoes2018:meusenador',JSON.stringify(data));
       else if(this.props.candidato.cargo.nome=="Deputado Federal") await AsyncStorage.setItem('@Eleicoes2018:meudeputadofederal',JSON.stringify(data));
-      else if(this.props.candidato.cargo.nome=="Deputado Estadual") await AsyncStorage.setItem('@Eleicoes2018:meudeputadoestadual',JSON.stringify(data));
+      else if(this.props.candidato.cargo.nome=="Deputado Estadual" || this.props.candidato.cargo.nome=="Deputado Distrital") await AsyncStorage.setItem('@Eleicoes2018:meudeputadoestadual',JSON.stringify(data));
       ToastAndroid.show('Candidato removido dos Favoritos', ToastAndroid.SHORT);
 
       this.setState({"icon":"star-border",data});
@@ -86,7 +86,7 @@ export default class FavoritoCandidato extends Component {
       else if(this.props.candidato.cargo.nome=="Governador") await AsyncStorage.setItem('@Eleicoes2018:meugovernador',JSON.stringify(data));
       else if(this.props.candidato.cargo.nome=="Senador") await AsyncStorage.setItem('@Eleicoes2018:meusenador',JSON.stringify(data));
       else if(this.props.candidato.cargo.nome=="Deputado Federal") await AsyncStorage.setItem('@Eleicoes2018:meudeputadofederal',JSON.stringify(data));
-      else if(this.props.candidato.cargo.nome=="Deputado Estadual") await AsyncStorage.setItem('@Eleicoes2018:meudeputadoestadual',JSON.stringify(data));
+      else if(this.props.candidato.cargo.nome=="Deputado Estadual" || this.props.candidato.cargo.nome=="Deputado Distrital") await AsyncStorage.setItem('@Eleicoes2018:meudeputadoestadual',JSON.stringify(data));
       
       ToastAndroid.show('Candidato salvo em Favoritos', ToastAndroid.SHORT);
 

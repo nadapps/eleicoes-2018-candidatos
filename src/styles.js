@@ -108,7 +108,7 @@ export default {
         padding:0,
         marginBottom:10,
         borderRadius:15,
-        backgroundColor: "white"
+        backgroundColor: colors.white
     },
     list: {
         marginTop:0,

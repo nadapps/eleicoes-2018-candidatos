@@ -64,7 +64,7 @@ class MeuCandidatoHome extends Component {
                     else if(this.props.cargo.nome=="Governador") await AsyncStorage.setItem('@Eleicoes2018:meugovernador',JSON.stringify(data));
                     else if(this.props.cargo.nome=="Senador") await AsyncStorage.setItem('@Eleicoes2018:meusenador',JSON.stringify(data));
                     else if(this.props.cargo.nome=="Deputado Federal") await AsyncStorage.setItem('@Eleicoes2018:meudeputadofederal',JSON.stringify(data));
-                    else if(this.props.cargo.nome=="Deputado Estadual") await AsyncStorage.setItem('@Eleicoes2018:meudeputadoestadual',JSON.stringify(data));
+                    else if(this.props.cargo.nome=="Deputado Estadual" || this.props.cargo.nome=="Deputado Distrital") await AsyncStorage.setItem('@Eleicoes2018:meudeputadoestadual',JSON.stringify(data));
                     ToastAndroid.show('Candidato removido dos Favoritos', ToastAndroid.SHORT);
                     
                     this.props.onRemove();

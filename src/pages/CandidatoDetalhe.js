@@ -1,6 +1,5 @@
 import React from 'react';
 import { Text, View, Image } from 'react-native';
-import { Card } from 'react-native-elements';
 import { Col, Row } from "react-native-easy-grid";
 
 import ContentCandidato from '../components/ContentCandidato';

@@ -21,6 +21,10 @@ export default class Login extends React.Component {
         };
     }
 
+    componentDidMount() {
+        SplashScreen.hide();
+    }
+
     async entrar(){
         if(this.state.estado!=""){
             await AsyncStorage.setItem('@Eleicoes2018:estado', this.state.estado);

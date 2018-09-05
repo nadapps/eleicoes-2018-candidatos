@@ -14,6 +14,7 @@ export const cargos = async (estado) => {
 }
 
 export const candidatos = async (estado, cargo) => {
+	if(estado=="DF" && cargo==7) cargo=8;
     let url = "http://divulgacandcontas.tse.jus.br/divulga/rest/v1/candidatura/listar/2018/"+estado+"/2022802018/"+cargo+"/candidatos";
 	return await get(url);
 }
@@ -24,6 +25,7 @@ export const candidato = async (estado, candidato) => {
 }
 
 export const candidatoGasto = async (estado,cargo,partido,numero,candidato) => {
+	if(estado=="DF" && cargo==7) cargo=8;
 	let url = "http://divulgacandcontas.tse.jus.br/divulga/rest/v1/prestador/consulta/2022802018/2018/"+estado+"/"+cargo+"/"+partido+"/"+numero+"/"+candidato;
 	return await get(url);
 }

@@ -32,7 +32,6 @@ export default class Home extends React.Component {
 
     async componentDidMount(){
         await this.getData();
-        SplashScreen.hide();
     }
 
     async getData(){
@@ -61,6 +60,8 @@ export default class Home extends React.Component {
             
             let meudeputadoestadual = JSON.parse(await AsyncStorage.getItem('@Eleicoes2018:meudeputadoestadual'));
             if(meudeputadoestadual!=null) this.setState({meudeputadoestadual});
+            
+            SplashScreen.hide();
         }
     }
 
@@ -112,7 +113,7 @@ export default class Home extends React.Component {
                 onRemove={this.removerCandidato}/>
 
             <MeuCandidatoHome
-                titulo="Suas opções para Deputado Estadual"
+                titulo={this.state.estado.estadoabrev=="DF" ? "Suas opções para Deputado Distrital" : "Suas opções para Deputado Estadual"}
                 estado={this.state.estado} 
                 last={true}
                 candidatos={this.state.meudeputadoestadual} 

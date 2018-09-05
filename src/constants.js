@@ -184,13 +184,13 @@ const cargosArray = [
         "titular": false,
         "contagem": 7
         },
-        {
-        "codigo": 4,
-        "sigla": null,
-        "nome": "Vice-governador",
-        "titular": false,
-        "contagem": 7
-        },
+        // {
+        // "codigo": 4,
+        // "sigla": null,
+        // "nome": "Vice-governador",
+        // "titular": false,
+        // "contagem": 7
+        // },
         {
         "codigo": 5,
         "sigla": null,
@@ -232,6 +232,7 @@ export const getCargo = (cargo) => {
 
 export const numeroParaReal = (value) => {
     if(value) {
+        value = value*100;
         var str = value+'';
         var onlystr = str.split('.');
         str = onlystr[0];
