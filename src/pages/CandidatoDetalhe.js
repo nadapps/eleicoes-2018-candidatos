@@ -46,6 +46,26 @@ export default class CandidatoDetalhe extends React.Component {
         let result = await candidato((this.state.estado ? this.state.estado.estadoabrev : "BR"),this.state.candidato.id);
         if(result.vices==null) result.vices = [];
         
+        let redes = [];
+        for(let i=0; i<result.sites.length; i++){
+            let contain = false;
+            for(let j=0; j<redes.length; j++){
+                if(result.sites[i].includes("facebook") && redes[j].includes("facebook"))
+                    contain = true;
+                if(result.sites[i].includes("instagram") && redes[j].includes("instagram"))
+                    contain = true;
+                if(result.sites[i].includes("youtube") && redes[j].includes("youtube"))
+                    contain = true;
+                if(result.sites[i].includes("twitter") && redes[j].includes("twitter"))
+                    contain = true;
+                if(result.sites[i].includes("flickr") && redes[j].includes("flickr"))
+                    contain = true;
+            }
+
+            if(!contain) redes.push(result.sites[i])
+        }
+        result.sites = redes;
+        
         this.setState({candidato:result,loading:false});
     }
 

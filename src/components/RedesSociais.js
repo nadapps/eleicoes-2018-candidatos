@@ -56,7 +56,7 @@ class RedesSociais extends Component {
                                     )
                                 }
                                 {
-                                    rede.includes("twitter.com") && (
+                                    rede.includes("twitter") && (
                                         <SocialIcon
                                             raised
                                             component={TouchableOpacity}
@@ -66,7 +66,7 @@ class RedesSociais extends Component {
                                     )
                                 }
                                 {
-                                    rede.includes("flickr.com") && (
+                                    rede.includes("flickr") && (
                                         <Icon
                                             component={TouchableOpacity}
                                             raised
