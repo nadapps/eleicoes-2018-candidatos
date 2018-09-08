@@ -16,13 +16,14 @@ class NumeroUrna extends Component {
                         <Text key={index} style={
                             {   color:colors.black,
                                 fontWeight:"bold",
-                                fontSize:20,
-                                padding: 8,
-                                paddingLeft: 10,
-                                paddingRight: 10,
+                                fontSize:this.props.fontSize,
+                                padding: this.props.padding-2,
+                                paddingLeft: this.props.padding,
+                                paddingRight: this.props.padding,
                                 borderWidth: 0.5,
                                 borderColor: colors.black,
-                                marginLeft: 8,
+                                marginLeft: this.props.padding-2,
+                                backgroundColor: colors.white
                             }}>{numero}</Text>
                     ))
                 }
@@ -33,12 +34,16 @@ class NumeroUrna extends Component {
 
 NumeroUrna.propTypes = {
     numero: PropTypes.string,
-    style: PropTypes.object
+    style: PropTypes.object,
+    fontSize: PropTypes.number,
+    padding: PropTypes.number
 }
 
 NumeroUrna.defaultProps = {
     numero: "00",
-    style:{}
+    style:{},
+    fontSize:20,
+    padding: 10
 }
 
 export default NumeroUrna;

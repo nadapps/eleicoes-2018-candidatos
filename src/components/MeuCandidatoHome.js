@@ -7,6 +7,7 @@ import { StackActions } from 'react-navigation';
 
 import styles from '../styles';
 import colors from '../colors';
+import NumeroUrna from './NumeroUrna';
 
 class MeuCandidatoHome extends Component {
     constructor(props) {
@@ -89,14 +90,23 @@ class MeuCandidatoHome extends Component {
                             <Col key={index}>
                                 {
                                     this.props.candidatos[index]!=null && (
-                                        <TouchableNativeFeedback
-                                            onPress={() => this.openCandidato(this.props.candidatos[index])}
-                                            onLongPress={() => this.onRemoverCandidato(this.props.candidatos[index])}>
-                                            <Card
-                                                containerStyle={{margin:5}}
-                                                wrapperStyle={{padding:0}}
-                                                image={{uri:this.props.candidatos[index].fotoUrl}} />
-                                        </TouchableNativeFeedback>
+                                        <View>
+                                            <TouchableOpacity
+                                                onPress={() => this.openCandidato(this.props.candidatos[index])}
+                                                onLongPress={() => this.onRemoverCandidato(this.props.candidatos[index])}>
+                                                <Card
+                                                    containerStyle={{margin:5, zIndex:0}}
+                                                    wrapperStyle={{padding:0, zIndex: 0}}
+                                                    image={{uri:this.props.candidatos[index].fotoUrl}} />
+                                            </TouchableOpacity>
+                                            <View
+                                                style={{position:"absolute", zIndex:100, bottom: 10, left:0, width:"100%"}}>
+                                                <NumeroUrna
+                                                    numero={this.props.candidatos[index].numero+""}
+                                                    fontSize={10}
+                                                    padding={4} />
+                                            </View>
+                                        </View>
                                     )
                                 }
                                 
@@ -111,7 +121,7 @@ class MeuCandidatoHome extends Component {
                                     )
                                 }
                                 {
-                                    this.props.estado!=null && (
+                                    this.props.estado!=null && this.props.candidatos[index]==null && (
                                         <View style={{
                                             position:"absolute", 
                                             right:15, 
@@ -129,7 +139,7 @@ class MeuCandidatoHome extends Component {
                                         </View>
                                     )
                                 }
-                                 <Text style={{position:"absolute", left:15, top: 10,fontWeight:"bold", fontSize: 15, color:colors.accent}}>{index+1}°</Text>
+                                 <Text style={{position:"absolute", zIndex: 100, left:15, top: 10,fontWeight:"bold", fontSize: 15, color:colors.accent}}>{index+1}°</Text>
                             </Col>
                         ))
                     }
