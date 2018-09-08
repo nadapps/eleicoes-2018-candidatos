@@ -1,6 +1,8 @@
 import React from 'react';
-import { Text, View, Image } from 'react-native';
+import { Text, View, Image, TouchableOpacity } from 'react-native';
 import { Col, Row } from "react-native-easy-grid";
+import Share from 'react-native-share';
+import Entypo from 'react-native-vector-icons/Entypo';
 
 import ContentCandidato from '../components/ContentCandidato';
 import NumeroUrna from '../components/NumeroUrna';
@@ -10,6 +12,7 @@ import FavoritoCandidato from '../components/FavoritoCandidato';
 
 import { candidato } from '../services';
 import styles from '../styles';
+import colors from '../colors';
 import { coresPartidos } from '../constants';
 
 export default class CandidatoDetalhe extends React.Component {
@@ -23,7 +26,14 @@ export default class CandidatoDetalhe extends React.Component {
                 this.props.navigation.setParams({
                     title: this.props.navigation.state.params.candidato.nomeUrna,
                     headerColor: backgroundColor,
-                    headerRight: <FavoritoCandidato candidato={this.props.navigation.state.params.candidato} />
+                    headerRight: 
+                        <View style={{flexDirection:'row'}}>
+                            <FavoritoCandidato candidato={this.props.navigation.state.params.candidato} />
+                            <TouchableOpacity onPress={() => { this.share() } }>
+                                <Entypo name="share" size={25} color={colors.white} style={{marginRight:20, marginTop:2}} />
+                            </TouchableOpacity>
+                        </View>
+                    
                 });
             }
         );
@@ -40,6 +50,21 @@ export default class CandidatoDetalhe extends React.Component {
             estado: props.navigation.state.params.estado,
             loading: true
         };
+    }
+
+    share = () => {
+        let mensagem = "Veja tudo sobre "+this.state.candidato.nomeUrna;
+        mensagem += this.state.candidato.descricaoSexo=="FEM." ? ", candidata a " : ", candidato a ";
+        mensagem += this.state.candidato.cargo.nome;
+        mensagem += this.state.estado ? " pelo estado de "+this.state.estado.estado : " pelo Brasil"
+        Share.open({
+            title: "Eleições 2018",
+            message: mensagem,
+            url: ". Acesse http://goo.gl/VB5zB6.",
+            subject: "Compartilhar Candidato"
+        })
+            .then((res) => { console.log(res) })
+            .catch((err) => { err && console.log(err); });
     }
 
     async componentDidMount(){

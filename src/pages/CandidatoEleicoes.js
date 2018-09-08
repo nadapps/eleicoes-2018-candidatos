@@ -1,6 +1,8 @@
 import React from 'react';
-import { View } from 'react-native';
-import Timeline from 'react-native-timeline-listview'
+import { View, TouchableOpacity } from 'react-native';
+import Timeline from 'react-native-timeline-listview';
+import Share from 'react-native-share';
+import Entypo from 'react-native-vector-icons/Entypo';
 
 import ContentCandidato from '../components/ContentCandidato';
 
@@ -18,7 +20,11 @@ export default class CandidatoEleicoes extends React.Component {
             payload => {
                 this.props.navigation.setParams({
                     title: this.props.navigation.state.params.candidato.nomeUrna,
-                    headerColor: backgroundColor
+                    headerColor: backgroundColor,
+                    headerRight: 
+                        <TouchableOpacity onPress={() => { this.share() } }>
+                            <Entypo name="share" size={25} color={colors.white} style={{marginRight:20, marginTop:2}} />
+                        </TouchableOpacity>
                 });
             }
         );
@@ -49,6 +55,21 @@ export default class CandidatoEleicoes extends React.Component {
         }
 
         this.setState({candidato:result,loading:false,eleicoesAnteriores});
+    }
+
+    share = () => {
+        let mensagem = "Veja tudo sobre "+this.state.candidato.nomeUrna;
+        mensagem += this.state.candidato.descricaoSexo=="FEM." ? ", candidata a " : ", candidato a ";
+        mensagem += this.state.candidato.cargo.nome;
+        mensagem += this.state.estado ? " pelo estado de "+this.state.estado.estado : " pelo Brasil"
+        Share.open({
+            title: "Eleições 2018",
+            message: mensagem,
+            url: ". Acesse http://goo.gl/VB5zB6.",
+            subject: "Compartilhar Candidato"
+        })
+            .then((res) => { console.log(res) })
+            .catch((err) => { err && console.log(err); });
     }
 
     render() {

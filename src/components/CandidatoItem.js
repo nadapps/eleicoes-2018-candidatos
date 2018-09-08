@@ -15,7 +15,10 @@ class CandidatoItem extends Component {
     render() {
         return (
             <TouchableNativeFeedback onPress={() => this.props.onPress(this.props.candidato)}>
-                <View style={!this.props.last ? {borderBottomColor:colors.greyNew,borderBottomWidth:1} : {}}>
+                <View style={[
+                            !this.props.last ? {borderBottomColor:colors.greyNew,borderBottomWidth:1,backgroundColor:colors.white} : {backgroundColor:colors.white, borderBottomLeftRadius:15, borderBottomRightRadius: 15},
+                            this.props.index==0 ? {borderTopLeftRadius:15, borderTopRightRadius:15} : {}
+                            ]}>
                     <ImageProgress
                         indicator={Circle} 
                         style={{
@@ -25,8 +28,8 @@ class CandidatoItem extends Component {
                             zIndex:100,
                             width:40,
                             height:40,
-                            marginTop:10,
-                            marginLeft:10
+                            marginTop:9,
+                            marginLeft:9
                         }}
                         imageStyle={{
                             resizeMode: 'cover',
@@ -39,8 +42,8 @@ class CandidatoItem extends Component {
                             color: colors.accent
                         }} />
                     <View style={{flexDirection: 'column', padding: 10, marginLeft:50, zIndex:0}}>
-                        <Text style={{textAlign:'left', color:colors.black, fontSize: 16}}>{this.props.candidato.nomeUrna}</Text>
-                        <Text style={{textAlign:'left', color:colors.gray, fontSize: 14, fontWeight:'bold'}}>{this.props.candidato.partido.sigla+" - "+this.props.candidato.nomeColigacao}</Text>
+                        <Text numberOfLines={1} style={{textAlign:'left', color:colors.black, fontSize: 15, width:"90%"}}>{this.props.candidato.nomeUrna}</Text>
+                        <Text numberOfLines={1} style={{textAlign:'left', color:colors.gray, fontSize: 12, fontWeight:'bold', width:"90%"}}>{this.props.candidato.partido.sigla+" - "+this.props.candidato.nomeColigacao}</Text>
                         <SimpleLineIcons style={{position:'absolute', right:15, top:22}} name="arrow-right" size={15} color={colors.gray} />
                     </View>
                 </View>
@@ -52,7 +55,8 @@ class CandidatoItem extends Component {
 CandidatoItem.propTypes = {
     candidato: PropTypes.object,
     last: PropTypes.bool,
-    onPress: PropTypes.func
+    onPress: PropTypes.func,
+    index: PropTypes.number
 }
 
 CandidatoItem.defaultProps = {

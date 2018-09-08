@@ -72,7 +72,7 @@ export default class Candidatos extends React.Component {
                         style={{flex:1, borderRadius:15}}
                         keyExtractor={(item) => item.id.toString() }
                         data={this.state.candidatos}
-                        renderItem={({item,index}) => <CandidatoItem candidato={item} last={index==this.state.candidatos.length-1} onPress={(candidato) => this.openCandidato(candidato)} />}
+                        renderItem={({item,index}) => <CandidatoItem index={index} candidato={item} last={index==this.state.candidatos.length-1} onPress={(candidato) => this.openCandidato(candidato)} />}
                         refreshing={true}
                         onEndReachedThreshold={1}
                         onEndReached={this.onEndScroll} />

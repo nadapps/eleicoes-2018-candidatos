@@ -188,6 +188,9 @@ CandidatoTab.navigationOptions = ({ navigation }) => {
       elevation: 0,
       shadowColor: 'transparent'
     },
+    headerTitleStyle: {
+      width:"70%"
+    },
     headerTintColor: colors.white,
   };
 };
