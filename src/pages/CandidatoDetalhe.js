@@ -56,7 +56,7 @@ export default class CandidatoDetalhe extends React.Component {
         let mensagem = "Veja tudo sobre "+this.state.candidato.nomeUrna;
         mensagem += this.state.candidato.descricaoSexo=="FEM." ? ", candidata a " : ", candidato a ";
         mensagem += this.state.candidato.cargo.nome;
-        mensagem += this.state.estado ? " pelo estado de "+this.state.estado.estado : " pelo Brasil"
+        mensagem += this.state.estado ? " pelo estado de "+this.state.estado.estado : " pelo Brasil";
         Share.open({
             title: "Eleições 2018",
             message: mensagem,
