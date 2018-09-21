@@ -2,6 +2,7 @@ import React from 'react';
 import { FlatList } from 'react-native';
 import { Card } from 'react-native-elements';
 import { StackActions } from 'react-navigation';
+import Snackbar from 'react-native-snackbar';
 
 import Content from '../components/Content';
 import TitleEstado from '../components/TitleEstado';
@@ -10,6 +11,7 @@ import CandidatoItem from '../components/CandidatoItem';
 
 import { candidatos } from '../services';
 import styles from '../styles';
+import colors from '../colors';
 
 export default class Candidatos extends React.Component {
     static navigationOptions = ({ navigation }) => ({
@@ -28,6 +30,8 @@ export default class Candidatos extends React.Component {
             cargo: props.navigation.state.params.cargo,
             candidatos: [],
             allCandidatos: [],
+            allCompleteCandidatos: [],
+            ids: [],
             loading: true,
             search: false,
             scroll: false,
@@ -36,8 +40,35 @@ export default class Candidatos extends React.Component {
     }
 
     async componentDidMount(){
+        await this.getData();
+    }
+
+    async getData(){
+        this.setState({loading:true});
         let result = await candidatos(this.state.estado.estadoabrev, this.state.cargo.codigo);
-        this.setState({candidatos:result.candidatos.splice(0,15),allCandidatos:result.candidatos,loading:false, page:1});
+        let ids = Object.keys(result);
+        result = Object.values(result);
+        if(!result){
+            this.setState({loading:false});
+            Snackbar.show({
+                title: 'Oops, parece que existe um erro de conexão!',
+                duration: Snackbar.LENGTH_INDEFINITE,
+                action: {
+                title: 'Tentar Novamente!',
+                color: colors.accent,
+                onPress: async () => { await this.getData(); },
+                }
+            })
+        } else {
+            this.setState({
+                allCandidatos: result,
+                allCompleteCandidatos: result,
+                candidatos: result.slice(0,15),
+                ids,
+                loading: false,
+                page: 1
+            });
+        }
     }
 
     openCandidato = candidato => {
@@ -56,25 +87,39 @@ export default class Candidatos extends React.Component {
         if(this.state.page!=0){
             this.setState({scroll: true});
             let candidatos = this.state.candidatos;
-            candidatos = candidatos.concat(this.state.allCandidatos.splice(this.state.page*15,15));
+            candidatos = candidatos.concat(this.state.allCandidatos.slice(this.state.page*15,(this.state.page*15)+15));
             this.setState({candidatos,scroll:false,page:this.state.page+1})
+        }
+    }
+
+    search = (text) => {
+        if(text!="") {
+            let newList = [];
+            for(let i=0;i<this.state.allCompleteCandidatos.length;i++){
+                if(this.state.allCompleteCandidatos[i].nome.toLowerCase().includes(text)){
+                    newList.push(this.state.allCompleteCandidatos[i]);
+                }
+            }
+            this.setState({ candidatos: newList.slice(0,15), allCandidatos: newList, page:1 });
+        } else {
+            this.setState({ candidatos: this.state.allCompleteCandidatos.slice(0,15), allCandidatos: this.state.allCompleteCandidatos, page:1 });
         }
     }
 
     render() {
         return (
-            <Content loading={this.state.loading} search={this.state.search}>
+            <Content loading={this.state.loading} search={true} onChangeTextSearch={this.search}>
                 <Card containerStyle={{padding:0, borderRadius:15}}>
                     <TitleEstado estado={this.state.estado} />
                 </Card>
                 <Card containerStyle={styles.card}>
                     <FlatList
                         style={{flex:1, borderRadius:15}}
-                        keyExtractor={(item) => item.id.toString() }
+                        keyExtractor={(index) => index+"" }
                         data={this.state.candidatos}
-                        renderItem={({item,index}) => <CandidatoItem index={index} candidato={item} last={index==this.state.candidatos.length-1} onPress={(candidato) => this.openCandidato(candidato)} />}
+                        renderItem={({item,index}) => <CandidatoItem index={index} id={this.state.ids[index]} candidato={item} last={index==this.state.candidatos.length-1} onPress={(candidato) => this.openCandidato(candidato)} />}
                         refreshing={true}
-                        onEndReachedThreshold={1}
+                        onEndReachedThreshold={0.5}
                         onEndReached={this.onEndScroll} />
                 </Card>
                 <LoadingScroll loading={this.state.scroll && !this.state.loading} />

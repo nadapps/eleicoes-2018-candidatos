@@ -3,6 +3,7 @@ package com.nada.eleicoes2018;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.azendoo.reactnativesnackbar.SnackbarPackage;
 import cl.json.RNSharePackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
@@ -27,6 +28,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new SnackbarPackage(),
             new RNSharePackage(),
             new RNDeviceInfo(),
             new SplashScreenReactPackage(),

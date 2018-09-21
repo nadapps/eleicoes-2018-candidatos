@@ -88,7 +88,7 @@ const MainTab = createDrawerNavigator({
       drawerLabel: "Estados",
       drawerIcon: ({ tintColor }) => <MaterialCommunityIcons name="map" size={20} color={tintColor} />
     }
-  },
+  }
   // Partidos: {
   //   screen: Partidos,
   //   navigationOptions:{

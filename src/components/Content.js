@@ -31,14 +31,14 @@ class Content extends React.Component {
 			  		this.props.search && (
 			        	<SearchBar
 				        	lightTheme
-				        	placeholderTextColor='white'
-				        	containerStyle={{backgroundColor:colors.primary, marginTop: -10}}
-				        	inputStyle={{backgroundColor:colors.dark, color:'white'}}
+				        	placeholderTextColor='black'
+				        	containerStyle={{backgroundColor:colors.primary, marginTop: -10,}}
+				        	inputStyle={{backgroundColor:colors.dark, color:'black', paddingLeft:30}}
 							onChangeText={this.changeTextSearch}
 							onClear={this.clearTextSearch}
 							platform="android"
-							clearIcon={{color:'white'}}
-							icon={{color:'white'}}
+							clearIcon={{color:'black'}}
+							icon={{color:'black'}}
 				       		placeholder='Pesquisar...' />
 			       	)
 				}

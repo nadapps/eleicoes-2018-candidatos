@@ -21,7 +21,6 @@ export default class FavoritoCandidato extends Component {
     
     if(this.props.candidato.ufCandidatura.toLowerCase()===estado.toLowerCase() ||
         this.props.candidato.ufCandidatura.toLowerCase()==="br"){
-      
       let data = {};
       if(this.props.candidato.cargo.nome=="Presidente") data = await AsyncStorage.getItem('@Eleicoes2018:meupresidente');
       else if(this.props.candidato.cargo.nome=="Governador") data = await AsyncStorage.getItem('@Eleicoes2018:meugovernador');

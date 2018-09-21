@@ -6,16 +6,26 @@ import Circle from 'react-native-progress/Circle';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 
 import colors from '../colors';
+import { getCargoId } from '../constants';
 
 class CandidatoItem extends Component {
     constructor(props) {
         super(props);
+
+        let candidato = props.candidato;
+        candidato.id = props.id;
+        candidato.partido = {sigla:candidato.partido};
+        if(candidato.cargo!=1) candidato.cargo = { nome:getCargoId(candidato.cargo).nome, codigo:candidato.cargo }
+        else candidato.cargo = { nome:"Presidente", codigo:candidato.cargo }
+        this.state = {
+            candidato
+        }
     }
 
     render() {
         if(this.props.candidato.descricaoSituacao!=="Indeferido") {
             return (
-                <TouchableNativeFeedback onPress={() => this.props.onPress(this.props.candidato)}>
+                <TouchableNativeFeedback onPress={() => this.props.onPress(this.state.candidato)}>
                     <View style={[
                                 !this.props.last ? {borderBottomColor:colors.greyNew,borderBottomWidth:1,backgroundColor:colors.white} : {backgroundColor:colors.white, borderBottomLeftRadius:15, borderBottomRightRadius: 15},
                                 this.props.index==0 ? {borderTopLeftRadius:15, borderTopRightRadius:15} : {}
@@ -36,15 +46,15 @@ class CandidatoItem extends Component {
                                 resizeMode: 'cover',
                                 borderRadius:100,
                             }}
-                            source={{uri:"http://brunohpmarques.000webhostapp.com/eleicoes/getFoto.php?id_tse="+this.props.candidato.id}}
+                            source={{uri:"http://brunohpmarques.000webhostapp.com/eleicoes/candidatos/thumbs/"+this.props.id+".jpg"}}
                             indicatorProps={{
                                 size: 20,
                                 borderWidth: 0,
                                 color: colors.accent
                             }} />
                         <View style={{flexDirection: 'column', padding: 10, marginLeft:50, zIndex:0}}>
-                            <Text numberOfLines={1} style={{textAlign:'left', color:colors.black, fontSize: 15, width:"90%"}}>{this.props.candidato.nomeUrna}</Text>
-                            <Text numberOfLines={1} style={{textAlign:'left', color:colors.gray, fontSize: 12, fontWeight:'bold', width:"90%"}}>{this.props.candidato.partido.sigla+" - "+this.props.candidato.nomeColigacao}</Text>
+                            <Text numberOfLines={1} style={{textAlign:'left', color:colors.black, fontSize: 15, width:"90%"}}>{this.props.candidato.nome}</Text>
+                            <Text numberOfLines={1} style={{textAlign:'left', color:colors.gray, fontSize: 12, fontWeight:'bold', width:"90%"}}>{this.props.candidato.partido.sigla+" - "+this.props.candidato.coligacao}</Text>
                             <SimpleLineIcons style={{position:'absolute', right:15, top:22}} name="arrow-right" size={15} color={colors.gray} />
                         </View>
                     </View>
@@ -60,7 +70,8 @@ CandidatoItem.propTypes = {
     candidato: PropTypes.object,
     last: PropTypes.bool,
     onPress: PropTypes.func,
-    index: PropTypes.number
+    index: PropTypes.number,
+    id: PropTypes.string
 }
 
 CandidatoItem.defaultProps = {

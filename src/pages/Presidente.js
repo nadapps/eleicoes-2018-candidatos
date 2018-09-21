@@ -28,6 +28,7 @@ export default class Presidente extends React.Component {
         this.state = {
             candidatos: [],
             allCandidatos: [],
+            ids: [],
             loading: true,
             scroll: false,
             page: 0
@@ -36,7 +37,9 @@ export default class Presidente extends React.Component {
 
     async componentDidMount(){
         let result = await candidatos("BR", "1");
-        this.setState({candidatos:result.candidatos.splice(0,15),allCandidatos:result.candidatos,loading:false, page:1});
+        let ids = Object.keys(result);
+        result = Object.values(result);
+        this.setState({candidatos:result.slice(0,15),allCandidatos:result,loading:false, page:1, ids});
     }
 
     openCandidato = candidato => {
@@ -54,7 +57,7 @@ export default class Presidente extends React.Component {
         if(this.state.page!=0){
             this.setState({scroll: true});
             let candidatos = this.state.candidatos;
-            candidatos = candidatos.concat(this.state.allCandidatos.splice(this.state.page*15,15));
+            candidatos = candidatos.concat(this.state.allCandidatos.slice(this.state.page*15,(this.state.page*15)+15));
             this.setState({candidatos,scroll:false,page:this.state.page+1})
         }
     }
@@ -65,9 +68,9 @@ export default class Presidente extends React.Component {
                 <Card containerStyle={styles.card}>
                     <FlatList
                         style={{flex:1, borderRadius:15}}
-                        keyExtractor={(item) => item.id.toString() }
+                        keyExtractor={(index) => index+"" }
                         data={this.state.candidatos}
-                        renderItem={({item,index}) => <CandidatoItem index={index} candidato={item} last={index==this.state.candidatos.length-1} onPress={(candidato) => this.openCandidato(candidato)} />}
+                        renderItem={({item,index}) => <CandidatoItem index={index} id={this.state.ids[index]} candidato={item} last={index==this.state.candidatos.length-1} onPress={(candidato) => this.openCandidato(candidato)} />}
                         refreshing={true}
                         onEndReachedThreshold={1}
                         onEndReached={this.onEndScroll} />

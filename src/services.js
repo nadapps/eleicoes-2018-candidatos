@@ -1,11 +1,14 @@
+import fetch from 'react-native-fetch-polyfill';
 
 const get = async (url) => {
 	return fetch(url, {
 	    method: 'GET',
 	    headers: {
 	    	'Accept': 'application/json'
-	    }
-	}).then(response => response.json());
+		},
+		timeout: 20000
+	}).then(response => response.json())
+	.catch(error => {error:true});
 }
 
 export const cargos = async (estado) => {
@@ -15,7 +18,8 @@ export const cargos = async (estado) => {
 
 export const candidatos = async (estado, cargo) => {
 	if(estado=="DF" && cargo==7) cargo=8;
-    let url = "http://divulgacandcontas.tse.jus.br/divulga/rest/v1/candidatura/listar/2018/"+estado+"/2022802018/"+cargo+"/candidatos";
+    //let url = "http://divulgacandcontas.tse.jus.br/divulga/rest/v1/candidatura/listar/2018/"+estado+"/2022802018/"+cargo+"/candidatos";
+	let url = "http://brunohpmarques.000webhostapp.com/eleicoes/api.php?funcao=candidatos&id_cargo="+cargo+"&local="+estado;
 	return await get(url);
 }
 

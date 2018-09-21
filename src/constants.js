@@ -230,6 +230,14 @@ export const getCargo = (cargo) => {
     return "";
 }
 
+export const getCargoId = (cargo) => {
+    for(let i = 0; i < cargosArray.length; i++){
+        if(cargosArray[i].codigo===cargo)
+            return cargosArray[i];
+    }
+    return "";
+}
+
 export const numeroParaReal = (value) => {
     if(value) {
         value = value*100;
