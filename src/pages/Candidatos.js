@@ -12,6 +12,7 @@ import CandidatoItem from '../components/CandidatoItem';
 import { candidatos } from '../services';
 import styles from '../styles';
 import colors from '../colors';
+import { getCargoId } from '../constants';
 
 export default class Candidatos extends React.Component {
     static navigationOptions = ({ navigation }) => ({
@@ -48,6 +49,13 @@ export default class Candidatos extends React.Component {
         let result = await candidatos(this.state.estado.estadoabrev, this.state.cargo.codigo);
         let ids = Object.keys(result);
         result = Object.values(result);
+
+        for(let i=0; i<result.length; i++){
+            result[i].id = ids[i];
+            result[i].partido = {sigla:result[i].partido};
+            result[i].cargo = { nome:getCargoId(result[i].cargo).nome, codigo:result[i].cargo }
+        }
+
         if(!result){
             this.setState({loading:false});
             Snackbar.show({
@@ -64,14 +72,14 @@ export default class Candidatos extends React.Component {
                 allCandidatos: result,
                 allCompleteCandidatos: result,
                 candidatos: result.slice(0,15),
-                ids,
                 loading: false,
                 page: 1
             });
         }
     }
 
-    openCandidato = candidato => {
+    openCandidato = (candidato,id) => {
+
         candidato.fotoUrl = "http://brunohpmarques.000webhostapp.com/eleicoes/getFoto.php?id_tse="+candidato.id;
         candidato.ufCandidatura = this.state.estado.estadoabrev;
         
@@ -117,7 +125,7 @@ export default class Candidatos extends React.Component {
                         style={{flex:1, borderRadius:15}}
                         keyExtractor={(index) => index+"" }
                         data={this.state.candidatos}
-                        renderItem={({item,index}) => <CandidatoItem index={index} id={this.state.ids[index]} candidato={item} last={index==this.state.candidatos.length-1} onPress={(candidato) => this.openCandidato(candidato)} />}
+                        renderItem={({item,index}) => <CandidatoItem index={index} candidato={item} last={index==this.state.candidatos.length-1} onPress={(candidato,id) => this.openCandidato(candidato,id)} />}
                         refreshing={true}
                         onEndReachedThreshold={0.5}
                         onEndReached={this.onEndScroll} />

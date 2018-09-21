@@ -39,7 +39,14 @@ export default class Presidente extends React.Component {
         let result = await candidatos("BR", "1");
         let ids = Object.keys(result);
         result = Object.values(result);
-        this.setState({candidatos:result.slice(0,15),allCandidatos:result,loading:false, page:1, ids});
+
+        for(let i=0; i<result.length; i++){
+            result[i].id = ids[i];
+            result[i].partido = {sigla:result[i].partido};
+            result[i].cargo = { nome:"Presidente", codigo:result[i].cargo }
+        }
+
+        this.setState({candidatos:result.slice(0,15),allCandidatos:result,loading:false, page:1});
     }
 
     openCandidato = candidato => {
@@ -70,7 +77,7 @@ export default class Presidente extends React.Component {
                         style={{flex:1, borderRadius:15}}
                         keyExtractor={(index) => index+"" }
                         data={this.state.candidatos}
-                        renderItem={({item,index}) => <CandidatoItem index={index} id={this.state.ids[index]} candidato={item} last={index==this.state.candidatos.length-1} onPress={(candidato) => this.openCandidato(candidato)} />}
+                        renderItem={({item,index}) => <CandidatoItem index={index} candidato={item} last={index==this.state.candidatos.length-1} onPress={(candidato) => this.openCandidato(candidato)} />}
                         refreshing={true}
                         onEndReachedThreshold={1}
                         onEndReached={this.onEndScroll} />
