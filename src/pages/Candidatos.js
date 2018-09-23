@@ -3,6 +3,7 @@ import { FlatList } from 'react-native';
 import { Card } from 'react-native-elements';
 import { StackActions } from 'react-navigation';
 import Snackbar from 'react-native-snackbar';
+// import RecyclerviewList, { DataSource } from 'react-native-recyclerview-list';
 
 import Content from '../components/Content';
 import TitleEstado from '../components/TitleEstado';
@@ -47,14 +48,6 @@ export default class Candidatos extends React.Component {
     async getData(){
         this.setState({loading:true});
         let result = await candidatos(this.state.estado.estadoabrev, this.state.cargo.codigo);
-        let ids = Object.keys(result);
-        result = Object.values(result);
-
-        for(let i=0; i<result.length; i++){
-            result[i].id = ids[i];
-            result[i].partido = {sigla:result[i].partido};
-            result[i].cargo = { nome:getCargoId(result[i].cargo).nome, codigo:result[i].cargo }
-        }
 
         if(!result){
             this.setState({loading:false});
@@ -68,10 +61,27 @@ export default class Candidatos extends React.Component {
                 }
             })
         } else {
+            let ids = Object.keys(result);
+            result = Object.values(result);
+
+            for(let i=0; i<result.length; i++){
+                result[i].id = ids[i];
+                result[i].partido = {sigla:result[i].partido};
+                result[i].cargo = { nome:this.state.cargo.nome, codigo:result[i].cargo }
+            }
+
+            // let allCandidatos = new DataSource(result, (item, index) => item.id);
+            // let allCompleteCandidatos = new DataSource(result, (item, index) => item.id);
+            // let candidatos = new DataSource(result.slice(0,15), (item, index) => item.id);
+            
+            let allCandidatos = result;
+            let allCompleteCandidatos = result;
+            let candidatos = result.slice(0,15);
+
             this.setState({
-                allCandidatos: result,
-                allCompleteCandidatos: result,
-                candidatos: result.slice(0,15),
+                allCandidatos,
+                allCompleteCandidatos,
+                candidatos,
                 loading: false,
                 page: 1
             });

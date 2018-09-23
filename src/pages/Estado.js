@@ -28,6 +28,9 @@ export default class Estado extends React.Component {
     }
 
     openCandidatos = cargo => {
+        if(this.state.estado.estadoabrev=="DF" && cargo.codigo==7){
+            cargo.nome="Deputado Distrital";
+        }
         const resetAction = StackActions.push({
             index: 0,
             params: {estado:this.state.estado,cargo},

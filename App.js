@@ -177,7 +177,7 @@ CandidatoTab.navigationOptions = ({ navigation }) => {
   let headerTitle = navigation.state.routes[navigation.state.index].params.title;
   let headerRight = navigation.state.routes[navigation.state.index].params.headerRight;
   let headerColor = navigation.state.routes[navigation.state.index].params.headerColor;
-
+  
   if(!headerColor) headerColor = colors.primary;
 
   return {

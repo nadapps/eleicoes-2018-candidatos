@@ -19,7 +19,7 @@ export default class CandidatoEleicoes extends React.Component {
             'willFocus',
             payload => {
                 this.props.navigation.setParams({
-                    title: this.props.navigation.state.params.candidato.nomeUrna,
+                    title: this.props.navigation.state.params.candidato.nome,
                     headerColor: backgroundColor,
                     headerRight: 
                         <TouchableOpacity onPress={() => { this.share() } }>
