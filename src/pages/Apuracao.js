@@ -9,11 +9,11 @@ import TitleEstado from '../components/TitleEstado';
 import LoadingScroll from '../components/LoadingScroll';
 import CandidatoItem from '../components/CandidatoItem';
 
-import { candidatos } from '../services';
+import { candidatosApuracao } from '../services';
 import styles from '../styles';
 import colors from '../colors';
 
-export default class Candidatos extends React.Component {
+export default class Apuracao extends React.Component {
     static navigationOptions = ({ navigation }) => ({
         title: navigation.state.params.estado.estadoabrev=="DF" && navigation.state.params.cargo.codigo=="7" ? "Deputado Distrital" : navigation.state.params.cargo.nome 
     });
@@ -45,7 +45,9 @@ export default class Candidatos extends React.Component {
 
     async getData(){
         this.setState({loading:true});
-        let result = await candidatos(this.state.estado.estadoabrev, this.state.cargo.codigo);
+        let result = await candidatosApuracao(this.state.estado.estadoabrev, this.state.cargo.codigo);
+        
+        result = result.cand;
 
         if(!result){
             this.setState({loading:false});
@@ -59,15 +61,6 @@ export default class Candidatos extends React.Component {
                 }
             })
         } else {
-            let ids = Object.keys(result);
-            result = Object.values(result);
-
-            for(let i=0; i<result.length; i++){
-                result[i].id = ids[i];
-                result[i].partido = {sigla:result[i].partido};
-                result[i].cargo = { nome:this.state.cargo.nome, codigo:result[i].cargo }
-            }
-            
             let allCandidatos = result;
             let allCompleteCandidatos = result;
             let candidatos = result.slice(0,15);
@@ -83,8 +76,7 @@ export default class Candidatos extends React.Component {
     }
 
     openCandidato = (candidato,id) => {
-
-        candidato.fotoUrl = "http://35.227.86.242/eleicoes/candidatos/"+candidato.id+".jpg";
+        candidato.fotoUrl = "http://brunohpmarques.000webhostapp.com/eleicoes/getFoto.php?id_tse="+candidato.id;
         candidato.ufCandidatura = this.state.estado.estadoabrev;
         
         const resetAction = StackActions.push({

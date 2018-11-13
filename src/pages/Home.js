@@ -1,5 +1,6 @@
 import React from 'react';
 import { AsyncStorage } from 'react-native';
+import { Button } from 'react-native-elements';
 import { StackActions, NavigationActions } from 'react-navigation';
 import SplashScreen from 'react-native-splash-screen';
 
@@ -7,6 +8,7 @@ import Content from '../components/Content';
 import MeuCandidatoHome from '../components/MeuCandidatoHome';
 
 import { getEstado, getCargo } from '../constants';
+import colors from '../colors';
 
 export default class Home extends React.Component {
     constructor(props) {
@@ -78,9 +80,25 @@ export default class Home extends React.Component {
         await this.getData();
     }
 
+    apuracao = () => {
+        const resetAction = StackActions.push({
+            index: 0,
+            routeName: 'ApuracaoCargos',
+        });
+        this.props.navigation.dispatch(resetAction);
+    }
+
     render() {
         return (
         <Content>
+            {/* <Button
+                containerViewStyle={{marginLeft:0, paddingLeft: 0, marginTop:30, width:"100%"}}
+                raised
+                backgroundColor={colors.primary}
+                color={colors.black}
+                onPress={() => this.apuracao()}
+                title='Apuração em Tempo Real' /> */}
+                
             <MeuCandidatoHome 
                 titulo="Suas opções para Presidente"
                 candidatos={this.state.meupresidente}
@@ -119,7 +137,7 @@ export default class Home extends React.Component {
                 candidatos={this.state.meudeputadoestadual} 
                 cargo={getCargo("Deputado Estadual")}
                 navigation={this.props.navigation}
-                onRemove={this.removerCandidato}/>
+                onRemove={this.removerCandidato}/> 
         </Content>
         );
     }

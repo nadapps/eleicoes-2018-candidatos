@@ -19,6 +19,9 @@ import CandidatoBens from './src/pages/CandidatoBens';
 import CandidatoEleicoes from './src/pages/CandidatoEleicoes';
 import CandidatoFinancas from './src/pages/CandidatoFinancas';
 import Login from './src/pages/Login';
+import ApuracaoCargos from './src/pages/ApuracaoCargos';
+import ApuracaoEstados from './src/pages/ApuracaoEstados';
+import Apuracao from './src/pages/Apuracao';
 
 import { APP_NAME } from './src/constants';
 import colors from './src/colors.js';
@@ -199,6 +202,9 @@ const Stack = createStackNavigator(
   {
     Estado: { screen: Estado },
     Candidatos: { screen: Candidatos },
+    ApuracaoCargos: { screen: ApuracaoCargos },
+    ApuracaoEstados: { screen: ApuracaoEstados },
+    Apuracao: { screen: Apuracao },
     Presidente: { screen: Presidente },
     Login: { screen: Login },
     CandidatoTab: { 
