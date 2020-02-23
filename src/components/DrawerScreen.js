@@ -5,38 +5,30 @@ import { ScrollView, Text, View } from 'react-native';
 import styles from '../styles';
 
 class DrawerScreen extends Component {
-  navigateToScreen = (route) => () => {
+  navigateToScreen = route => () => {
     const navigateAction = NavigationActions.navigate({
       routeName: route
     });
     this.props.navigation.dispatch(navigateAction);
-    this.props.navigation.dispatch(DrawerActions.closeDrawer())
-  }
+    this.props.navigation.dispatch(DrawerActions.closeDrawer());
+  };
 
-  render () {
+  render() {
     return (
       <View>
         <ScrollView>
           <View>
             <View style={styles.menuItem}>
-              <Text onPress={this.navigateToScreen('Home')}>
-                Home
-              </Text>
+              <Text onPress={this.navigateToScreen('Home')}>Home</Text>
             </View>
             <View style={styles.menuItem}>
-              <Text onPress={this.navigateToScreen('Nacional')}>
-              Nacional
-              </Text>
+              <Text onPress={this.navigateToScreen('Nacional')}>Nacional</Text>
             </View>
             <View style={styles.menuItem}>
-              <Text onPress={this.navigateToScreen('Estados')}>
-               Estados
-              </Text>
+              <Text onPress={this.navigateToScreen('Estados')}>Estados</Text>
             </View>
             <View style={styles.menuItem}>
-              <Text onPress={this.navigateToScreen('Favoritos')}>
-               Estados
-              </Text>
+              <Text onPress={this.navigateToScreen('Favoritos')}>Estados</Text>
             </View>
           </View>
         </ScrollView>

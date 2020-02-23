@@ -10,7 +10,12 @@ export default class LoadingScroll extends Component {
   render() {
     if (this.props.loading) {
       return (
-        <ActivityIndicator animating={true} size={30} color={colors.dark} style={{padding:10}} />
+        <ActivityIndicator
+          animating={true}
+          size={30}
+          color={colors.dark}
+          style={{ padding: 10 }}
+        />
       );
     } else {
       return <View />;
