@@ -76,7 +76,11 @@ const Routes = () => (
       options={{ headerTitle: 'Eleições 2018' }}
     />
     <Stack.Screen name="Candidatos" component={Candidatos} />
-    <Stack.Screen name="Estado" component={Estado} />
+    <Stack.Screen
+      name="Estado"
+      component={Estado}
+      options={{ headerTitle: 'Escolhar o Cargo...' }}
+    />
   </Stack.Navigator>
 );
 
