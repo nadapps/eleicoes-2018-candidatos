@@ -59,7 +59,11 @@ const RoutesDrawer = () => (
         />
       )}
     />
-    <Drawer.Screen name="Estados" component={Estados} />
+    <Drawer.Screen
+      name="Estados"
+      component={Estados}
+      options={{ headerTitle: 'Estados...' }}
+    />
   </Drawer.Navigator>
 );
 
