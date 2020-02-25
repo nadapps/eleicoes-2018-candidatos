@@ -6,16 +6,16 @@ import {
   View,
   TouchableOpacity,
   Alert,
-  AsyncStorage,
   ToastAndroid
 } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import { Card } from 'react-native-elements';
 import { Row, Col } from 'react-native-easy-grid';
 import { StackActions } from '@react-navigation/native';
 
-import styles from '../styles';
-import colors from '../colors';
-import NumeroUrna from './NumeroUrna';
+import styles from '../../../styles';
+import colors from '../../../colors';
+import NumeroUrna from '../../../components/NumeroUrna';
 
 class MeuCandidatoHome extends Component {
   constructor(props) {
@@ -172,7 +172,7 @@ class MeuCandidatoHome extends Component {
                   <Card
                     containerStyle={{ margin: 5 }}
                     wrapperStyle={{ padding: 0 }}
-                    image={require('../assets/img/img_selecione.png')}
+                    image={require('../../../assets/img/img_selecione.png')}
                   />
                 </TouchableOpacity>
               )}

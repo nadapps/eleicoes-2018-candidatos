@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import { StackActions } from '@react-navigation/native';
-import { CommonActions } from '@react-navigation/core';
 import DeviceInfo from 'react-native-device-info';
 import { Button } from 'react-native-elements';
 

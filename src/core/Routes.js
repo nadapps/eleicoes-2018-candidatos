@@ -72,7 +72,11 @@ const Routes = () => (
       component={Login}
       options={{ header: () => null }}
     />
-    <Stack.Screen name="Main" component={RoutesDrawer} />
+    <Stack.Screen
+      name="Main"
+      component={RoutesDrawer}
+      options={{ headerTitle: 'Eleições 2018' }}
+    />
     <Stack.Screen name="Candidatos" component={Candidatos} />
     <Stack.Screen name="Estado" component={Estado} />
     <Stack.Screen name="ApuracaoCargos" component={ApuracaoCargos} />
