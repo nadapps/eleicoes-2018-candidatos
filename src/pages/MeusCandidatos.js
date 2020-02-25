@@ -1,6 +1,7 @@
 import React from 'react';
 import { AsyncStorage } from 'react-native';
-import { StackActions, NavigationActions } from 'react-navigation';
+import { StackActions } from '@react-navigation/native';
+import { CommonActions } from '@react-navigation/core';
 
 import Content from '../components/Content';
 import MeuCandidato from '../components/MeuCandidato';
@@ -27,7 +28,7 @@ export default class MeusCandidatos extends React.Component {
     if (emailStorage == null) {
       const resetAction = StackActions.reset({
         index: 0,
-        actions: [NavigationActions.navigate({ routeName: 'Login' })]
+        actions: [CommonActions.navigate({ routeName: 'Login' })]
       });
       this.props.navigation.dispatch(resetAction);
     }

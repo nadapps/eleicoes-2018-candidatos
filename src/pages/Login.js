@@ -9,7 +9,8 @@ import {
   Image
 } from 'react-native';
 import { Button } from 'react-native-elements';
-import { StackActions, NavigationActions } from 'react-navigation';
+import { StackActions } from '@react-navigation/native';
+import { CommonActions } from '@react-navigation/core';
 import { estados } from '../constants';
 import DeviceInfo from 'react-native-device-info';
 
@@ -38,7 +39,7 @@ export default class Login extends React.Component {
 
       const resetAction = StackActions.reset({
         index: 0,
-        actions: [NavigationActions.navigate({ routeName: 'Main' })]
+        actions: [CommonActions.navigate({ routeName: 'Main' })]
       });
       this.props.navigation.dispatch(resetAction);
     } else {

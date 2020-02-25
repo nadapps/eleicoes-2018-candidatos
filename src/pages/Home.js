@@ -1,6 +1,6 @@
 import React from 'react';
 import { AsyncStorage } from 'react-native';
-import { StackActions, NavigationActions } from 'react-navigation';
+import { StackActions, NavigationActions } from '@react-navigation/native';
 
 import Content from '../components/Content';
 import MeuCandidatoHome from '../components/MeuCandidatoHome';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
 import { ListItem, Card } from 'react-native-elements';
-import { StackActions } from 'react-navigation';
+import { StackActions } from '@react-navigation/native';
 
 import Content from '../components/Content';
 import TitleEstado from '../components/TitleEstado';

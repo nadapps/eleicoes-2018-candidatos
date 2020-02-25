@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { Card } from 'react-native-elements';
 import { Row, Col } from 'react-native-easy-grid';
-import { StackActions } from 'react-navigation';
+import { StackActions } from '@react-navigation/native';
 
 import styles from '../styles';
 import colors from '../colors';

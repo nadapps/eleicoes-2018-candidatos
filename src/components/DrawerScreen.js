@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import { NavigationActions, DrawerActions } from 'react-navigation';
+import { DrawerActions } from '@react-navigation/drawer';
+import { CommonActions } from '@react-navigation/core';
 import PropTypes from 'prop-types';
 import { ScrollView, Text, View } from 'react-native';
 import styles from '../styles';
 
 class DrawerScreen extends Component {
   navigateToScreen = route => () => {
-    const navigateAction = NavigationActions.navigate({
+    const navigateAction = CommonActions.navigate({
       routeName: route
     });
     this.props.navigation.dispatch(navigateAction);

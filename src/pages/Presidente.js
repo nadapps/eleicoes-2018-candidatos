@@ -1,7 +1,7 @@
 import React from 'react';
 import { FlatList } from 'react-native';
 import { Card } from 'react-native-elements';
-import { StackActions } from 'react-navigation';
+import { StackActions } from '@react-navigation/native';
 
 import Content from '../components/Content';
 import LoadingScroll from '../components/LoadingScroll';
