@@ -33,8 +33,12 @@ const RoutesDrawer = () => (
 
 const Routes = () => (
   <Stack.Navigator>
+    <Stack.Screen
+      name="Login"
+      component={Login}
+      options={{ header: () => null }}
+    />
     <Stack.Screen name="Main" component={RoutesDrawer} />
-    <Stack.Screen name="Login" component={Login} />
     <Stack.Screen name="Candidatos" component={Candidatos} />
     <Stack.Screen name="Estado" component={Estado} />
     <Stack.Screen name="ApuracaoCargos" component={ApuracaoCargos} />

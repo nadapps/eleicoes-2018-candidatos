@@ -172,7 +172,7 @@ class MeuCandidatoHome extends Component {
                   <Card
                     containerStyle={{ margin: 5 }}
                     wrapperStyle={{ padding: 0 }}
-                    image={require('../../assets/img/img_selecione.png')}
+                    image={require('../assets/img/img_selecione.png')}
                   />
                 </TouchableOpacity>
               )}
