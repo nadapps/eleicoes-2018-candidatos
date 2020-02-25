@@ -1,39 +1,36 @@
 import React, { useState } from 'react';
 import {
   Text,
-  AsyncStorage,
   ToastAndroid,
   Picker,
   View,
   ImageBackground,
   Image
 } from 'react-native';
-import { Button } from 'react-native-elements';
+import AsyncStorage from '@react-native-community/async-storage';
 import { StackActions } from '@react-navigation/native';
 import { CommonActions } from '@react-navigation/core';
-import { estados } from '../../constants';
 import DeviceInfo from 'react-native-device-info';
+import { Button } from 'react-native-elements';
 
+import { estados } from '../../constants';
 import Content from '../../components/Content';
 import colors from '../../colors';
+
 import style from './Login.style';
 
 const Login = ({ navigation }) => {
   const [estado, setEstado] = useState('');
 
   const entrar = async () => {
-    if (estado != '') {
+    if (estado !== '') {
       await AsyncStorage.setItem('@Eleicoes2018:estado', estado);
       await AsyncStorage.setItem(
         '@Eleicoes2018:deviceid',
         DeviceInfo.getDeviceId()
       );
 
-      const resetAction = StackActions.reset({
-        index: 0,
-        actions: [CommonActions.navigate({ routeName: 'Main' })]
-      });
-      navigation.dispatch(resetAction);
+      navigation.dispatch(StackActions.replace('Main'));
     } else {
       ToastAndroid.show('Campos Obrigatórios', ToastAndroid.SHORT);
     }

@@ -2,6 +2,8 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
+import { getCargo } from '../constants';
+
 import Estado from '../pages/Estado';
 import Candidatos from '../pages/Candidatos';
 import ApuracaoCargos from '../pages/ApuracaoCargos';
@@ -10,10 +12,6 @@ import Login from '../pages/Login';
 
 import Home from '../pages/Home';
 import Presidente from '../pages/Presidente';
-import Governador from '../pages/Governador';
-import Senador from '../pages/Senador';
-import DeputadoFederal from '../pages/DeputadoFederal';
-import DeputadoEstadual from '../pages/DeputadoEstadual';
 import Estados from '../pages/Estados';
 
 const Stack = createStackNavigator();
@@ -23,10 +21,46 @@ const RoutesDrawer = () => (
   <Drawer.Navigator>
     <Drawer.Screen name="Home" component={Home} />
     <Drawer.Screen name="Presidente" component={Presidente} />
-    <Drawer.Screen name="Governador" component={Governador} />
-    <Drawer.Screen name="Senador" component={Senador} />
-    <Drawer.Screen name="DeputadoFederal" component={DeputadoFederal} />
-    <Drawer.Screen name="DeputadoEstadual" component={DeputadoEstadual} />
+    <Drawer.Screen
+      name="Governador"
+      component={props => (
+        <Estados
+          cargo={getCargo('Governador')}
+          title="Escolha o estado do Governador..."
+          {...props}
+        />
+      )}
+    />
+    <Drawer.Screen
+      name="Senador"
+      component={props => (
+        <Estados
+          cargo={getCargo('Senador')}
+          title="Escolha o estado do Senador..."
+          {...props}
+        />
+      )}
+    />
+    <Drawer.Screen
+      name="DeputadoFederal"
+      component={props => (
+        <Estados
+          cargo={getCargo('Deputado Federal')}
+          title="Escolha o estado do Deputado..."
+          {...props}
+        />
+      )}
+    />
+    <Drawer.Screen
+      name="DeputadoEstadual"
+      component={props => (
+        <Estados
+          cargo={getCargo('Deputado Estadual')}
+          title="Escolha o estado do Deputado..."
+          {...props}
+        />
+      )}
+    />
     <Drawer.Screen name="Estados" component={Estados} />
   </Drawer.Navigator>
 );
