@@ -6,8 +6,6 @@ import { getCargo } from '../constants';
 
 import Estado from '../pages/Estado';
 import Candidatos from '../pages/Candidatos';
-import ApuracaoCargos from '../pages/ApuracaoCargos';
-import ApuracaoEstados from '../pages/ApuracaoEstados';
 import Login from '../pages/Login';
 
 import Home from '../pages/Home';
@@ -79,8 +77,6 @@ const Routes = () => (
     />
     <Stack.Screen name="Candidatos" component={Candidatos} />
     <Stack.Screen name="Estado" component={Estado} />
-    <Stack.Screen name="ApuracaoCargos" component={ApuracaoCargos} />
-    <Stack.Screen name="ApuracaoEstados" component={ApuracaoEstados} />
   </Stack.Navigator>
 );
 
