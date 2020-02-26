@@ -15,9 +15,12 @@ const PresidentesScreen = ({ navigation }) => {
 
   useEffect(() => {
     getData();
-    navigation.dangerouslyGetParent().setOptions({
-      headerTitle: 'Presidente'
-    });
+
+    if (navigation.dangerouslyGetParent()) {
+      navigation.dangerouslyGetParent().setOptions({
+        headerTitle: 'Presidente'
+      });
+    }
   }, []);
 
   const getData = async () => {

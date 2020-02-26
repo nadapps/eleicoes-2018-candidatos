@@ -67,6 +67,11 @@ const Routes = () => (
       options={{ headerTitle: 'Escolhar o Cargo...' }}
     />
     <Stack.Screen name="Candidato" component={RoutesTab} />
+    <Stack.Screen
+      name="Presidentes"
+      component={Presidentes}
+      options={{ headerTitle: 'Presidentes' }}
+    />
   </Stack.Navigator>
 );
 
