@@ -1,45 +1,15 @@
 import React from 'react';
-import { View, TouchableOpacity } from 'react-native';
+import { View } from 'react-native';
 import Timeline from 'react-native-timeline-flatlist';
-import Share from 'react-native-share';
-import Entypo from 'react-native-vector-icons/Entypo';
 
 import ContentCandidato from '../components/ContentCandidato';
 
 import { getCandidato } from '../services/candidatos';
-import { coresPartidos } from '../core/constants';
 import colors from '../core/colors';
 
 export default class CandidatoEleicoes extends React.Component {
   constructor(props) {
     super(props);
-
-    let backgroundColor =
-      coresPartidos[
-        this.props.navigation.state.params.candidato.partido.sigla
-          .toLowerCase()
-          .replace(/\s+/g, '')
-      ];
-    props.navigation.addListener('willFocus', payload => {
-      this.props.navigation.setParams({
-        title: this.props.navigation.state.params.candidato.nome,
-        headerColor: backgroundColor,
-        headerRight: (
-          <TouchableOpacity
-            onPress={() => {
-              this.share();
-            }}
-          >
-            <Entypo
-              name="share"
-              size={25}
-              color={colors.white}
-              style={{ marginRight: 20, marginTop: 2 }}
-            />
-          </TouchableOpacity>
-        )
-      });
-    });
 
     this.state = {
       candidato: {
@@ -74,30 +44,6 @@ export default class CandidatoEleicoes extends React.Component {
 
     this.setState({ candidato: result, loading: false, eleicoesAnteriores });
   }
-
-  share = () => {
-    let mensagem = 'Veja tudo sobre ' + this.state.candidato.nomeUrna;
-    mensagem +=
-      this.state.candidato.descricaoSexo == 'FEM.'
-        ? ', candidata a '
-        : ', candidato a ';
-    mensagem += this.state.candidato.cargo.nome;
-    mensagem += this.state.estado
-      ? ' pelo estado de ' + this.state.estado.estado
-      : ' pelo Brasil';
-    Share.open({
-      title: 'Eleições 2018',
-      message: mensagem,
-      url: '. Acesse http://goo.gl/VB5zB6.',
-      subject: 'Compartilhar Candidato'
-    })
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => {
-        err && console.log(err);
-      });
-  };
 
   render() {
     return (

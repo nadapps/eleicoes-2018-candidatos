@@ -1,113 +1,52 @@
-import React from 'react';
-import { Text, TouchableOpacity } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { Text } from 'react-native';
 import { ListItem } from 'react-native-elements';
-import Share from 'react-native-share';
-import Entypo from 'react-native-vector-icons/Entypo';
 
 import ContentCandidato from '../components/ContentCandidato';
 
 import { getCandidato } from '../services/candidatos';
-import { numeroParaReal, coresPartidos } from '../core/constants';
+import { numeroParaReal } from '../core/constants';
 import styles from '../core/styles';
-import colors from '../core/colors';
 
-export default class CandidatoBens extends React.Component {
-  constructor(props) {
-    super(props);
+const CandidatoBensScreen = ({ candidato: candidatoProp, estado }) => {
+  const [loading, setLoading] = useState(true);
+  const [candidato, setCandidato] = useState({
+    id: candidatoProp.id,
+    partido: candidatoProp.partido,
+    bens: []
+  });
 
-    let backgroundColor =
-      coresPartidos[
-        this.props.navigation.state.params.candidato.partido.sigla
-          .toLowerCase()
-          .replace(/\s+/g, '')
-      ];
-    props.navigation.addListener('willFocus', payload => {
-      this.props.navigation.setParams({
-        title: this.props.navigation.state.params.candidato.nome,
-        headerColor: backgroundColor,
-        headerRight: (
-          <TouchableOpacity
-            onPress={() => {
-              this.share();
-            }}
-          >
-            <Entypo
-              name="share"
-              size={25}
-              color={colors.white}
-              style={{ marginRight: 20, marginTop: 2 }}
-            />
-          </TouchableOpacity>
-        )
-      });
-    });
-
-    this.state = {
-      candidato: {
-        id: props.navigation.state.params.candidato.id,
-        partido: props.navigation.state.params.candidato.partido,
-        bens: []
-      },
-      estado: props.navigation.state.params.estado,
-      loading: true
+  useEffect(() => {
+    const getData = async () => {
+      const result = await getCandidato(
+        estado ? estado.estadoabrev : 'BR',
+        candidatoProp.id
+      );
+      setCandidato(result);
+      setLoading(false);
     };
-  }
 
-  async componentDidMount() {
-    let result = await getCandidato(
-      this.state.estado ? this.state.estado.estadoabrev : 'BR',
-      this.state.candidato.id
-    );
-    this.setState({ candidato: result, loading: false });
-  }
+    getData();
+  }, []);
 
-  share = () => {
-    let mensagem = 'Veja tudo sobre ' + this.state.candidato.nomeUrna;
-    mensagem +=
-      this.state.candidato.descricaoSexo == 'FEM.'
-        ? ', candidata a '
-        : ', candidato a ';
-    mensagem += this.state.candidato.cargo.nome;
-    mensagem += this.state.estado
-      ? ' pelo estado de ' + this.state.estado.estado
-      : ' pelo Brasil';
-    Share.open({
-      title: 'Eleições 2018',
-      message: mensagem,
-      url: '. Acesse http://goo.gl/VB5zB6.',
-      subject: 'Compartilhar Candidato'
-    })
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => {
-        err && console.log(err);
-      });
-  };
+  return (
+    <ContentCandidato loading={loading} candidato={candidato}>
+      <Text style={styles.titleSection}>
+        Total de Bens: {numeroParaReal(candidato.totalDeBens)}
+      </Text>
+      {candidato.bens.map((item, index) => (
+        <ListItem
+          key={item.ordem + ''}
+          containerStyle={
+            index == candidato.bens.length - 1 ? { borderBottomWidth: 0 } : {}
+          }
+          title={item.descricaoDeTipoDeBem}
+          subtitle={numeroParaReal(item.valor)}
+          hideChevron={true}
+        />
+      ))}
+    </ContentCandidato>
+  );
+};
 
-  render() {
-    return (
-      <ContentCandidato
-        loading={this.state.loading}
-        candidato={this.state.candidato}
-      >
-        <Text style={styles.titleSection}>
-          Total de Bens: {numeroParaReal(this.state.candidato.totalDeBens)}
-        </Text>
-        {this.state.candidato.bens.map((l, index) => (
-          <ListItem
-            key={l.ordem + ''}
-            containerStyle={
-              index == this.state.candidato.bens.length - 1
-                ? { borderBottomWidth: 0 }
-                : {}
-            }
-            title={l.descricaoDeTipoDeBem}
-            subtitle={numeroParaReal(l.valor)}
-            hideChevron={true}
-          />
-        ))}
-      </ContentCandidato>
-    );
-  }
-}
+export default CandidatoBensScreen;
