@@ -9,7 +9,7 @@ import Card from '../../components/Card';
 
 import { getCandidatos } from '../../services';
 
-const Presidentes = ({ navigation }) => {
+const PresidentesScreen = ({ navigation }) => {
   const [loading, setLoading] = useState(true);
   const [candidatos, setCandidatos] = useState([]);
 
@@ -74,4 +74,4 @@ const Presidentes = ({ navigation }) => {
   );
 };
 
-export default Presidentes;
+export default PresidentesScreen;

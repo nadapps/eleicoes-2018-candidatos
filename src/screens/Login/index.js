@@ -17,7 +17,7 @@ import Content from '../../components/Content';
 
 import style from './Login.style';
 
-const Login = ({ navigation }) => {
+const LoginScreen = ({ navigation }) => {
   const [estado, setEstado] = useState('');
 
   const entrar = async () => {
@@ -83,4 +83,4 @@ const Login = ({ navigation }) => {
   );
 };
 
-export default Login;
+export default LoginScreen;

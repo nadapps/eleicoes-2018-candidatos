@@ -13,7 +13,7 @@ import { getCandidatos } from '../../services';
 import styles from '../../styles';
 import colors from '../../colors';
 
-const Candidatos = ({ navigation, route }) => {
+const CandidatosScreen = ({ navigation, route }) => {
   const [loading, setLoading] = useState(true);
   const [scroll, setScroll] = useState(false);
   const [page, setPage] = useState(0);
@@ -135,4 +135,4 @@ const Candidatos = ({ navigation, route }) => {
   );
 };
 
-export default Candidatos;
+export default CandidatosScreen;

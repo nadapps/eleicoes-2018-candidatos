@@ -8,7 +8,7 @@ import Card from '../../components/Card';
 
 import { estados } from '../../constants';
 
-const Estados = ({ title, navigation, cargo }) => {
+const EstadosScreen = ({ title, navigation, cargo }) => {
   useEffect(() => {
     navigation
       .dangerouslyGetParent()
@@ -48,4 +48,4 @@ const Estados = ({ title, navigation, cargo }) => {
   );
 };
 
-export default Estados;
+export default EstadosScreen;

@@ -9,7 +9,7 @@ import Card from '../../components/Card';
 
 import { cargos } from '../../constants';
 
-const Estado = ({ navigation, route }) => (
+const EstadoScreen = ({ navigation, route }) => (
   <Content>
     <Card>
       <TitleEstado estado={route.params.estado} />
@@ -45,4 +45,4 @@ const Estado = ({ navigation, route }) => (
   </Content>
 );
 
-export default Estado;
+export default EstadoScreen;

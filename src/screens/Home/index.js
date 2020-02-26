@@ -7,7 +7,7 @@ import MeuCandidato from './components/MeuCandidato';
 
 import { getEstado, getCargo } from '../../constants';
 
-const Home = ({ navigation }) => {
+const HomeScreen = ({ navigation }) => {
   const [meusCandidatos, setMeusCandidatos] = useState({
     presidentes: [],
     governadores: [],
@@ -101,4 +101,4 @@ const Home = ({ navigation }) => {
   );
 };
 
-export default Home;
+export default HomeScreen;
