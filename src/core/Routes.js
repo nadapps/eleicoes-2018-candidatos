@@ -10,7 +10,7 @@ import Candidatos from '../screens/Candidatos';
 import Login from '../screens/Login';
 
 import Home from '../screens/Home';
-import Presidente from '../screens/Presidente';
+import Presidentes from '../screens/Presidentes';
 import Estados from '../screens/Estados';
 
 const Stack = createStackNavigator();
@@ -19,7 +19,7 @@ const Drawer = createDrawerNavigator();
 const RoutesDrawer = () => (
   <Drawer.Navigator>
     <Drawer.Screen name="Home" component={Home} />
-    <Drawer.Screen name="Presidente" component={Presidente} />
+    <Drawer.Screen name="Presidentes" component={Presidentes} />
     <Drawer.Screen name="Governador" component={GovernadorScreen} />
     <Drawer.Screen name="Senador" component={SenadorScreen} />
     <Drawer.Screen name="DeputadoFederal" component={DeputadoFederalScreen} />

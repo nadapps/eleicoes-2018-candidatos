@@ -3,15 +3,15 @@ import { FlatList } from 'react-native';
 import { StackActions } from '@react-navigation/native';
 import Snackbar from 'react-native-snackbar';
 
-import Content from '../components/Content';
-import TitleEstado from '../components/TitleEstado';
-import LoadingScroll from '../components/LoadingScroll';
-import CandidatoItem from '../components/CandidatoItem';
-import Card from '../components/Card';
+import Content from '../../components/Content';
+import TitleEstado from '../../components/TitleEstado';
+import LoadingScroll from '../../components/LoadingScroll';
+import CandidatoItem from '../../components/CandidatoItem';
+import Card from '../../components/Card';
 
-import { getCandidatos } from '../services';
-import styles from '../styles';
-import colors from '../colors';
+import { getCandidatos } from '../../services';
+import styles from '../../styles';
+import colors from '../../colors';
 
 const Candidatos = ({ navigation, route }) => {
   const [loading, setLoading] = useState(true);
@@ -44,7 +44,7 @@ const Candidatos = ({ navigation, route }) => {
 
     setLoading(true);
 
-    let result = await getCandidatos(
+    const result = await getCandidatos(
       route.params.estado.estadoabrev,
       cardoCodigo
     );
@@ -115,7 +115,7 @@ const Candidatos = ({ navigation, route }) => {
       <Card containerStyle={styles.card}>
         <FlatList
           style={{ flex: 1, borderRadius: 15 }}
-          keyExtractor={index => index + ''}
+          keyExtractor={item => item.id.toString()}
           data={candidatos}
           renderItem={({ item, index }) => (
             <CandidatoItem

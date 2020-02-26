@@ -3,19 +3,18 @@ import { TouchableOpacity } from 'react-native';
 import { ListItem } from 'react-native-elements';
 import { StackActions } from '@react-navigation/native';
 
-import Content from '../components/Content';
-import TitleEstado from '../components/TitleEstado';
-import Card from '../components/Card';
+import Content from '../../components/Content';
+import TitleEstado from '../../components/TitleEstado';
+import Card from '../../components/Card';
 
-import { cargos } from '../constants';
-import styles from '../styles';
+import { cargos } from '../../constants';
 
 const Estado = ({ navigation, route }) => (
   <Content>
-    <Card containerStyle={{ padding: 0, borderRadius: 15 }}>
+    <Card>
       <TitleEstado estado={route.params.estado} />
     </Card>
-    <Card containerStyle={styles.card}>
+    <Card>
       {cargos.map((cargo, index) => (
         <ListItem
           component={TouchableOpacity}
