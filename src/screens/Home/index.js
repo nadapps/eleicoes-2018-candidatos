@@ -5,7 +5,7 @@ import { StackActions } from '@react-navigation/native';
 import Content from '../../components/Content';
 import MeuCandidato from './components/MeuCandidato';
 
-import { getEstado, getCargo } from '../../constants';
+import { getEstado, getCargo } from '../../core/constants';
 
 const HomeScreen = ({ navigation }) => {
   const [meusCandidatos, setMeusCandidatos] = useState({

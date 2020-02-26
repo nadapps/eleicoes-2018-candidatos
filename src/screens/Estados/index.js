@@ -6,7 +6,7 @@ import { StackActions } from '@react-navigation/native';
 import Content from '../../components/Content';
 import Card from '../../components/Card';
 
-import { estados } from '../../constants';
+import { estados } from '../../core/constants';
 
 const EstadosScreen = ({ title, navigation, cargo }) => {
   useEffect(() => {

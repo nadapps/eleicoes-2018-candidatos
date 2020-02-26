@@ -7,7 +7,7 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import ContentCandidato from '../components/ContentCandidato';
 
 import { candidato } from '../services';
-import { coresPartidos } from '../constants';
+import { coresPartidos } from '../core/constants';
 import colors from '../core/colors';
 
 export default class CandidatoEleicoes extends React.Component {

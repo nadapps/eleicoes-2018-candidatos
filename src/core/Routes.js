@@ -2,7 +2,7 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
-import { getCargo } from '../constants';
+import { getCargo } from '../core/constants';
 import style from '../styles';
 
 import Estado from '../screens/Estado';

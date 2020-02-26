@@ -12,7 +12,7 @@ import { StackActions } from '@react-navigation/native';
 import DeviceInfo from 'react-native-device-info';
 import { Button } from 'react-native-elements';
 
-import { estados } from '../../constants';
+import { estados } from '../../core/constants';
 import Content from '../../components/Content';
 
 import style from './Login.style';

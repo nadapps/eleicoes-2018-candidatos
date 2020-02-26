@@ -7,7 +7,7 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import ContentCandidato from '../components/ContentCandidato';
 
 import { candidatoGasto, candidato } from '../services';
-import { numeroParaReal, coresPartidos } from '../constants';
+import { numeroParaReal, coresPartidos } from '../core/constants';
 import styles from '../styles';
 import colors from '../core/colors';
 

@@ -7,7 +7,7 @@ import Content from '../../components/Content';
 import TitleEstado from '../../components/TitleEstado';
 import Card from '../../components/Card';
 
-import { cargos } from '../../constants';
+import { cargos } from '../../core/constants';
 
 const EstadoScreen = ({ navigation, route }) => (
   <Content>

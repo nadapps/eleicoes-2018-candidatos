@@ -10,7 +10,7 @@ import Content from './Content';
 
 import styles from '../styles';
 import colors from '../core/colors';
-import { coresPartidos } from '../constants';
+import { coresPartidos } from '../core/constants';
 
 let bandeirasPartidos = {
   avante: require('../../assets/img/partidos/avante.jpg'),
