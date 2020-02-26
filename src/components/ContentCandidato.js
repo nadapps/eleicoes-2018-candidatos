@@ -8,7 +8,7 @@ import { Card } from 'react-native-elements';
 
 import Content from './Content';
 
-import styles from '../styles';
+import styles from '../core/styles';
 import colors from '../core/colors';
 import { coresPartidos } from '../core/constants';
 

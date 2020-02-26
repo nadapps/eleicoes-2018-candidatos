@@ -8,7 +8,7 @@ import ContentCandidato from '../components/ContentCandidato';
 
 import { candidatoGasto, candidato } from '../services';
 import { numeroParaReal, coresPartidos } from '../core/constants';
-import styles from '../styles';
+import styles from '../core/styles';
 import colors from '../core/colors';
 
 export default class CandidatoFinancas extends React.Component {

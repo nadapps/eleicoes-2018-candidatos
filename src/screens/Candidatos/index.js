@@ -10,7 +10,7 @@ import CandidatoItem from '../../components/CandidatoItem';
 import Card from '../../components/Card';
 
 import { getCandidatos } from '../../services';
-import styles from '../../styles';
+import styles from '../../core/styles';
 import colors from '../../core/colors';
 
 const CandidatosScreen = ({ navigation, route }) => {

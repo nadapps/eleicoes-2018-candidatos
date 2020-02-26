@@ -3,7 +3,7 @@ import { DrawerActions } from '@react-navigation/drawer';
 import { CommonActions } from '@react-navigation/core';
 import PropTypes from 'prop-types';
 import { ScrollView, Text, View } from 'react-native';
-import styles from '../styles';
+import styles from '../core/styles';
 
 class DrawerScreen extends Component {
   navigateToScreen = route => () => {

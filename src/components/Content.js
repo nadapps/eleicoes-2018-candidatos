@@ -5,7 +5,7 @@ import { SearchBar } from 'react-native-elements';
 
 import Loading from './Loading';
 
-import styles from '../styles';
+import styles from '../core/styles';
 import colors from '../core/colors';
 
 class Content extends React.Component {

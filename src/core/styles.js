@@ -1,4 +1,4 @@
-import colors from './core/colors';
+import colors from './colors';
 
 export default {
   header: { backgroundColor: colors.primary, elevation: 0 },

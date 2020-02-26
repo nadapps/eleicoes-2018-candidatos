@@ -3,7 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import { getCargo } from '../core/constants';
-import style from '../styles';
+import style from './styles';
 
 import Estado from '../screens/Estado';
 import Candidatos from '../screens/Candidatos';

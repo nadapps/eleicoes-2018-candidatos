@@ -11,7 +11,7 @@ import ItemCandidato from '../components/ItemCandidato';
 import FavoritoCandidato from '../components/FavoritoCandidato';
 
 import { candidato } from '../services';
-import styles from '../styles';
+import styles from '../core/styles';
 import colors from '../core/colors';
 import { coresPartidos } from '../core/constants';
 
