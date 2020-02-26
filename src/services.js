@@ -22,7 +22,7 @@ export const cargos = async estado => {
   return await get(url);
 };
 
-export const candidatos = async (estado, cargo) => {
+export const getCandidatos = async (estado, cargo) => {
   if (estado == 'DF' && cargo == 7) cargo = 8;
   let url =
     'http://divulgacandcontas.tse.jus.br/divulga/rest/v1/candidatura/listar/2018/' +

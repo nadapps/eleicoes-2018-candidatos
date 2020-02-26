@@ -19,46 +19,10 @@ const RoutesDrawer = () => (
   <Drawer.Navigator>
     <Drawer.Screen name="Home" component={Home} />
     <Drawer.Screen name="Presidente" component={Presidente} />
-    <Drawer.Screen
-      name="Governador"
-      component={props => (
-        <Estados
-          cargo={getCargo('Governador')}
-          title="Escolha o estado do Governador..."
-          {...props}
-        />
-      )}
-    />
-    <Drawer.Screen
-      name="Senador"
-      component={props => (
-        <Estados
-          cargo={getCargo('Senador')}
-          title="Escolha o estado do Senador..."
-          {...props}
-        />
-      )}
-    />
-    <Drawer.Screen
-      name="DeputadoFederal"
-      component={props => (
-        <Estados
-          cargo={getCargo('Deputado Federal')}
-          title="Escolha o estado do Deputado..."
-          {...props}
-        />
-      )}
-    />
-    <Drawer.Screen
-      name="DeputadoEstadual"
-      component={props => (
-        <Estados
-          cargo={getCargo('Deputado Estadual')}
-          title="Escolha o estado do Deputado..."
-          {...props}
-        />
-      )}
-    />
+    <Drawer.Screen name="Governador" component={GovernadorScreen} />
+    <Drawer.Screen name="Senador" component={SenadorScreen} />
+    <Drawer.Screen name="DeputadoFederal" component={DeputadoFederalScreen} />
+    <Drawer.Screen name="DeputadoEstadual" component={DeputadoEstadualScreen} />
     <Drawer.Screen
       name="Estados"
       component={Estados}
@@ -86,6 +50,38 @@ const Routes = () => (
       options={{ headerTitle: 'Escolhar o Cargo...' }}
     />
   </Stack.Navigator>
+);
+
+const GovernadorScreen = props => (
+  <Estados
+    cargo={getCargo('Governador')}
+    title="Escolha o estado do Governador..."
+    {...props}
+  />
+);
+
+const SenadorScreen = props => (
+  <Estados
+    cargo={getCargo('Senador')}
+    title="Escolha o estado do Senador..."
+    {...props}
+  />
+);
+
+const DeputadoFederalScreen = props => (
+  <Estados
+    cargo={getCargo('Deputado Federal')}
+    title="Escolha o estado do Deputado..."
+    {...props}
+  />
+);
+
+const DeputadoEstadualScreen = props => (
+  <Estados
+    cargo={getCargo('Deputado Estadual')}
+    title="Escolha o estado do Deputado..."
+    {...props}
+  />
 );
 
 export default Routes;

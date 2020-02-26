@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Image, TouchableOpacity } from 'react-native';
 import { ListItem, Card } from 'react-native-elements';
-import { StackActions, useNavigation } from '@react-navigation/native';
+import { StackActions } from '@react-navigation/native';
 
 import Content from '../components/Content';
 
@@ -35,7 +35,7 @@ const Estados = ({ title, navigation, cargo }) => {
             title={estado.estado}
             onPress={() =>
               navigation.dispatch(
-                StackActions.push(cargo ? 'Estado' : 'Candidatos', {
+                StackActions.push(cargo ? 'Candidatos' : 'Estado', {
                   estado,
                   cargo
                 })
