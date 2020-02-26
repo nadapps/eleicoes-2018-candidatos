@@ -1,6 +1,7 @@
 import colors from './colors.js';
 
 export default {
+  header: { backgroundColor: colors.primary, elevation: 0 },
   container: {
     flex: 1,
     backgroundColor: '#FFF',

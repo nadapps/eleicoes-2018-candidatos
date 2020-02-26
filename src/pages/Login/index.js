@@ -14,7 +14,6 @@ import { Button } from 'react-native-elements';
 
 import { estados } from '../../constants';
 import Content from '../../components/Content';
-import colors from '../../colors';
 
 import style from './Login.style';
 
@@ -71,10 +70,10 @@ const Login = ({ navigation }) => {
             </Picker>
           </View>
           <Button
-            containerViewStyle={style.button}
+            containerStyle={style.buttonContainer}
+            buttonStyle={style.button}
             raised
-            backgroundColor={colors.primary}
-            color={colors.black}
+            titleStyle={style.textButton}
             onPress={() => entrar()}
             title="Acessar"
           />

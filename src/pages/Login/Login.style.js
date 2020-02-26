@@ -1,3 +1,5 @@
+import colors from '../../colors';
+
 const style = {
   background: { width: '100%', resizeMode: 'stretch' },
   container: { width: '100%', height: '100%' },
@@ -29,12 +31,14 @@ const style = {
     borderRadius: 5,
     marginTop: 20
   },
-  button: {
+  buttonContainer: {
     marginLeft: 0,
     paddingLeft: 0,
     marginTop: 30,
     width: '100%'
-  }
+  },
+  button: { backgroundColor: colors.primary },
+  textButton: { color: colors.black }
 };
 
 export default style;

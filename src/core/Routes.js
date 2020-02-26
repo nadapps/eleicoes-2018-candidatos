@@ -3,6 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import { getCargo } from '../constants';
+import style from '../styles';
 
 import Estado from '../pages/Estado';
 import Candidatos from '../pages/Candidatos';
@@ -32,7 +33,7 @@ const RoutesDrawer = () => (
 );
 
 const Routes = () => (
-  <Stack.Navigator>
+  <Stack.Navigator screenOptions={{ headerStyle: style.header }}>
     <Stack.Screen
       name="Login"
       component={Login}
