@@ -36,6 +36,7 @@ export const getCandidatos = async (estado, cargo) => {
   //   cargo +
   //   '&local=' +
   //   estado;
+  console.log(url);
   const result = await axios.get(url);
   return result.data.candidatos;
 };

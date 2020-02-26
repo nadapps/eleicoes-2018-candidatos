@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { FlatList } from 'react-native';
-import { Card } from 'react-native-elements';
 import { StackActions } from '@react-navigation/native';
 import Snackbar from 'react-native-snackbar';
 
@@ -8,6 +7,7 @@ import Content from '../components/Content';
 import TitleEstado from '../components/TitleEstado';
 import LoadingScroll from '../components/LoadingScroll';
 import CandidatoItem from '../components/CandidatoItem';
+import Card from '../components/Card';
 
 import { getCandidatos } from '../services';
 import styles from '../styles';
@@ -49,9 +49,6 @@ const Candidatos = ({ navigation, route }) => {
       cardoCodigo
     );
 
-    console.log(result);
-    setLoading(false);
-
     if (!result) {
       Snackbar.show({
         title: 'Oops, parece que existe um erro de conexão!',
@@ -68,6 +65,8 @@ const Candidatos = ({ navigation, route }) => {
       setAllCompleteCandidatos(result);
       setPage(1);
     }
+
+    setLoading(false);
   };
 
   const openCandidato = candidato => {

@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { Image, TouchableOpacity } from 'react-native';
-import { ListItem, Card } from 'react-native-elements';
+import { ListItem } from 'react-native-elements';
 import { StackActions } from '@react-navigation/native';
 
-import Content from '../components/Content';
+import Content from '../../components/Content';
+import Card from '../../components/Card';
 
-import { estados } from '../constants';
-import styles from '../styles';
+import { estados } from '../../constants';
 
 const Estados = ({ title, navigation, cargo }) => {
   useEffect(() => {
@@ -17,7 +17,7 @@ const Estados = ({ title, navigation, cargo }) => {
 
   return (
     <Content>
-      <Card containerStyle={styles.card}>
+      <Card>
         {estados.map((estado, index) => (
           <ListItem
             component={TouchableOpacity}
