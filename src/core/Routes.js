@@ -5,13 +5,13 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { getCargo } from '../constants';
 import style from '../styles';
 
-import Estado from '../pages/Estado';
-import Candidatos from '../pages/Candidatos';
-import Login from '../pages/Login';
+import Estado from '../screens/Estado';
+import Candidatos from '../screens/Candidatos';
+import Login from '../screens/Login';
 
-import Home from '../pages/Home';
-import Presidente from '../pages/Presidente';
-import Estados from '../pages/Estados';
+import Home from '../screens/Home';
+import Presidente from '../screens/Presidente';
+import Estados from '../screens/Estados';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
