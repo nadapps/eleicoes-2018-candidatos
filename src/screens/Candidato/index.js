@@ -18,15 +18,13 @@ const CandidatoScreen = ({ navigation, route }) => {
   useEffect(() => {
     const backgroundColor =
       coresPartidos[
-        navigation.state.params.candidato.partido.sigla
-          .toLowerCase()
-          .replace(/\s+/g, '')
+        route.params.candidato.partido.sigla.toLowerCase().replace(/\s+/g, '')
       ];
 
-    navigation.dangerouslyGetParent().setOptions({
-      title: navigation.state.params.candidato.nome,
-      headerTitle: backgroundColor,
-      headerRight: (
+    navigation.setOptions({
+      headerTitle: route.params.candidato.nome,
+      headerStyle: { backgroundColor, elevation: 0 },
+      headerRight: () => (
         <TouchableOpacity onPress={() => share()}>
           <Entypo
             name="share"
@@ -40,11 +38,16 @@ const CandidatoScreen = ({ navigation, route }) => {
   }, []);
 
   const share = () => {
-    let mensagem = 'Veja tudo sobre ' + candidato.nomeUrna;
+    let mensagem = `Veja tudo sobre ${route.params.candidato.nomeUrna}`;
     mensagem +=
-      candidato.descricaoSexo == 'FEM.' ? ', candidata a ' : ', candidato a ';
-    mensagem += candidato.cargo.nome;
-    mensagem += estado ? ' pelo estado de ' + estado.estado : ' pelo Brasil';
+      route.params.candidato.descricaoSexo == 'FEM.'
+        ? ', candidata a '
+        : ', candidato a ';
+    mensagem += route.params.candidato.cargo.nome;
+    mensagem += route.params.estado
+      ? ' pelo estado de ' + route.params.estado.estado
+      : ' pelo Brasil';
+
     Share.open({
       title: 'Eleições 2018',
       message: mensagem,
@@ -53,24 +56,18 @@ const CandidatoScreen = ({ navigation, route }) => {
     });
   };
 
+  const CandidatoBensScreen = () => <CandidatoBens {...route.params} />;
+  const CandidatoEleicoesScreen = () => <CandidatoEleicoes {...route.params} />;
+
   return (
     <Tab.Navigator>
-      <Tab.Screen
-        name="CandidatoDetalhe"
-        component={() => <CandidatoDetalhe {...route.params} />}
-      />
-      <Tab.Screen
-        name="CandidatoBens"
-        component={() => <CandidatoBens {...route.params} />}
-      />
+      <Tab.Screen name="CandidatoDetalhe" component={CandidatoBensScreen} />
+      <Tab.Screen name="CandidatoBens" component={CandidatoBensScreen} />
       <Tab.Screen
         name="CandidatoEleicoes"
-        component={() => <CandidatoEleicoes {...route.params} />}
+        component={CandidatoEleicoesScreen}
       />
-      <Tab.Screen
-        name="CandidatoFinancas"
-        component={() => <CandidatoFinancas {...route.params} />}
-      />
+      <Tab.Screen name="CandidatoFinancas" component={CandidatoBensScreen} />
     </Tab.Navigator>
   );
 };

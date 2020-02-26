@@ -49,10 +49,7 @@ const PresidentesScreen = ({ navigation }) => {
     candidato.ufCandidatura = 'BR';
 
     navigation.dispatch(
-      StackActions.push('CandidatoTab', {
-        candidato,
-        estado: null
-      })
+      StackActions.push('Candidato', { candidato, estado: null })
     );
   };
 

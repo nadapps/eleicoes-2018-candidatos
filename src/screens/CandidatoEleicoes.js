@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View } from 'react-native';
 import Timeline from 'react-native-timeline-flatlist';
 
@@ -6,60 +6,53 @@ import ContentCandidato from '../components/ContentCandidato';
 
 import { getCandidato } from '../services/candidatos';
 import colors from '../core/colors';
+import { add } from 'react-native-reanimated';
 
-export default class CandidatoEleicoes extends React.Component {
-  constructor(props) {
-    super(props);
+const CandidatoEleicoesScreen = ({ candidato: candidatoProp, estado }) => {
+  const [loading, setLoading] = useState(true);
+  const [candidato, setCandidato] = useState({
+    id: candidatoProp.id,
+    partido: candidatoProp.partido
+  });
+  const [eleicoes, setEleicoes] = useState([]);
 
-    this.state = {
-      candidato: {
-        id: props.navigation.state.params.candidato.id,
-        partido: props.navigation.state.params.candidato.partido,
-        eleicoesAnteriores: []
-      },
-      eleicoesAnteriores: [],
-      estado: props.navigation.state.params.estado,
-      loading: true
+  useEffect(() => {
+    const getData = async () => {
+      const result = await getCandidato(
+        estado ? estado.estadoabrev : 'BR',
+        candidatoProp.id
+      );
+
+      const eleicoes = result.eleicoesAnteriores.reduce((acc, item) => {
+        acc.push({
+          time: item.nrAno,
+          title: `${item.cargo} - ${item.local}`,
+          description: item.partido
+        });
+
+        return acc;
+      }, []);
+
+      setEleicoes(eleicoes);
+      setCandidato(candidato);
+      setLoading(false);
     };
-  }
 
-  async componentDidMount() {
-    let result = await getCandidato(
-      this.state.estado ? this.state.estado.estadoabrev : 'BR',
-      this.state.candidato.id
-    );
+    getData();
+  }, []);
 
-    let eleicoesAnteriores = [];
+  return (
+    <ContentCandidato loading={loading} candidato={candidato}>
+      <View style={{ padding: 15, paddingBottom: 0 }}>
+        <Timeline
+          circleColor={colors.gray}
+          data={eleicoes}
+          lineColor={colors.gray}
+          innerCircle="dot"
+        />
+      </View>
+    </ContentCandidato>
+  );
+};
 
-    for (let i = 0; i < result.eleicoesAnteriores.length; i++) {
-      eleicoesAnteriores.push({
-        time: result.eleicoesAnteriores[i].nrAno,
-        title:
-          result.eleicoesAnteriores[i].cargo +
-          ' - ' +
-          result.eleicoesAnteriores[i].local,
-        description: result.eleicoesAnteriores[i].partido
-      });
-    }
-
-    this.setState({ candidato: result, loading: false, eleicoesAnteriores });
-  }
-
-  render() {
-    return (
-      <ContentCandidato
-        loading={this.state.loading}
-        candidato={this.state.candidato}
-      >
-        <View style={{ padding: 15, paddingBottom: 0 }}>
-          <Timeline
-            circleColor={colors.gray}
-            data={this.state.eleicoesAnteriores}
-            lineColor={colors.gray}
-            innerCircle={'dot'}
-          />
-        </View>
-      </ContentCandidato>
-    );
-  }
-}
+export default CandidatoEleicoesScreen;
