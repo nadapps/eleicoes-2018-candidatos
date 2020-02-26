@@ -6,7 +6,7 @@ import Entypo from 'react-native-vector-icons/Entypo';
 
 import ContentCandidato from '../components/ContentCandidato';
 
-import { candidatoGasto, candidato } from '../services';
+import { getCandidatoGasto, getCandidato } from '../services/candidatos';
 import { numeroParaReal, coresPartidos } from '../core/constants';
 import styles from '../core/styles';
 import colors from '../core/colors';
@@ -51,14 +51,14 @@ export default class CandidatoFinancas extends React.Component {
   }
 
   async componentDidMount() {
-    let result = await candidatoGasto(
+    let result = await getCandidatoGasto(
       this.state.estado ? this.state.estado.estadoabrev : 'BR',
       this.state.candidato.cargo.codigo,
       (this.state.candidato.numero + '').substr(0, 2),
       this.state.candidato.numero,
       this.state.candidato.id
     );
-    let result1 = await candidato(
+    let result1 = await getCandidato(
       this.state.estado ? this.state.estado.estadoabrev : 'BR',
       this.state.candidato.id
     );

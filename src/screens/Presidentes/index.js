@@ -7,7 +7,7 @@ import Content from '../../components/Content';
 import CandidatoItem from '../../components/CandidatoItem';
 import Card from '../../components/Card';
 
-import { getCandidatos } from '../../services';
+import { getCandidatos } from '../../services/candidatos';
 
 const PresidentesScreen = ({ navigation }) => {
   const [loading, setLoading] = useState(true);

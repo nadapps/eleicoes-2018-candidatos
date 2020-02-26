@@ -6,7 +6,7 @@ import Entypo from 'react-native-vector-icons/Entypo';
 
 import ContentCandidato from '../components/ContentCandidato';
 
-import { candidato } from '../services';
+import { getCandidato } from '../services/candidatos';
 import { coresPartidos } from '../core/constants';
 import colors from '../core/colors';
 
@@ -54,7 +54,7 @@ export default class CandidatoEleicoes extends React.Component {
   }
 
   async componentDidMount() {
-    let result = await candidato(
+    let result = await getCandidato(
       this.state.estado ? this.state.estado.estadoabrev : 'BR',
       this.state.candidato.id
     );

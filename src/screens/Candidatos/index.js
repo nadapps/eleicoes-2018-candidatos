@@ -9,7 +9,7 @@ import LoadingScroll from '../../components/LoadingScroll';
 import CandidatoItem from '../../components/CandidatoItem';
 import Card from '../../components/Card';
 
-import { getCandidatos } from '../../services';
+import { getCandidatos } from '../../services/candidatos';
 import styles from '../../core/styles';
 import colors from '../../core/colors';
 

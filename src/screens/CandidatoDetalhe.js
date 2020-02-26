@@ -10,7 +10,7 @@ import RedesSociais from '../components/RedesSociais';
 import ItemCandidato from '../components/ItemCandidato';
 import FavoritoCandidato from '../components/FavoritoCandidato';
 
-import { candidato } from '../services';
+import { getCandidato } from '../services/candidatos';
 import styles from '../core/styles';
 import colors from '../core/colors';
 import { coresPartidos } from '../core/constants';
@@ -90,7 +90,7 @@ export default class CandidatoDetalhe extends React.Component {
   };
 
   async componentDidMount() {
-    let result = await candidato(
+    let result = await getCandidato(
       this.state.estado ? this.state.estado.estadoabrev : 'BR',
       this.state.candidato.id
     );
