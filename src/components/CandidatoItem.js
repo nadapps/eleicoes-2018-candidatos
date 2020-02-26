@@ -55,10 +55,10 @@ class CandidatoItem extends Component {
                 borderRadius: 100
               }}
               source={{
-                uri:
-                  'http://35.227.86.242/eleicoes/candidatos/' +
-                  this.props.candidato.id +
-                  '.jpg'
+                uri: 'https://i.stack.imgur.com/34AD2.jpg'
+                // 'http://35.227.86.242/eleicoes/candidatos/' +
+                // this.props.candidato.id +
+                // '.jpg'
               }}
               indicatorProps={{
                 size: 20,
@@ -83,7 +83,7 @@ class CandidatoItem extends Component {
                   width: '90%'
                 }}
               >
-                {this.props.candidato.nome}
+                {this.props.candidato.nomeCompleto}
               </Text>
               <Text
                 numberOfLines={1}
@@ -97,7 +97,7 @@ class CandidatoItem extends Component {
               >
                 {this.props.candidato.partido.sigla +
                   ' - ' +
-                  this.props.candidato.coligacao}
+                  this.props.candidato.nomeColigacao}
               </Text>
               <SimpleLineIcons
                 style={{ position: 'absolute', right: 15, top: 22 }}

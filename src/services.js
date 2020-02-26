@@ -1,4 +1,5 @@
 import fetch from 'react-native-fetch-polyfill';
+import axios from 'axios';
 
 const get = async url => {
   return fetch(url, {
@@ -35,7 +36,8 @@ export const getCandidatos = async (estado, cargo) => {
   //   cargo +
   //   '&local=' +
   //   estado;
-  return await get(url);
+  const result = await axios.get(url);
+  return result.data.candidatos;
 };
 
 export const candidato = async (estado, candidato) => {

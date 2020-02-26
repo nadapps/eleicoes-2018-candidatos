@@ -49,6 +49,7 @@ const Candidatos = ({ navigation, route }) => {
       cardoCodigo
     );
 
+    console.log(result);
     setLoading(false);
 
     if (!result) {
@@ -62,16 +63,6 @@ const Candidatos = ({ navigation, route }) => {
         }
       });
     } else {
-      result = Object.values(result);
-
-      for (let i = 0; i < result.length; i++) {
-        result[i].partido = { sigla: result[i].partido };
-        result[i].cargo = {
-          nome: route.params.cargo.nome,
-          codigo: result[i].cargo
-        };
-      }
-
       setCandidatos(result.slice(0, 15));
       setAllCandidatos(result);
       setAllCompleteCandidatos(result);
@@ -105,13 +96,13 @@ const Candidatos = ({ navigation, route }) => {
   const onSearch = text => {
     if (text) {
       const result = allCompleteCandidatos.filter(item =>
-        item.nome.toLowerCase().includes(text.toLowerCase())
+        item.nomeCompleto.toLowerCase().includes(text.toLowerCase())
       );
       setCandidatos(result.slice(0, 15));
       setAllCandidatos(result);
     } else {
       setAllCandidatos(allCompleteCandidatos);
-      setCandidatos(allCompleteCandidatos(0, 15));
+      setCandidatos(allCompleteCandidatos.slice(0, 15));
     }
 
     setPage(1);
