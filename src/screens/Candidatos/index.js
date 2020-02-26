@@ -73,7 +73,7 @@ const CandidatosScreen = ({ navigation, route }) => {
     candidato.ufCandidatura = route.params.estado.estadoabrev;
 
     navigation.dispatch(
-      StackActions.push('CandidatoTab', {
+      StackActions.push('Candidato', {
         candidato,
         estado: route.params.estado
       })

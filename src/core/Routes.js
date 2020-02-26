@@ -1,6 +1,7 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { getCargo } from '../core/constants';
 import style from './styles';
@@ -13,8 +14,14 @@ import Home from '../screens/Home';
 import Presidentes from '../screens/Presidentes';
 import Estados from '../screens/Estados';
 
+import CandidatoDetalhe from '../screens/CandidatoDetalhe';
+import CandidatoBens from '../screens/CandidatoBens';
+import CandidatoEleicoes from '../screens/CandidatoEleicoes';
+import CandidatoFinancas from '../screens/CandidatoFinancas';
+
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
+const Tab = createBottomTabNavigator();
 
 const RoutesDrawer = () => (
   <Drawer.Navigator>
@@ -32,17 +39,26 @@ const RoutesDrawer = () => (
   </Drawer.Navigator>
 );
 
+const RoutesTab = () => (
+  <Tab.Navigator>
+    <Tab.Screen name="CandidatoDetalhe" component={CandidatoDetalhe} />
+    <Tab.Screen name="CandidatoBens" component={CandidatoBens} />
+    <Tab.Screen name="CandidatoEleicoes" component={CandidatoEleicoes} />
+    <Tab.Screen name="CandidatoFinancas" component={CandidatoFinancas} />
+  </Tab.Navigator>
+);
+
 const Routes = () => (
   <Stack.Navigator screenOptions={{ headerStyle: style.header }}>
-    <Stack.Screen
-      name="Login"
-      component={Login}
-      options={{ header: () => null }}
-    />
     <Stack.Screen
       name="Main"
       component={RoutesDrawer}
       options={{ headerTitle: 'Eleições 2018' }}
+    />
+    <Stack.Screen
+      name="Login"
+      component={Login}
+      options={{ header: () => null }}
     />
     <Stack.Screen name="Candidatos" component={Candidatos} />
     <Stack.Screen
@@ -50,6 +66,7 @@ const Routes = () => (
       component={Estado}
       options={{ headerTitle: 'Escolhar o Cargo...' }}
     />
+    <Stack.Screen name="Candidato" component={RoutesTab} />
   </Stack.Navigator>
 );
 
