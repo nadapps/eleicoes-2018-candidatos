@@ -12,7 +12,7 @@ import FavoritoCandidato from '../components/FavoritoCandidato';
 
 import { candidato } from '../services';
 import styles from '../styles';
-import colors from '../colors';
+import colors from '../core/colors';
 import { coresPartidos } from '../constants';
 
 export default class CandidatoDetalhe extends React.Component {

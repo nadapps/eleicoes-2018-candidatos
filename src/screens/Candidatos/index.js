@@ -11,7 +11,7 @@ import Card from '../../components/Card';
 
 import { getCandidatos } from '../../services';
 import styles from '../../styles';
-import colors from '../../colors';
+import colors from '../../core/colors';
 
 const CandidatosScreen = ({ navigation, route }) => {
   const [loading, setLoading] = useState(true);

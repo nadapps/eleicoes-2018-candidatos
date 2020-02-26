@@ -9,7 +9,7 @@ import { Card } from 'react-native-elements';
 import Content from './Content';
 
 import styles from '../styles';
-import colors from '../colors';
+import colors from '../core/colors';
 import { coresPartidos } from '../constants';
 
 let bandeirasPartidos = {

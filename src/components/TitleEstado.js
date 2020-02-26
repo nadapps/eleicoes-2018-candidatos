@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Image, Text } from 'react-native';
-import colors from '../colors';
+import colors from '../core/colors';
 
 export default class TitleEstado extends Component {
   constructor(props) {

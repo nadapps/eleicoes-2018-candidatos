@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, ActivityIndicator } from 'react-native';
-import colors from '../colors';
+import colors from '../core/colors';
 
 export default class LoadingScroll extends Component {
   constructor(props) {

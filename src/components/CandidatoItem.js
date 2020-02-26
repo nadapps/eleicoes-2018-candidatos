@@ -5,7 +5,7 @@ import ImageProgress from 'react-native-image-progress';
 import Circle from 'react-native-progress/Circle';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 
-import colors from '../colors';
+import colors from '../core/colors';
 
 class CandidatoItem extends Component {
   constructor(props) {

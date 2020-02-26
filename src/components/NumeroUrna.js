@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, Text } from 'react-native';
-import colors from '../colors';
+import colors from '../core/colors';
 
 class NumeroUrna extends Component {
   constructor(props) {

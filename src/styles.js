@@ -1,4 +1,4 @@
-import colors from './colors.js';
+import colors from './core/colors';
 
 export default {
   header: { backgroundColor: colors.primary, elevation: 0 },
@@ -103,12 +103,6 @@ export default {
     paddingRight: 15,
     fontSize: 15,
     textAlign: 'center'
-  },
-  card: {
-    padding: 0,
-    marginBottom: 10,
-    borderRadius: 15,
-    backgroundColor: colors.white
   },
   list: {
     marginTop: 0,

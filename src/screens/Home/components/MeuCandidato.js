@@ -14,7 +14,7 @@ import { Row, Col } from 'react-native-easy-grid';
 import { StackActions } from '@react-navigation/native';
 
 import styles from '../../../styles';
-import colors from '../../../colors';
+import colors from '../../../core/colors';
 import NumeroUrna from '../../../components/NumeroUrna';
 
 class MeuCandidatoHome extends Component {

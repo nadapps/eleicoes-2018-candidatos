@@ -6,7 +6,7 @@ import {
   View
 } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import colors from '../colors';
+import colors from '../core/colors';
 
 export default class FavoritoCandidato extends Component {
   constructor(props) {

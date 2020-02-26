@@ -9,7 +9,7 @@ import ContentCandidato from '../components/ContentCandidato';
 import { candidatoGasto, candidato } from '../services';
 import { numeroParaReal, coresPartidos } from '../constants';
 import styles from '../styles';
-import colors from '../colors';
+import colors from '../core/colors';
 
 export default class CandidatoFinancas extends React.Component {
   constructor(props) {
