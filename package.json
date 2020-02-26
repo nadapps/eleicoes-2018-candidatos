@@ -1,6 +1,6 @@
 {
-  "name": "Eleicoes2018Candidatos",
-  "version": "0.0.1",
+  "name": "eleicoes-2018-candidatos",
+  "version": "2.0.0",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
