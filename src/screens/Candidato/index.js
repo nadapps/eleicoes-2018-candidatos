@@ -4,10 +4,10 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Share from 'react-native-share';
 
-import CandidatoDetalhe from '../CandidatoDetalhe';
-import CandidatoBens from '../CandidatoBens';
-import CandidatoEleicoes from '../CandidatoEleicoes';
-import CandidatoFinancas from '../CandidatoFinancas';
+import Detalhes from './containers/Detalhes';
+import Bens from './containers/Bens';
+import Eleicoes from './containers/Eleicoes';
+import Financas from './containers/Financas';
 
 import { coresPartidos } from '../../core/constants';
 import colors from '../../core/colors';
@@ -56,18 +56,16 @@ const CandidatoScreen = ({ navigation, route }) => {
     });
   };
 
-  const CandidatoBensScreen = () => <CandidatoBens {...route.params} />;
-  const CandidatoEleicoesScreen = () => <CandidatoEleicoes {...route.params} />;
+  const BensScreen = () => <Bens {...route.params} />;
+  const EleicoesScreen = () => <Eleicoes {...route.params} />;
+  const DetalhesScreen = () => <Detalhes {...route.params} />;
 
   return (
     <Tab.Navigator>
-      <Tab.Screen name="CandidatoDetalhe" component={CandidatoBensScreen} />
-      <Tab.Screen name="CandidatoBens" component={CandidatoBensScreen} />
-      <Tab.Screen
-        name="CandidatoEleicoes"
-        component={CandidatoEleicoesScreen}
-      />
-      <Tab.Screen name="CandidatoFinancas" component={CandidatoBensScreen} />
+      <Tab.Screen name="CandidatoDetalhe" component={DetalhesScreen} />
+      <Tab.Screen name="CandidatoBens" component={BensScreen} />
+      <Tab.Screen name="CandidatoEleicoes" component={EleicoesScreen} />
+      <Tab.Screen name="CandidatoFinancas" component={BensScreen} />
     </Tab.Navigator>
   );
 };

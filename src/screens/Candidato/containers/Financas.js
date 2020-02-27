@@ -2,11 +2,11 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import { Row, Grid } from 'react-native-easy-grid';
 
-import ContentCandidato from '../components/ContentCandidato';
+import ContentCandidato from '../../../components/ContentCandidato';
 
-import { getCandidatoGasto, getCandidato } from '../services/candidatos';
-import { numeroParaReal } from '../core/constants';
-import styles from '../core/styles';
+import { getCandidatoGasto, getCandidato } from '../../../services/candidatos';
+import { numeroParaReal } from '../../../core/constants';
+import styles from '../../../core/styles';
 
 export default class CandidatoFinancas extends React.Component {
   constructor(props) {

@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Text } from 'react-native';
 import { ListItem } from 'react-native-elements';
 
-import ContentCandidato from '../components/ContentCandidato';
+import ContentCandidato from '../../../components/ContentCandidato';
 
-import { getCandidato } from '../services/candidatos';
-import { numeroParaReal } from '../core/constants';
-import styles from '../core/styles';
+import { getCandidato } from '../../../services/candidatos';
+import { numeroParaReal } from '../../../core/constants';
+import styles from '../../../core/styles';
 
 const CandidatoBensScreen = ({ candidato: candidatoProp, estado }) => {
   const [loading, setLoading] = useState(true);

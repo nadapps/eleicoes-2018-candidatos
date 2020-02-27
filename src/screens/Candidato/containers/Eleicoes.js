@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { View } from 'react-native';
 import Timeline from 'react-native-timeline-flatlist';
 
-import ContentCandidato from '../components/ContentCandidato';
+import ContentCandidato from '../../../components/ContentCandidato';
 
-import { getCandidato } from '../services/candidatos';
-import colors from '../core/colors';
+import { getCandidato } from '../../../services/candidatos';
+import colors from '../../../core/colors';
 import { add } from 'react-native-reanimated';
 
 const CandidatoEleicoesScreen = ({ candidato: candidatoProp, estado }) => {
