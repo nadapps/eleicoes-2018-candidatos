@@ -1,8 +1,11 @@
 import React, { useEffect } from 'react';
 import { TouchableOpacity } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Entypo from 'react-native-vector-icons/Entypo';
 import Share from 'react-native-share';
+
+import Entypo from 'react-native-vector-icons/Entypo';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import Detalhes from './containers/Detalhes';
 import Bens from './containers/Bens';
@@ -24,6 +27,7 @@ const CandidatoScreen = ({ navigation, route }) => {
     navigation.setOptions({
       headerTitle: route.params.candidato.nome,
       headerStyle: { backgroundColor, elevation: 0 },
+      headerTintColor: colors.white,
       headerRight: () => (
         <TouchableOpacity onPress={() => share()}>
           <Entypo
@@ -62,13 +66,68 @@ const CandidatoScreen = ({ navigation, route }) => {
   const DetalhesScreen = () => <Detalhes {...route.params} />;
 
   return (
-    <Tab.Navigator>
-      <Tab.Screen name="CandidatoDetalhe" component={DetalhesScreen} />
-      <Tab.Screen name="CandidatoBens" component={BensScreen} />
-      <Tab.Screen name="CandidatoEleicoes" component={EleicoesScreen} />
-      <Tab.Screen name="CandidatoFinancas" component={FinancasScreen} />
+    <Tab.Navigator
+      tabBarOptions={{
+        activeTintColor: colors.grey,
+        inactiveTintColor: colors.gray,
+        style: styles.tab,
+        indicatorStyle: { backgroundColor: colors.primary, top: 1 },
+        labelStyle: { fontSize: 10, marginTop: 0, marginBottom: 0 },
+        iconStyle: { marginBottom: 0, marginTop: 0 }
+      }}
+    >
+      <Tab.Screen
+        name="CandidatoDetalhe"
+        component={DetalhesScreen}
+        options={{
+          title: 'Candidato',
+          tabBarIcon: ({ color }) => (
+            <MaterialIcons name="person" size={30} color={color} />
+          )
+        }}
+      />
+      <Tab.Screen
+        name="CandidatoBens"
+        component={BensScreen}
+        options={{
+          title: 'Bens',
+          tabBarIcon: ({ color }) => (
+            <MaterialIcons name="attach-money" size={30} color={color} />
+          )
+        }}
+      />
+      <Tab.Screen
+        name="CandidatoEleicoes"
+        component={EleicoesScreen}
+        options={{
+          title: 'Candidaturas',
+          tabBarIcon: ({ color }) => (
+            <MaterialIcons name="star" size={30} color={color} />
+          )
+        }}
+      />
+      <Tab.Screen
+        name="CandidatoFinancas"
+        component={FinancasScreen}
+        options={{
+          title: 'Finanças',
+          tabBarIcon: ({ color }) => (
+            <FontAwesome5 name="coins" size={22} color={color} />
+          )
+        }}
+      />
     </Tab.Navigator>
   );
+};
+
+const styles = {
+  tab: {
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: -5 },
+    shadowRadius: 5,
+    shadowOpacity: 0.1,
+    backgroundColor: '#F5F4F4'
+  }
 };
 
 export default CandidatoScreen;
