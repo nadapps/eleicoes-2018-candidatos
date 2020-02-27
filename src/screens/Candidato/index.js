@@ -57,6 +57,7 @@ const CandidatoScreen = ({ navigation, route }) => {
   };
 
   const BensScreen = () => <Bens {...route.params} />;
+  const FinancasScreen = () => <Financas {...route.params} />;
   const EleicoesScreen = () => <Eleicoes {...route.params} />;
   const DetalhesScreen = () => <Detalhes {...route.params} />;
 
@@ -65,7 +66,7 @@ const CandidatoScreen = ({ navigation, route }) => {
       <Tab.Screen name="CandidatoDetalhe" component={DetalhesScreen} />
       <Tab.Screen name="CandidatoBens" component={BensScreen} />
       <Tab.Screen name="CandidatoEleicoes" component={EleicoesScreen} />
-      <Tab.Screen name="CandidatoFinancas" component={BensScreen} />
+      <Tab.Screen name="CandidatoFinancas" component={FinancasScreen} />
     </Tab.Navigator>
   );
 };

@@ -4,15 +4,15 @@ import { View, Image } from 'react-native';
 import { Col, Row } from 'react-native-easy-grid';
 import ImageProgress from 'react-native-image-progress';
 import Circle from 'react-native-progress/Circle';
-import { Card } from 'react-native-elements';
 
 import Content from './Content';
+import Card from './Card';
 
 import styles from '../core/styles';
 import colors from '../core/colors';
 import { coresPartidos } from '../core/constants';
 
-let bandeirasPartidos = {
+const bandeirasPartidos = {
   avante: require('../assets/img/partidos/avante.jpg'),
   dc: require('../assets/img/partidos/dc.jpg'),
   dem: require('../assets/img/partidos/dem.jpg'),
@@ -112,7 +112,7 @@ class ContentCandidato extends React.Component {
           </Row>
         </View>
         <View style={{ zIndex: 0, marginTop: 100 }}>
-          <Card containerStyle={styles.card}>
+          <Card>
             <View style={{ paddingTop: 45 }}>{this.props.children}</View>
           </Card>
         </View>
