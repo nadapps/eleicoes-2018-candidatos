@@ -10,3 +10,10 @@ Os dados apresentados são:
 - Últimas candidaturas
 - Despesas na eleição
 - Receitas na eleição
+
+## Tecnologias
+
+- React Native
+- React Navigation
+- React Native Elements
+
