@@ -5,7 +5,7 @@ import { Col, Row } from 'react-native-easy-grid';
 import ContentCandidato from '../../../components/ContentCandidato';
 import NumeroUrna from '../../../components/NumeroUrna';
 import RedesSociais from '../../../components/RedesSociais';
-import ItemCandidato from '../../../components/ItemCandidato';
+import ItemCandidato from '../components/ItemCandidato';
 
 import { getCandidato } from '../../../services/candidatos';
 import styles from '../../../core/styles';
