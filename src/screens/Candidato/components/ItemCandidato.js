@@ -25,12 +25,12 @@ const ItemCandidatoComponent = ({ title, value }) => (
   </View>
 );
 
-ItemCandidato.propTypes = {
+ItemCandidatoComponent.propTypes = {
   title: PropTypes.string,
   value: PropTypes.string
 };
 
-ItemCandidato.defaultProps = {
+ItemCandidatoComponent.defaultProps = {
   title: '',
   value: ''
 };

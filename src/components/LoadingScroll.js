@@ -1,24 +1,26 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { View, ActivityIndicator } from 'react-native';
 import colors from '../core/colors';
 
-export default class LoadingScroll extends Component {
-  constructor(props) {
-    super(props);
-  }
+const LoadingScrollComponent = ({ loading }) =>
+  loading ? (
+    <ActivityIndicator
+      animating={true}
+      size={30}
+      color={colors.dark}
+      style={{ padding: 10 }}
+    />
+  ) : (
+    <View />
+  );
 
-  render() {
-    if (this.props.loading) {
-      return (
-        <ActivityIndicator
-          animating={true}
-          size={30}
-          color={colors.dark}
-          style={{ padding: 10 }}
-        />
-      );
-    } else {
-      return <View />;
-    }
-  }
-}
+LoadingScrollComponent.propTypes = {
+  loading: PropTypes.bool
+};
+
+LoadingScrollComponent.defaultProps = {
+  loading: false
+};
+
+export default LoadingScrollComponent;
